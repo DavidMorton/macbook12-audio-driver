@@ -8,6 +8,7 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/module.h>
+#include <linux/pci.h>
 #include <linux/ctype.h>
 #include <sound/core.h>
 #include <sound/tlv.h>
@@ -634,6 +635,7 @@ enum {
 	CS4208_MBP11,
 	CS4208_MACMINI,
 	CS4208_GPIO0,
+	CS4208_MB81
 };
 
 static const struct hda_model_fixup cs4208_models[] = {
@@ -641,6 +643,7 @@ static const struct hda_model_fixup cs4208_models[] = {
 	{ .id = CS4208_MBA6, .name = "mba6" },
 	{ .id = CS4208_MBP11, .name = "mbp11" },
 	{ .id = CS4208_MACMINI, .name = "macmini" },
+	{ .id = CS4208_MB81, .name = "mb81" }, /* Early 2015 Macbook Retina 12" */
 	{}
 };
 
@@ -656,6 +659,7 @@ static const struct snd_pci_quirk cs4208_mac_fixup_tbl[] = {
 	SND_PCI_QUIRK(0x106b, 0x7100, "MacBookAir 6,1", CS4208_MBA6),
 	SND_PCI_QUIRK(0x106b, 0x7200, "MacBookAir 6,2", CS4208_MBA6),
 	SND_PCI_QUIRK(0x106b, 0x7b00, "MacBookPro 12,1", CS4208_MBP11),
+	SND_PCI_QUIRK(0X106b, 0X6400, "MacBook 8,1", CS4208_MB81),
 	{} /* terminator */
 };
 
@@ -685,6 +689,12 @@ static void cs4208_fixup_mac(struct hda_codec *codec,
 	if (codec->fixup_id == HDA_FIXUP_ID_NOT_SET)
 		codec->fixup_id = CS4208_GPIO0; /* default fixup */
 	snd_hda_apply_fixup(codec, action);
+}
+
+static void cs4208_fixup_macbook81(struct hda_codec *codec,
+			const struct hda_fixup *fix, int action)
+{
+	codec_info(codec, "running macbook setup");
 }
 
 /* MacMini 7,1 has the inverted jack detection */
@@ -762,6 +772,10 @@ static const struct hda_fixup cs4208_fixups[] = {
 		.type = HDA_FIXUP_FUNC,
 		.v.func = cs4208_fixup_mac,
 	},
+	[CS4208_MB81] = {
+		.type = HDA_FIXUP_FUNC,
+		.v.func = cs4208_fixup_macbook81
+	}
 };
 
 /* correct the 0dB offset of input pins */
@@ -798,6 +812,12 @@ static int patch_cs4208(struct hda_codec *codec)
 
 	snd_hda_pick_fixup(codec, cs4208_models, cs4208_fixup_tbl,
 			   cs4208_fixups);
+
+	codec_info(codec, "Model=%s, Picked ID=%d, VID=%08x, DEV=%08x", codec->modelname, 
+		codec->fixup_id,
+		codec->core.vendor_id,
+		codec->core.subsystem_id);
+		
 	snd_hda_apply_fixup(codec, HDA_FIXUP_ACT_PRE_PROBE);
 
 	snd_hda_override_wcaps(codec, 0x18,

@@ -10,23 +10,8 @@ update_dir="/lib/modules/$(uname -r)/updates"
 patch_dir='patch_cirrus'
 hda_dir="$build_dir/hda-$kernel_version"
 
-[[ ! -d $update_dir ]] && mkdir $update_dir
-[[ ! -d $build_dir ]] && mkdir $build_dir
-[[ -d $hda_dir ]] && rm -rf $hda_dir
-
-# attempt to download linux-x.x.x.tar.xz kernel
-wget -c https://cdn.kernel.org/pub/linux/kernel/v$major_version.x/linux-$kernel_version.tar.xz -P $build_dir
-
-if [[ $? -ne 0 ]]; then
-   # if first attempt fails, attempt to download linux-x.x.tar.xz kernel
-   kernel_version=$major_version.$minor_version
-   wget -c https://cdn.kernel.org/pub/linux/kernel/v$major_version.x/linux-$kernel_version.tar.xz -P $build_dir
-fi
-
-[[ $? -ne 0 ]] && echo "kernel could not be downloaded...exiting" && exit
-
-tar --strip-components=3 -xvf $build_dir/linux-$kernel_version.tar.xz linux-$kernel_version/sound/pci/hda --directory=build/
-mv hda $hda_dir
+#tar --strip-components=3 -xvf $build_dir/linux-$kernel_version.tar.xz linux-$kernel_version/sound/pci/hda --directory=build/
+#mv hda $hda_dir
 mv $hda_dir/Makefile $hda_dir/Makefile.orig
 mv $hda_dir/patch_cirrus.c $hda_dir/patch_cirrus.c.orig
 cp $patch_dir/Makefile $patch_dir/patch_cirrus.c $patch_dir/patch_cirrus_a1534_setup.h $patch_dir/patch_cirrus_a1534_pcm.h $hda_dir/
