@@ -270,4 +270,18 @@ So what is wcaps?
 number of nodes is 35, and the start node is 2. 2+35 = 37.
 
 # Alsa files
+## July 26, 2023
+
 http://alsa-project.org/db/?f=ce64ed0d4758ad8c82729f65196d03f096854d22
+
+Attempted to change the pin configs, but they never changed
+http://alsa-project.org/db/?f=5130d3b650be85666ca7f635d9aa0abaf9938325
+
+Removed the filter around setting the pins... previously this was checking to see if the HDA_FIXUP_ACT_PROBE was set for the action. Loads of weird driver pin configs are now appearing... I need to check that and figure out what's going on.
+http://alsa-project.org/db/?f=a54c8639f40c063b95fecaa6d8f8ae4a94978710
+
+After fixing some pin locations, the output is now saying it's "Digital Output (S/PDIF) - Built-in Audio" in the mixer in settings. This is a change. S/PDIF and S/PDIF Default PCM both lack volume controls in alsa-mixer. 
+http://alsa-project.org/db/?f=e8c37be357e9991b2be1ee719bfdf97a8207ceea
+
+Replaced the pin configuration with the one that came straight from Windows according to Leif Liddy's post. Internal mic still works, not much has changed otherwise. It seems that the label from 0x01 in the previous setup is now gone, and there's less detail in alsa-info than there was before about that node. 
+http://alsa-project.org/db/?f=d611b443886d1122285a73bbc819791aacb03f00

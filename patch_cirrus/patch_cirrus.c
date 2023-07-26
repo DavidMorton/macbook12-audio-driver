@@ -768,10 +768,57 @@ static void cs4208_fixup_spdif_switch(struct hda_codec *codec,
 static void cs4208_fixup_macbook81(struct hda_codec *codec, 
 						const struct hda_fixup *fix, int action)
 {
+	static const struct hda_pintbl hda_pintbl_mb82_pincfgs[] = {
+		{ 0x10, 0x002b4020 },
+		{ 0x11, 0x400000f0 },
+		{ 0x12, 0x400000f0 },
+		{ 0x13, 0x400000f0 },
+		{ 0x14, 0x400000f0 },
+		{ 0x15, 0x400000f0 },
+		{ 0x16, 0x400000f0 },
+		{ 0x17, 0x400000f0 },
+		{ 0x18, 0x00ab9030 },
+		{ 0x19, 0x90a60100 },
+		{ 0x1a, 0x400000f0 },
+		{ 0x1b, 0x400000f0 },
+		{ 0x1c, 0x400000f0 },
+		{ 0x1d, 0x90400010 },
+		{ 0x1e, 0x500000f0 },
+		{ 0x1f, 0x500000f0 },
+		{ 0x20, 0x500000f0 },
+		{ 0x21, 0x400000f0 },
+		{ 0x22, 0x400000f0 },
+		{} /* terminator */
+	};
+	
+	static const struct hda_pintbl hda_pintbl_mb82_pincfgs_windows[] = {
+		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
+		{ 0x11, 0x500000f0 },  //stereo
+		{ 0x12, 0x500000f0 },  //stereo
+		{ 0x13, 0x500000f0 },  //stereo
+		{ 0x14, 0x500000f0 },  //stereo
+		{ 0x15, 0x770000f0 },  //stereo Amp-In
+		{ 0x16, 0x770000f0 },  //stereo Amp-In
+		{ 0x17, 0x430000f0 },  //stereo Amp-In
+		{ 0x18, 0x04ab2050 },  //mono Amp-In          #Mic Jack
+		{ 0x19, 0x90a00070 },  //stereo Amp-In        #internal Mic
+		{ 0x1a, 0x770000f0 },  //stereo Amp-In        
+		{ 0x1b, 0x770000f0 },  //stereo Amp-In
+		{ 0x1c, 0x770000f0 },  //stereo Amp-In
+		{ 0x1d, 0x90400010 },  //8-Channels Digital   #digital speaker amplifier
+		{ 0x1e, 0x500000f0 },  //8-Channels Digital
+		{ 0x1f, 0x500000f0 },  //8-Channels Digital
+		{ 0x20, 0x500000f0 },  //8-Channels Digital
+		{ 0x21, 0x430000f0 },  //stereo digital
+		{ 0x22, 0x430000f0 },  //stereo digital
+	};
+
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
 
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
 		struct cs_spec *spec = codec->spec;
+		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
+		
 
 		spec->gpio_eapd_hp = 0;
 		spec->gpio_eapd_speaker = 1;
@@ -780,20 +827,10 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	}
 
 	// cs4208_fixup_gpio0(codec, fix, action);
+	
+	codec_info(codec, "Trying to set pins");
 
-	// static const struct hda_pintbl_mb82_pincfgs[] = {
-	// 	{ 0x11, 0x90170010 },
-	// 	{ 0x12, 0x90170011 },
-	// 	{ 0x13, 0x90170012 },
-	// 	{ 0x14, 0x90170014 }
-	// };
-	
-	if (action == HDA_FIXUP_ACT_PROBE) {
-		codec_info(codec, "HDA_FIXUP_ACT_PROBE");
-		
-	}
-	
-	// snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs);
+	snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs_windows);	
 }
 
 static const struct hda_fixup cs4208_fixups[] = {
@@ -868,7 +905,7 @@ static int patch_cs4208(struct hda_codec *codec)
 	cs4208_fix_amp_caps(codec, 0x1b);
 	cs4208_fix_amp_caps(codec, 0x1c);
 
-	codec_info(codec, "Entering the parse auto-config for 4208.");
+	codec_info(codec, "Entering the parse auto-config for 4208....");
 
 	err = cs_parse_auto_config(codec);
 	if (err < 0)
