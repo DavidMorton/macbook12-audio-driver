@@ -334,7 +334,7 @@ static int cs_init(struct hda_codec *codec)
 		snd_hda_sequence_write(codec, cs_errata_init_verbs);
 		snd_hda_sequence_write(codec, cs_coef_init_verbs);
 	} else if (spec->vendor_nid == CS4208_VENDOR_NID) {
-		snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
+		snd_hda_sequence_write(codec, cs4208_coef_init_verbs);
 	}
 
 	snd_hda_gen_init(codec);
@@ -828,9 +828,9 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 
 	// cs4208_fixup_gpio0(codec, fix, action);
 	
-	codec_info(codec, "Trying to set pins");
+	//codec_info(codec, "Trying to set pins");
 
-	snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs_windows);	
+	//snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs_windows);	
 }
 
 static const struct hda_fixup cs4208_fixups[] = {

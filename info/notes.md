@@ -283,5 +283,13 @@ http://alsa-project.org/db/?f=a54c8639f40c063b95fecaa6d8f8ae4a94978710
 After fixing some pin locations, the output is now saying it's "Digital Output (S/PDIF) - Built-in Audio" in the mixer in settings. This is a change. S/PDIF and S/PDIF Default PCM both lack volume controls in alsa-mixer. 
 http://alsa-project.org/db/?f=e8c37be357e9991b2be1ee719bfdf97a8207ceea
 
-Replaced the pin configuration with the one that came straight from Windows according to Leif Liddy's post. Internal mic still works, not much has changed otherwise. It seems that the label from 0x01 in the previous setup is now gone, and there's less detail in alsa-info than there was before about that node. 
+Replaced the pin configuration with the one that came straight from Windows according to Leif Liddy's post. Internal mic still works, not much has changed otherwise. It seems that the label from 0x01 in the previous setup is now gone, and there's less detail in alsa-info than there was before about that node.  Headphones are no longer working, though...
 http://alsa-project.org/db/?f=d611b443886d1122285a73bbc819791aacb03f00
+
+Replaced the pin config the way it was before, but headphone sound still isn't coming through...
+http://alsa-project.org/db/?f=4cc7e14917ca7a2afaddc90add004fa951a9bce6
+
+Putting verbs back the way they were before. Headphone sound is back! 
+The IRQ shifted from 51 to 52, but I'm not sure if that has anything to do with it.
+Node 0x06 Capture volume was changed from D0 to D3, and the Converter stream went from 0 to 1
+http://alsa-project.org/db/?f=c6c8a3157e13c2c47c1a39a939ed3ffec6f2f6fb
