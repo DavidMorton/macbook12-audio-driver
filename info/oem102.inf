@@ -1,0 +1,1712 @@
+; Copyright 2012-2013, Cirrus Logic, Inc.
+
+[Version]
+Signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderName%
+CatalogFile=CS4208.cat
+;CatalogFile.ntx86=CS420x86.cat
+;CatalogFile.ntamd64=CS420x64.cat
+DriverVer=%DriverBuildDate%,%DriverBuildVer%
+
+[SourceDisksNames]
+222=%DiskDescription%,,,
+
+[SourceDisksFiles.x86]
+CSLFD.sys=222,\x86
+CSUFD.sys=222,\x86
+CLFiltAPO.dll=222,\x86
+CLLoopAPO.dll=222,\x86
+WdfCoInstaller01011.dll=222,\x86
+
+[SourceDisksFiles.amd64]
+CSLFD.sys=222,\x64
+CSUFD.sys=222,\x64
+CLFiltAPO.dll=222,\x64
+CLLoopAPO.dll=222,\x64
+WdfCoInstaller01011.dll=222,\x64
+
+[DestinationDirs]
+CSxFD.CopyList=12			; DIRID_DRIVERS = %windir%\system32\Drivers
+CLFiltAPO.CopyList=11			; DIRID_SYSTEM  = %windir%\system32
+CLLoopAPO.CopyList=11			; DIRID_SYSTEM  = %windir%\system32
+WdfCoInstaller.CopyList=11		; DIRID_SYSTEM  = %windir%\system32
+
+[SignatureAttributes]
+CSLFD.sys=SignatureAttributes.DRM
+CSUFD.sys=SignatureAttributes.DRM
+CLFiltAPO.dll=SignatureAttributes.PETrust
+CLLoopAPO.dll=SignatureAttributes.PETrust
+
+[SignatureAttributes.DRM]
+DRMLevel=1300
+
+[SignatureAttributes.PETrust]
+PETrust=true
+
+[Manufacturer]
+%MfgName%=MfgModelSection, ntx86.6.1, ntamd64.6.1
+
+;; Excluding drivers from the "Add New Hardware" list.  Uncomment this when shipping product.
+[ControlFlags]
+ExcludeFromSelect = *
+
+[MfgModelSection.ntx86.6.1]
+%HdAudioFunctionDriver.CS4206_10134206a.DeviceDesc% =HDAudio.Cirrus_CONF_0001, HDAUDIO\FUNC_01&VEN_1013&DEV_4206&SUBSYS_10134206&REV_1003
+%HdAudioFunctionDriver.CS4206_10134206b.DeviceDesc% =HDAudio.Cirrus_CONF_0002, HDAUDIO\FUNC_01&VEN_1013&DEV_4206&SUBSYS_10134206&REV_1003
+%HdAudioFunctionDriver.CS4207_10134207a.DeviceDesc% =HDAudio.Cirrus_CONF_0001, HDAUDIO\FUNC_01&VEN_1013&DEV_4207&SUBSYS_10134207&REV_1003
+%HdAudioFunctionDriver.CS4207_10134207b.DeviceDesc% =HDAudio.Cirrus_CONF_0002, HDAUDIO\FUNC_01&VEN_1013&DEV_4207&SUBSYS_10134207&REV_1003
+%HdAudioFunctionDriver.CS4208_10134208a.DeviceDesc% =HDAudio.Cirrus_CONF_0003, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_10134208
+%HdAudioFunctionDriver.CS4208_10134208b.DeviceDesc% =HDAudio.Cirrus_CONF_0004, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_10134208
+%HdAudioFunctionDriver.CS4213_10134213f.DeviceDesc% =HDAudio.Cirrus_CONF_0115, HDAUDIO\FUNC_01&VEN_1013&DEV_4213&SUBSYS_10134213
+
+%HdAudioFunctionDriver.CS4208_106B7100.DeviceDesc% =HDAudio.Cirrus_CONF_0800, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7100
+%HdAudioFunctionDriver.CS4208_106B7200.DeviceDesc% =HDAudio.Cirrus_CONF_0801, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7200
+%HdAudioFunctionDriver.CS4208_106B5D00.DeviceDesc% =HDAudio.Cirrus_CONF_0802, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B5D00
+%HdAudioFunctionDriver.CS4208_106B5E00.DeviceDesc% =HDAudio.Cirrus_CONF_0802, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B5E00
+%HdAudioFunctionDriver.CS4208_106B7800.DeviceDesc% =HDAudio.Cirrus_CONF_0804, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7800
+
+[MfgModelSection.ntamd64.6.1]
+%HdAudioFunctionDriver.CS4206_10134206a.DeviceDesc% =HDAudio.Cirrus_CONF_0001, HDAUDIO\FUNC_01&VEN_1013&DEV_4206&SUBSYS_10134206&REV_1003
+%HdAudioFunctionDriver.CS4206_10134206b.DeviceDesc% =HDAudio.Cirrus_CONF_0002, HDAUDIO\FUNC_01&VEN_1013&DEV_4206&SUBSYS_10134206&REV_1003
+%HdAudioFunctionDriver.CS4207_10134207a.DeviceDesc% =HDAudio.Cirrus_CONF_0001, HDAUDIO\FUNC_01&VEN_1013&DEV_4207&SUBSYS_10134207&REV_1003
+%HdAudioFunctionDriver.CS4207_10134207b.DeviceDesc% =HDAudio.Cirrus_CONF_0002, HDAUDIO\FUNC_01&VEN_1013&DEV_4207&SUBSYS_10134207&REV_1003
+%HdAudioFunctionDriver.CS4208_10134208a.DeviceDesc% =HDAudio.Cirrus_CONF_0003, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_10134208
+%HdAudioFunctionDriver.CS4208_10134208b.DeviceDesc% =HDAudio.Cirrus_CONF_0004, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_10134208
+%HdAudioFunctionDriver.CS4213_10134213f.DeviceDesc% =HDAudio.Cirrus_CONF_0115, HDAUDIO\FUNC_01&VEN_1013&DEV_4213&SUBSYS_10134213
+
+%HdAudioFunctionDriver.CS4208_106B7100.DeviceDesc% =HDAudio.Cirrus_CONF_0800, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7100
+%HdAudioFunctionDriver.CS4208_106B7200.DeviceDesc% =HDAudio.Cirrus_CONF_0801, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7200
+%HdAudioFunctionDriver.CS4208_106B5D00.DeviceDesc% =HDAudio.Cirrus_CONF_0802, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B5D00
+%HdAudioFunctionDriver.CS4208_106B5E00.DeviceDesc% =HDAudio.Cirrus_CONF_0802, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B5E00
+%HdAudioFunctionDriver.CS4208_106B7800.DeviceDesc% =HDAudio.Cirrus_CONF_0804, HDAUDIO\FUNC_01&VEN_1013&DEV_4208&SUBSYS_106B7800
+
+;; ======================================================================================
+
+;; common fixes, virtual DMIC1 ADC, virtual DMIC2 ADC, stereo APO (CDB4206/07)
+;; AmpCaps: AMIC(20)/HP(0)/LO(0)
+
+[HDAudio.Cirrus_CONF_0001]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4206DM12PinConfigOverride, Settings4207VDMA1, Settings4207VDMA2, Settings4207DM12Init
+AddReg=Settings4206CommonFixes, AmpCapsOverrideMic_20, AmpCapsOverrideHP, AmpCapsOverrideLineOut_00
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0001.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0001.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicInTopo%,            HDAudio.Cirrus.MicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicInTopo%,            HDAudio.Cirrus.MicIn1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+
+[HDAudio.Cirrus_CONF_0001.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0001.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0001.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; common fixes, virtual DMIC1 ADC, SPDO2, stereo APO (CDB4206/07)
+;; AmpCaps: AMIC(20)/HP(0)/LO(0)
+
+[HDAudio.Cirrus_CONF_0002]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4206DM12PinConfigOverride, CDB4206SPDO2PinConfigOverride, Settings4207VDMA1, Settings4207DM1SPDO2Init
+AddReg=Settings4206CommonFixes, AmpCapsOverrideMic_20, AmpCapsOverrideHP, AmpCapsOverrideLineOut_00
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0002.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0002.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicInTopo%,            HDAudio.Cirrus.MicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicInTopo%,            HDAudio.Cirrus.MicIn1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOut1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOut1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.SpdifOut2Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.SpdifOut2Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+
+[HDAudio.Cirrus_CONF_0002.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0002.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0002.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; quad APO (CDB4208)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0003]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208PinConfigOverride, Settings4208A0InitFixes, Settings4208CommonFixes, SettingsCDB4208Gpio
+AddReg=CDB4208AmpCapsOverride, SettingsAllIdlePowerdown
+;AddReg=CDB4208APOParams
+AddReg=SettingsCDB4208TXRX, SettingsCDB4208I2C, CDB4208DSPCoeffs, Settings4208HSTypeDetect
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0003.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0003.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineOutTopo%,          HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineConnectorTopo%,    HDAudio.Cirrus.NoApoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicInTopo%,            HDAudio.Cirrus.HSInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicInTopo%,            HDAudio.Cirrus.HSInTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.TDMOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.TDMOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+
+[HDAudio.Cirrus_CONF_0003.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0003.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0003.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; quad APO, redirected Line In UR, redirected S/PDIF Out control (CDB4208 alternate config)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0004]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208PinConfigOverride, Settings4208A0InitFixes, Settings4208CommonFixes, SettingsCDB4208Gpio
+AddReg=CDB4208AmpCapsOverride, SettingsAllIdlePowerdown
+;AddReg=CDB4208APOParams
+AddReg=SettingsCDB4208TXRX, SettingsCDB4208I2C, CDB4208DSPCoeffs, Settings4208HSTypeDetect, CDB4208AltConfig
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0004.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0004.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineOutTopo%,          HDAudio.Cirrus.LineOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineOutTopo%,          HDAudio.Cirrus.LineOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicInTopo%,            HDAudio.Cirrus.HSInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicInTopo%,            HDAudio.Cirrus.HSInTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn2Topo%,           HDAudio.Cirrus.DMicIn1Topo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eMicIn3Topo%,           HDAudio.Cirrus.DMicIn2Topo
+
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOutTopo%,         HDAudio.Cirrus.SpdifOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.TDMOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifOut2Topo%,        HDAudio.Cirrus.TDMOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpdifInTopo%,          HDAudio.Cirrus.SpdifInTopo
+
+[HDAudio.Cirrus_CONF_0004.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0004.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0004.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; nothing (CDB4213 HP + LI only)
+;; AmpCaps: none
+
+[HDAudio.Cirrus_CONF_0115]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4213HPLIPinConfigOverride
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0115.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg
+;AddReg=UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0115.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+[HDAudio.Cirrus_CONF_0115.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+;AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0115.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0115.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+;KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; stereo APO (AB 113)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0800]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208AmpCapsOverride, Settings4208CommonFixes, SettingsAllIdlePowerdown
+AddReg=CONF_08xx.PinConfigOverride, CONF_0800.PinConfigOverride, CONF_0800.InitVerbs, CONF_0800.Gpio, CONF_0800.APOParams
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0800.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0800.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+[HDAudio.Cirrus_CONF_0800.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0800.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0800.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; stereo APO (AB 114)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0801]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208AmpCapsOverride, Settings4208CommonFixes, SettingsAllIdlePowerdown
+AddReg=CONF_08xx.PinConfigOverride, CONF_0800.PinConfigOverride, CONF_0800.InitVerbs, CONF_0800.Gpio, CONF_0801.APOParams, CONF_0801.DSPCoeffs
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0801.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0801.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoStereoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+[HDAudio.Cirrus_CONF_0801.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0801.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0801.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; quad APO (AB 93/94)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0802]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208AmpCapsOverride, Settings4208CommonFixes, SettingsAllIdlePowerdown
+AddReg=CONF_08xx.PinConfigOverride, CONF_0802.PinConfigOverride, CONF_0802.InitVerbs, CONF_0802.Gpio, CONF_08xx.APOParams
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0802.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0802.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoQuadTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+[HDAudio.Cirrus_CONF_0802.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0802.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0802.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+;; mono APO (AB 120)
+;; AmpCaps: HS/DM3/DM4(20), HP(0), LO(0)
+
+[HDAudio.Cirrus_CONF_0804]
+Include=ks.inf, wdmaudio.inf, hdaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration, HdAudOEM.CopyFiles, HdAudOEM.AddReg
+AddProperty=OEMCustomBranding.AddProperty
+DelReg=HDAudio.Cirrus.LFDParams.DelReg
+AddReg=CDB4208AmpCapsOverride, Settings4208CommonFixes, SettingsAllIdlePowerdown
+AddReg=CONF_08xx.PinConfigOverride, CONF_0804.PinConfigOverride, CONF_0804.InitVerbs, CONF_0804.Gpio, CONF_08xx.APOParams
+AddReg=SettingsUFD_Dummy
+CopyFiles=CSxFD.CopyList, CLFiltAPO.CopyList
+RegisterDlls=CLFiltAPO.RegisterDlls
+
+[HDAudio.Cirrus_CONF_0804.HW]
+Include=hdaudio.inf
+Needs=HdAudModel.HW
+AddReg=LowerFilt.AddReg, UpperFilt.AddReg
+
+[HDAudio.Cirrus_CONF_0804.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoMonoTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eSpeakerTopo%,          HDAudio.Cirrus.ApoMonoTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eLineOutTopo%,          HDAudio.Cirrus.LineOutTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eLineOutTopo%,          HDAudio.Cirrus.LineOutTopo
+AddInterface=%KSCATEGORY_AUDIO%,   %KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_eHeadphoneTopo%,        HDAudio.Cirrus.NoApoHPTopo
+
+[HDAudio.Cirrus_CONF_0804.Services]
+Include=hdaudio.inf
+Needs=HdAudModel.Services
+AddService = CirrusLFD, , LowerFilt_Service_Inst
+AddService = CirrusUFD, , UpperFilt_Service_Inst
+
+[HDAudio.Cirrus_CONF_0804.CoInstallers]
+AddReg=WdfCoInstaller.AddReg
+CopyFiles=WdfCoInstaller.CopyList
+
+[HDAudio.Cirrus_CONF_0804.Wdf]
+KmdfService=CirrusLFD, KMDF_WDF_Version
+KmdfService=CirrusUFD, KMDF_WDF_Version
+
+;; ======================================================================================
+
+[OEMCustomBranding.AddProperty]
+;;
+;; PKEY_DriverPackage_BrandingIcon, could also use {CF73BB51-3ABF-44A2-85E0-9A3DC7A12132},7,,,"PropPageExt.dll,-200"
+;;
+;;;;DeviceBrandingIcon,,,,"%1%\PropPageExt.dll,-200"
+
+;;
+;; PKEY_DrvPkg_VendorWebSite, could also use {CF73BB51-3ABF-44A2-85E0-9A3DC7A12132},3,,,"http://www.microsoft.com/whdc/device/audio/default.mspx"
+;;
+DeviceVendorWebSite,,,,"http://www.cirrus.com" ; Place your URL here
+
+;; ======================================================================================
+
+[LowerFilt.AddReg] 
+HKR,,"LowerFilters", 0x00010008, CirrusLFD
+
+[UpperFilt.AddReg] 
+HKR,,"UpperFilters", 0x00010008, CirrusUFD
+
+[SettingsUFD_Dummy]
+HKR,cs420x,n02SlavePin,1,02
+
+[SettingsUFD_4210SJM]
+HKR,cs420x,n05SlavePin,1,07
+
+[Settings4206CommonFixes]
+HKR,cs420x,SpdifInPatch,1,01		; S/PDIF UR fix
+HKR,cs420x,n01PSActPatch,1,01		; AFG D3 fix
+HKR,cs420x,n05PSActPatch,1,01		; ADC1 D3 fix
+HKR,cs420x,n06PSActPatch,1,01		; ADC2 D3 fix
+HKR,cs420x,n0CPSActPatch,1,01		; Line In D3 fix
+HKR,cs420x,n0DPSActPatch,1,01		; Mic In D3 fix
+HKR,cs420x,DoubleResetOnStop,1,01	; DFG reset on exit
+HKR,cs420x,n05FilterSetAmpGainInvalidIndex,1,01			; filter Set Amp Gain control verbs with invalid index value
+HKR,cs420x,n06FilterSetAmpGainInvalidIndex,1,01
+HKR,cs420x,n07InvertCopyBit,1,01	; HDA041-A ECR
+HKR,cs420x,n08InvertCopyBit,1,01
+HKR,cs420x,n14InvertCopyBit,1,01
+
+HKLM,%CirrusVersion_KEY%,"CS420x",,%DriverBuildVer%
+
+[Settings4207DM12Init]
+HKR,cs420x,InitVerbs,1,\					; mono DMIC 1/2 on R channel
+  01,03,17,01,\
+  01,00,15,01,\							; DMIC2: NID=11h, CIR=0001h, TX 2 Enable = 0b
+  00,00,14,01,\
+  02,00,15,01,\							; mono: NID=11h, CIR=0002h, ADC1 Ch. Mode = 10b, ADC2 Ch. Mode = 10b
+  0A,14,14,01,\
+  04,00,15,01,\							; DMIC: NID=11h, CIR=0004h, DMIC1 Enable = 1b, DMIC2 Enable = 1b
+  1F,00,14,01
+
+[Settings4207DM1SPDO2Init]
+HKR,cs420x,InitVerbs,1,\					; mono DMIC 1 on R channel
+  01,03,17,01,\
+  01,00,15,01,\							; SPDO2: NID=11h, CIR=0001h, TX 2 Enable = 1b
+  00,40,14,01,\
+  02,00,15,01,\							; mono: NID=11h, CIR=0002h, ADC1 Ch. Mode = 00b, ADC2 Ch. Mode = 10b
+  0A,10,14,01,\
+  04,00,15,01,\							; DMIC: NID=11h, CIR=0004h, DMIC1 Enable = 1b, DMIC2 Enable = 0b
+  0F,00,14,01
+
+[Settings4208A0InitFixes]
+HKR,cs420x,InitVerbs,1,\					; performance and bug fixes for CS4208 rev. A0
+  00,05,17,00,\							; AFG: PS-Set = D0
+  03,14,17,00,\							; GPO: all high
+  01,2D,A7,00,\							; TX1: CCC = 01
+  01,03,47,02,\							; VPW: proc on
+  00,00,45,02,  90,00,44,02,\					; CIR=00h, coeff=0090h (SPCC = 10b, SP1M = 1b)
+  2D,00,45,02,  0F,00,44,02,\					; CIR=2Dh, coeff=000Fh (EQ2 ch 0/1: pre-scale att. = -15 dB)
+  33,00,45,02,  75,CD,44,02,\					; CIR=33h, coeff=CD75h (B/D Gat, A/C Gat, A1/B1/C/D Inv, A1/B1/C/D ICS)
+  34,00,45,02,  35,1B,44,02,\					; CIR=34h, coeff=1B35h (A1/B1/C/D Enable)
+  40,00,45,02,  99,99,44,02,\					; VPW: test mode on
+  50,00,45,02,  8B,00,44,02,\					; CIR=50h, coeff=008Bh [00CBh] (jack sense hysteresis = 100 us)
+  5E,00,45,02,  AA,02,44,02,\					; CIR=5Eh, coeff=02AAh [22AAh] (bug  9614 - HSBIAS_IN T-gate)
+  5B,00,45,02,  50,AE,44,02,\					; CIR=5Bh, coeff=AE50h [AA50h] (bug  9636 - ADC 3V THD+N)
+  5A,00,45,02,  BB,54,44,02,\					; CIR=5Ah, coeff=54BBh [54AAh] (bug  9636 - ADC 3V PSD THD+N)
+  59,00,45,02,  00,90,44,02,\					; CIR=59h, coeff=9000h [9800h] (bug  9717 - LINEOUT FS)
+  45,00,45,02,  D8,80,44,02,\					; CIR=45h, coeff=80D8h [60D8h] (bug  9717 - LINEOUT THD+N)
+  52,00,45,02,  12,00,44,02,\					; CIR=52h, coeff=0012h [001Ah] (bug  9717 - HP THD+N)
+  60,00,45,02,  2D,8A,44,02,\					; CIR=60h, coeff=8A2Dh [0A2Dh] (bug 10102 - HSIN L/R gain control)
+  5D,00,45,02,  5B,03,44,02,\					; CIR=5Dh, coeff=035Bh [0358h] (bug 10151 - HSBIAS trim)
+  42,00,45,02,  6A,00,44,02,\					; CIR=42h, coeff=006Ah [002Ah] (bug 10761 - ADC HPF on)
+  5F,00,45,02,  00,30,44,02,\					; CIR=5Fh, coeff=3000h [1000h] (bug 10827 - S0 short threshold)
+  40,00,45,02,  00,00,44,02					; VPW: test mode off
+HKR,cs420x,ExitVerbs,1,\
+  00,17,17,00,\							; GPIO: all inputs
+  00,16,17,00							; GPIO: all disabled
+  
+[Settings4208CommonFixes]
+HKR,cs420x,n02OutAmpAutoMute,	%REG_BINARY%,	01		; DAC1-4: force mute for min gain setting (HDA-1062)
+HKR,cs420x,n03OutAmpAutoMute,	%REG_BINARY%,	01
+HKR,cs420x,n04OutAmpAutoMute,	%REG_BINARY%,	01
+HKR,cs420x,n05OutAmpAutoMute,	%REG_BINARY%,	01
+
+HKR,cs420x,n06AllowedInAmpIndex,%REG_BINARY%,	01		; ADC1-2: only allow SetAmpGain verbs with index=1 (HDA-1069)
+HKR,cs420x,n07AllowedInAmpIndex,%REG_BINARY%,	01
+
+HKR,cs420x,n18WidgetCaps,	%REG_DWORD%,	0x0040048B	; HS: override widget caps: +CCL (HS In mono mic fix)
+
+HKR,cs420x,DoubleResetOnStop,	%REG_BINARY%,	01		; DFG reset on exit (clear UR controls)
+
+[Settings4208HSTypeDetect]
+HKR,cs420x,HSTypeDetect,	%REG_DWORD%,	0x05331407	; enable HS type detect with all sub-features
+HKR,cs420x,n10URHysteresis,	%REG_BINARY%,	01
+HKR,cs420x,n17URHysteresis,	%REG_BINARY%,	01
+HKR,cs420x,n18URHysteresis,	%REG_BINARY%,	01
+HKR,cs420x,URSettlingTime,	%REG_DWORD%,	500
+
+[SettingsCDB4208Test]
+;; temp for testing and development only
+
+;;HKR,cs420x,n21AssocSpdif,	%REG_BINARY%,	0x0E
+;;HKR,cs420x,n0EInvertCopyBit,	%REG_BINARY%,	0x01
+;;HKR,cs420x,n0FInvertCopyBit,	%REG_BINARY%,	0x01
+
+HKR,cs420x,Gpio3ExtAmpCfg,	%REG_BINARY%,	02,07,02,01	; GPIO3 is an output controlled by DAC1 && ADC2 (headset present)
+HKR,cs420x,Gpio5ExtAmpCfg,	%REG_BINARY%,	06,07,01,01	; GPIO5 is an output controlled by ADC1 || ADC2 (dynamic input device present)
+
+[SettingsCDB4208Gpio]
+HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	02,00,00,01	; GPIO0 is an output controlled by DAC1 PS-Set
+HKR,cs420x,Gpio1ExtAmpCfg,	%REG_BINARY%,	07,00,00,01	; GPIO1 is an output controlled by ADC2 PS-Set
+HKR,cs420x,Gpio2ExtAmpCfg,	%REG_BINARY%,	06,00,00,01	; GPIO2 is an output controlled by ADC1 PS-Set
+								; GPIO3 is an input (from 'L19 INT#)
+HKR,cs420x,Gpio4ExtAmpCfg,	%REG_BINARY%,	0A,00,00,01	; GPIO4 is an output controlled by TX1 PS-Set (to 'L19 RESET#)
+								; GPIO5 is an input (from 'L19 INT#)
+
+[SettingsCDB4208TXRX]
+HKR,cs420x,n0AWidgetCaps,	%REG_DWORD%,	0x00040631	; TX1: override widget caps: CCE=0
+HKR,cs420x,n0ASuppBitsRates,	%REG_DWORD%,	0x000E0040	; TX1: override rate caps: -R6
+HKR,cs420x,n0FSuppBitsRates,	%REG_DWORD%,	0x000E01F0	; SPDI: override rate caps: -R11
+HKR,cs420x,n21TXOutControl,	%REG_BINARY%,	0x21		; SPDO: control OUTE based on SPDO PDET
+
+[SettingsCDB4208I2C]
+; HKR,cs420x,InitI2C,		%REG_BINARY%,	<TBD>
+; HKR,cs420x,ExitI2C,		%REG_BINARY%,	<TBD>
+; HKR,cs420x,n0APwrUpI2C,	%REG_BINARY%,	<TBD>
+; HKR,cs420x,n0APwrDnI2C,	%REG_BINARY%,	<TBD>
+HKR,cs420x,n1DOutEnableI2C,	%REG_BINARY%,	02,80,82,0B,00,99,45,3F,51,FF,6B,20,00,00,0C,09,0A,59,08,48,09,FF,0B,1E,11,14
+; HKR,cs420x,n1DOutDisableI2C, 	%REG_BINARY%,	<TBD>
+HKR,cs420x,n0AStreamStartI2C,	%REG_BINARY%,	02,80,82,04,07,FA,0F,00,06,00,10,00
+HKR,cs420x,n0AStreamStopI2C,	%REG_BINARY%,	02,80,82,04,10,33,06,80,07,FE,06,85
+HKR,cs420x,I2CSpeedMode,	%REG_DWORD%,	01
+; HKR,cs420x,I2CPolledMode,	%REG_DWORD%,	01
+
+[CDB4208DSPCoeffs]
+; DAC1: passthrough
+; DAC2: passthrough
+; DAC3: HPF 500 Hz
+; DAC4: LPF 500 Hz + low shelf 50 Hz/-10 dB
+; TX1 ch 0/1: low shelf 300 Hz/+15 dB + HPF 50 Hz
+; TX1 ch 2-7, TX2: disabled
+HKR,cs420x,EQ1S1RS1, %REG_BINARY%, 20,00,00,00,00,00,00,00,00,00,00,00,00,00,00,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S2RS1, %REG_BINARY%, 20,00,00,00,00,00,00,00,00,00,00,00,00,00,00,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S3RS0, %REG_BINARY%, 1E,6E,79,1E,6E,79,C3,23,0D,1D,02,8E,C3,48,A7,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S4RS0, %REG_BINARY%, 00,12,CD,00,12,CD,00,25,9A,1D,02,8E,C3,48,A7,1F,DE,E0,1F,8A,5F,C0,97,31,1F,69,B9,C0,97,AB
+HKR,cs420x,EQ1S3RS1, %REG_BINARY%, 1E,F4,19,1E,F4,19,C2,17,CD,1D,F9,2F,C2,28,C9,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S4RS1, %REG_BINARY%, 00,08,7D,00,08,7D,00,10,FB,1D,F9,2F,C2,28,C9,1F,E9,E7,1F,B1,64,C0,64,E7,1F,9B,81,C0,65,1D
+HKR,cs420x,EQ1S3RS2, %REG_BINARY%, 1F,79,FB,1F,79,FB,C1,0C,0A,1E,F8,47,C1,10,5A,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S4RS2, %REG_BINARY%, 00,02,28,00,02,28,00,04,50,1E,F8,47,C1,10,5A,1F,F4,F1,1F,D8,99,C0,32,81,1F,CD,99,C0,32,8F
+HKR,cs420x,EQ1S3RS3, %REG_BINARY%, 1F,BC,FB,1F,BC,FB,C0,86,0A,1F,7B,0D,C0,87,20,20,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+HKR,cs420x,EQ1S4RS3, %REG_BINARY%, 00,00,8B,00,00,8B,00,01,16,1F,7B,0D,C0,87,20,1F,FA,78,1F,EC,46,C0,19,44,1F,E6,C2,C0,19,48
+HKR,cs420x,EQ2S1,    %REG_BINARY%, 20,CC,8E,1E,1D,0C,C1,33,C5,1E,DD,8A,C1,27,B4,1F,E5,31,1F,E5,31,C0,35,9E,1F,CA,8F,C0,35,CB
+
+[CDB4208AltConfig]
+; disable Line In pin widget
+; make Line Out 2 pin widget fake sense capable
+; redirect Line In pin sense UR to Line Out 2
+; use S/PDIF In pin sense UR to control S/PDIF Out
+HKR,PinConfigOverrideVerbs,FriendlyName,,CDB4208_Alt
+HKR,PinConfigOverrideVerbs,0010,%REG_BINARY%,	01,1e,27,01	; LO2: DD=LO, CTYP=1/8"
+HKR,PinConfigOverrideVerbs,0031,%REG_BINARY%,	43,1f,77,01	; LI: PCON=n/c, LOC=prim/left
+HKR,cs420x,n12WidgetCaps,	%REG_DWORD%,	0x00400581	; LO2: override widget caps: +UC
+HKR,cs420x,n12PinCaps,		%REG_DWORD%,	0x00000054	; LO2: override pin caps: +PDC
+HKR,cs420x,n12URRedirect,	%REG_BINARY%,	0x17		; LO2: control jack presence based on LI PDET
+HKR,cs420x,n12URHysteresis,	%REG_BINARY%,	01		; LO2: enable hysteresis on UR target widget
+HKR,cs420x,n17URHysteresis,	%REG_BINARY%,	00		; LI: disable hysteresis on UR source widget
+HKR,cs420x,n21TXOutControl,	%REG_BINARY%,	0x22		; SPDO: control OUTE based on SPDI PDET
+HKR,cs420x,Gpio2ExtAmpCfg,	%REG_BINARY%,	03,00,00,01	; GPIO2 is an output controlled by DAC2 PS-Set
+
+[SettingsDeletePCOVs]
+HKR,cs420x,DeletePinConfigOverrideVerbs, %REG_BINARY%, 01	; delete cached pin config override verbs on driver exit
+
+[SettingsNoIdlePowerdown]					; prevents the codec from entering D3 when idle
+HKR,PowerSettings,PerformanceIdleTime, %REG_BINARY%, 00, 00, 00, 00
+HKR,PowerSettings,ConservationIdleTime,%REG_BINARY%, 00, 00, 00, 00
+
+[SettingsAllIdlePowerdown]					; makes the codec always enter D3 when idle
+HKR,PowerSettings,PerformanceIdleTime, %REG_BINARY%, 2C, 00, 00, 00	; power down after 44 + 16 = 60 sec when on ext. power
+HKR,PowerSettings,ConservationIdleTime,%REG_BINARY%, 04, 00, 00, 00	; power down after  4 + 16 = 20 sec when on battery
+
+[Settings4208ClearHPE]
+HKR,cs420x,n10IgnoreHpEnable, 1, 01				; force HPE=0 for 1.5 Vrms out
+HKR,cs420x,n10PostResetPinCtrl, 1, 00
+
+[Settings4207VDMA1]
+HKR,cs420x,n01SubNodeCount     , %REG_DWORD%, 0x00020015   ;; Node 01 override subordinate node count: TNN=21
+HKR,cs420x,n06ConnListLength   , %REG_DWORD%, 0x00000001   ;; Node 06 override connection list length: CLL=1
+HKR,cs420x,n06ConnListEntry    , %REG_DWORD%, 0x0000000D   ;; Node 06 override connection list entry: source NID=0Dh
+HKR,cs420x,n16WidgetCaps       , %REG_DWORD%, 0x0018051B   ;; Node 22 override widget caps: +PC, +CL, +FO, +APO, +IAP, +ST
+HKR,cs420x,n16SuppBitsRates    , %REG_DWORD%, 0x001E01F5   ;; Node 22 override format caps: +32B/24B/20B/16B, +R9/R8/R7/R6/R5/R3/R1
+HKR,cs420x,n16SuppStreamFormats, %REG_DWORD%, 0x00000001   ;; Node 22 override stream format caps: +PCM
+HKR,cs420x,n16SuppPowerStates  , %REG_DWORD%, 0x80000009   ;; Node 22 override power state caps: +EPSS, +D3Sup/D0Sup
+HKR,cs420x,n16InAmpCaps        , %REG_DWORD%, 0x80033F33   ;; Node 22 override in amp caps: -51 to +12 dB
+HKR,cs420x,n16ConnListLength   , %REG_DWORD%, 0x00000001   ;; Node 22 override connection list length: CLL=1
+HKR,cs420x,n16ConnListEntry    , %REG_DWORD%, 0x0000000E   ;; Node 22 override connection list entry: source NID=0Eh
+HKR,cs420x,n16VirtualAdcSettings,%REG_DWORD%, 0x01000606   ;; Node 22 implement virtual ADC redirected to NID=06h
+
+[Settings4207VDMA2]
+HKR,cs420x,n01SubNodeCount     , %REG_DWORD%, 0x00020016   ;; Node 01 override subordinate node count: TNN=22
+HKR,cs420x,n05ConnListLength   , %REG_DWORD%, 0x00000001   ;; Node 05 override connection list length: CLL=1
+HKR,cs420x,n05ConnListEntry    , %REG_DWORD%, 0x0000000C   ;; Node 05 override connection list entry: source NID=0Ch
+HKR,cs420x,n17WidgetCaps       , %REG_DWORD%, 0x0018051B   ;; Node 23 override widget caps: +PC, +CL, +FO, +APO, +IAP, +ST
+HKR,cs420x,n17SuppBitsRates    , %REG_DWORD%, 0x001E01F5   ;; Node 23 override format caps: +32B/24B/20B/16B, +R9/R8/R7/R6/R5/R3/R1
+HKR,cs420x,n17SuppStreamFormats, %REG_DWORD%, 0x00000001   ;; Node 23 override stream format caps: +PCM
+HKR,cs420x,n17SuppPowerStates  , %REG_DWORD%, 0x80000009   ;; Node 23 override power state caps: +EPSS, +D3Sup/D0Sup
+HKR,cs420x,n17InAmpCaps        , %REG_DWORD%, 0x80033F33   ;; Node 23 override in amp caps: -51 to +12 dB
+HKR,cs420x,n17ConnListLength   , %REG_DWORD%, 0x00000001   ;; Node 23 override connection list length: CLL=1
+HKR,cs420x,n17ConnListEntry    , %REG_DWORD%, 0x00000012   ;; Node 23 override connection list entry: source NID=12h
+HKR,cs420x,n17VirtualAdcSettings,%REG_DWORD%, 0x01000505   ;; Node 23 implement virtual ADC redirected to NID=05h
+
+[AmpCapsOverrideMic_42]
+;; set Mic gain default to +12 dB and Mic boost default to +30 dB; set Line In gain default to 0 dB
+HKR,cs420x,n0DInAmpCaps,  %REG_DWORD%, 0x00270303  ;; Node D override input capabilities:  Mic boost in pin widget -30, -20, -10, 0
+;; Mixersettings are expressed in units of KSAUDIO_MIXLEVEL. See table 8.2 on page 322 of Intel High Definition Audio book
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x000C0000 ; 12 dB gain
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x000C0000 ; 12 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x00000000 ; 0 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x00000000 ; 0 dB gain
+
+[AmpCapsOverrideDMic_32]
+;; set Mic gain default to +12 dB and DMic boost default to +20 dB; set Line In gain default to 0 dB
+HKR,cs420x,n0EInAmpCaps,  %REG_DWORD%, 0x00270202  ;; Node E override input capabilities:  Mic boost in pin widget -20, -10, 0
+;; Mixersettings are expressed in units of KSAUDIO_MIXLEVEL. See table 8.2 on page 322 of Intel High Definition Audio book
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x000C0000 ; 12 dB gain
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x000C0000 ; 12 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x00000000 ; 0 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x00000000 ; 0 dB gain
+
+[AmpCapsOverrideMic_20]
+;; set Mic gain default to 0 dB and Mic boost defaults to +20 dB; set Line In gain default to 0 dB
+HKR,cs420x,n0DInAmpCaps,  %REG_DWORD%, 0x00270302  ;; override mic in amp caps: -20, -10, 0, +10
+HKR,cs420x,n0EInAmpCaps,  %REG_DWORD%, 0x00270202  ;; override dmic 1 amp caps: -20, -10, 0
+HKR,cs420x,n12InAmpCaps,  %REG_DWORD%, 0x00270202  ;; override dmic 2 amp caps: -20, -10, 0
+;; Mixersettings are expressed in units of KSAUDIO_MIXLEVEL. See table 8.2 on page 322 of Intel High Definition Audio book
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x00000000 ; 0 dB gain
+HKR,MixerSettings\\eMicInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x00000000 ; 0 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan000, %REG_DWORD%, 0x00000000 ; 0 dB gain
+HKR,MixerSettings\\eLineInTopo\\PrimaryNode000, Chan001, %REG_DWORD%, 0x00000000 ; 0 dB gain
+
+[AmpCapsOverrideHP]
+HKR,cs420x,n02OutAmpCaps, %REG_DWORD%, 0x80017373  ;; Node 02 override out amp caps: -57.5 to 0 dB
+
+[AmpCapsOverrideHP_03]
+HKR,cs420x,n02OutAmpCaps, %REG_DWORD%, 0x80016D6D  ;; Node 02 override out amp caps: -57.5 to -3 dB
+
+[AmpCapsOverrideLineOut_00]
+HKR,cs420x,n03OutAmpCaps, %REG_DWORD%, 0x80017373  ;; Node 03 override out amp caps: -57.5 to 0 dB
+HKR,cs420x,n04OutAmpCaps, %REG_DWORD%, 0x80017373  ;; Node 04 override out amp caps: -57.5 to 0 dB
+
+[CDB4208AmpCapsOverride]
+;; set HSIn, DMIC3, and DMIC4 boost defaults to +20 dB
+HKR,cs420x,n18InAmpCaps,  %REG_DWORD%, 0x00270302  ;; override HS In amp caps: -20, -10, 0, +10
+HKR,cs420x,n1BInAmpCaps,  %REG_DWORD%, 0x00270202  ;; override DMIC3 amp caps: -20, -10, 0
+HKR,cs420x,n1CInAmpCaps,  %REG_DWORD%, 0x00270202  ;; override DMIC4 amp caps: -20, -10, 0
+
+[HDAudio.Cirrus.LFDParams.DelReg]
+HKR,cs420x
+HKR,MixerSettings
+
+;; ======================================================================================
+
+[CDB4206DM12PinConfigOverride]
+;; pin config overrides for CDB4206/07
+;; line in + mic in + DMIC1 + DMIC2
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CDB4206DM12
+
+HKR,PinConfigOverrideVerbs,0000, 0x1,10,1c,97,00	; HP: ASSN=1h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0001, 0x1,10,1d,97,00	; HP: COL=black
+HKR,PinConfigOverrideVerbs,0002, 0x1,21,1e,97,00	; HP: DD=HP, CTYP=1/8"
+HKR,PinConfigOverrideVerbs,0003, 0x1,04,1f,97,00	; HP: PCON=jack, LOC=right
+
+HKR,PinConfigOverrideVerbs,0004, 0x1,20,1c,a7,00	; LO1: ASSN=2h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0005, 0x1,10,1d,a7,00	; LO1: COL=black
+HKR,PinConfigOverrideVerbs,0006, 0x1,11,1e,a7,00	; LO1: DD=SP, CTYP=1/8"
+HKR,PinConfigOverrideVerbs,0007, 0x1,02,1f,a7,00	; LO1: PCON=jack, LOC=front
+
+HKR,PinConfigOverrideVerbs,0008, 0x1,30,1c,b7,00	; LO2: ASSN=3h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0009, 0x1,10,1d,b7,00	; LO2: COL=black
+HKR,PinConfigOverrideVerbs,0010, 0x1,04,1e,b7,00	; LO2: DD=LO, CTYP=RCA
+HKR,PinConfigOverrideVerbs,0011, 0x1,02,1f,b7,00	; LO2: PCON=jack, LOC=front
+
+HKR,PinConfigOverrideVerbs,0012, 0x1,a0,1c,c7,00	; LI: ASSN=Ah, SEQ=0h
+HKR,PinConfigOverrideVerbs,0013, 0x1,10,1d,c7,00	; LI: COL=black
+HKR,PinConfigOverrideVerbs,0014, 0x1,81,1e,c7,00	; LI: DD=LI, CTYP=1/8"
+HKR,PinConfigOverrideVerbs,0015, 0x1,02,1f,c7,00	; LI: PCON=jack, LOC=front
+
+HKR,PinConfigOverrideVerbs,0016, 0x1,b0,1c,d7,00	; MI: ASSN=Bh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0017, 0x1,10,1d,d7,00	; MI: COL=black
+HKR,PinConfigOverrideVerbs,0018, 0x1,a1,1e,d7,00	; MI: DD=MI, CTYP=1/8"
+HKR,PinConfigOverrideVerbs,0019, 0x1,03,1f,d7,00	; MI: PCON=jack, LOC=left
+
+HKR,PinConfigOverrideVerbs,0020, 0x1,c0,1c,e7,00	; DM1: ASSN=Ch, SEQ=0h
+HKR,PinConfigOverrideVerbs,0021, 0x1,10,1d,e7,00	; DM1: COL=black
+HKR,PinConfigOverrideVerbs,0022, 0x1,a6,1e,e7,00	; DM1: DD=MI, CTYP=dig
+HKR,PinConfigOverrideVerbs,0023, 0x1,05,1f,e7,00	; DM1: PCON=jack, LOC=top
+
+HKR,PinConfigOverrideVerbs,0024, 0x1,f0,1c,f7,00	; SPDI: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0025, 0x1,10,1d,f7,00	; SPDI: COL=black
+HKR,PinConfigOverrideVerbs,0026, 0x1,c5,1e,f7,00	; SPDI: DD=SPDI, CTYP=opt
+HKR,PinConfigOverrideVerbs,0027, 0x1,04,1f,f7,00	; SPDI: PCON=jack, LOC=right
+
+HKR,PinConfigOverrideVerbs,0028, 0x1,f0,1c,07,01	; SPDO1: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0029, 0x1,10,1d,07,01	; SPDO1: COL=black
+HKR,PinConfigOverrideVerbs,0030, 0x1,45,1e,07,01	; SPDO1: DD=SPDO, CTYP=opt
+HKR,PinConfigOverrideVerbs,0031, 0x1,04,1f,07,01	; SPDO1: PCON=jack, LOC=right
+
+HKR,PinConfigOverrideVerbs,0032, 0x1,d0,1c,27,01	; DM2: ASSN=Dh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0033, 0x1,10,1d,27,01	; DM2: COL=black
+HKR,PinConfigOverrideVerbs,0034, 0x1,a6,1e,27,01	; DM2: DD=MI, CTYP=dig
+HKR,PinConfigOverrideVerbs,0035, 0x1,05,1f,27,01	; DM2: PCON=jack, LOC=top
+
+HKR,PinConfigOverrideVerbs,0036, 0x1,f0,1c,57,01	; SPDO2: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0037, 0x1,10,1d,57,01	; SPDO2: COL=black
+HKR,PinConfigOverrideVerbs,0038, 0x1,45,1e,57,01	; SPDO2: DD=SPDO, CTYP=opt
+HKR,PinConfigOverrideVerbs,0039, 0x1,44,1f,57,01	; SPDO2: PCON=n.c.
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,28,00,00,00
+
+[CDB4206SPDO2PinConfigOverride]
+;; pin config overrides for CDB4206/07
+;; line in + mic in + DMIC1 + SPDO2
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CDB4206SPDO2
+
+HKR,PinConfigOverrideVerbs,0039, 0x1,04,1f,57,01	; SPDO2: PCON=jack, LOC=right
+
+[CDB4208PinConfigOverride]
+;; pin config overrides for CDB4208
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CDB4208
+
+HKR,PinConfigOverrideVerbs,0000, 0x1,f0,1c,07,01	; HP: ASSN=Fh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0001, 0x1,20,1d,07,01	; HP: COL=gray				*
+HKR,PinConfigOverrideVerbs,0002, 0x1,2b,1e,07,01	; HP: DD=HP, CTYP=combo
+HKR,PinConfigOverrideVerbs,0003, 0x1,04,1f,07,01	; HP: PCON=jack, LOC=prim/right		*
+
+HKR,PinConfigOverrideVerbs,0004, 0x1,10,1c,17,01	; LO1: ASSN=1h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0005, 0x1,00,1d,17,01	; LO1: COL=unkn
+HKR,PinConfigOverrideVerbs,0006, 0x1,17,1e,17,01	; LO1: DD=SPKR, CTYP=ana
+HKR,PinConfigOverrideVerbs,0007, 0x1,50,1f,17,01	; LO1: PCON=n/c, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,0008, 0x1,f0,1c,27,01	; LO2: ASSN=Fh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0009, 0x1,10,1d,27,01	; LO2: COL=black			*
+HKR,PinConfigOverrideVerbs,0010, 0x1,04,1e,27,01	; LO2: DD=LO, CTYP=RCA			*
+HKR,PinConfigOverrideVerbs,0011, 0x1,02,1f,27,01	; LO2: PCON=jack, LOC=prim/front	*
+
+HKR,PinConfigOverrideVerbs,0012, 0x1,10,1c,37,01	; LO3: ASSN=1h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0013, 0x1,10,1d,37,01	; LO3: COL=black			*
+HKR,PinConfigOverrideVerbs,0014, 0x1,11,1e,37,01	; LO3: DD=SPKR, CTYP=1/8"		*
+HKR,PinConfigOverrideVerbs,0015, 0x1,02,1f,37,01	; LO3: PCON=jack, LOC=prim/front	*
+
+HKR,PinConfigOverrideVerbs,0016, 0x1,12,1c,47,01	; LO4: ASSN=1h, SEQ=2h			*
+HKR,PinConfigOverrideVerbs,0017, 0x1,10,1d,47,01	; LO4: COL=black			*
+HKR,PinConfigOverrideVerbs,0018, 0x1,11,1e,47,01	; LO4: DD=SPKR, CTYP=1/8"		*	
+HKR,PinConfigOverrideVerbs,0019, 0x1,02,1f,47,01	; LO4: PCON=jack, LOC=prim/front	*
+
+HKR,PinConfigOverrideVerbs,0020, 0x1,31,1c,57,01	; MI1: ASSN=3h, SEQ=1h
+HKR,PinConfigOverrideVerbs,0021, 0x1,00,1d,57,01	; MI1: COL=unkn
+HKR,PinConfigOverrideVerbs,0022, 0x1,a7,1e,57,01	; MI1: DD=MI, CTYP=ana
+HKR,PinConfigOverrideVerbs,0023, 0x1,77,1f,57,01	; MI1: PCON=n/c, LOC=mob lid/ins	*
+
+HKR,PinConfigOverrideVerbs,0024, 0x1,51,1c,67,01	; MI2: ASSN=5h, SEQ=1h
+HKR,PinConfigOverrideVerbs,0025, 0x1,00,1d,67,01	; MI2: COL=unkn
+HKR,PinConfigOverrideVerbs,0026, 0x1,a7,1e,67,01	; MI2: DD=MI, CTYP=ana
+HKR,PinConfigOverrideVerbs,0027, 0x1,77,1f,67,01	; MI2: PCON=n/c, LOC=mob lid/ins	*
+
+HKR,PinConfigOverrideVerbs,0028, 0x1,30,1c,77,01	; LI: ASSN=3h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0029, 0x1,20,1d,77,01	; LI: COL=gray				*
+HKR,PinConfigOverrideVerbs,0030, 0x1,8b,1e,77,01	; LI: DD=LI, CTYP=combo
+HKR,PinConfigOverrideVerbs,0031, 0x1,03,1f,77,01	; LI: PCON=jack, LOC=prim/left
+
+HKR,PinConfigOverrideVerbs,0032, 0x1,50,1c,87,01	; HS: ASSN=5h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0033, 0x1,20,1d,87,01	; HS: COL=gray				*
+HKR,PinConfigOverrideVerbs,0034, 0x1,ab,1e,87,01	; HS: DD=MI, CTYP=combo
+HKR,PinConfigOverrideVerbs,0035, 0x1,04,1f,87,01	; HS: PCON=jack, LOC=prim/right		*
+
+HKR,PinConfigOverrideVerbs,0036, 0x1,3e,1c,97,01	; DM1: ASSN=3h, SEQ=Eh
+HKR,PinConfigOverrideVerbs,0037, 0x1,00,1d,97,01	; DM1: COL=unkn
+HKR,PinConfigOverrideVerbs,0038, 0x1,a6,1e,97,01	; DM1: DD=MI, CTYP=dig
+HKR,PinConfigOverrideVerbs,0039, 0x1,77,1f,97,01	; DM1: PCON=n/c, LOC=mob lid/ins	*
+
+HKR,PinConfigOverrideVerbs,0040, 0x1,5e,1c,a7,01	; DM2: ASSN=5h, SEQ=Eh
+HKR,PinConfigOverrideVerbs,0041, 0x1,00,1d,a7,01	; DM2: COL=unkn
+HKR,PinConfigOverrideVerbs,0042, 0x1,a6,1e,a7,01	; DM2: DD=MI, CTYP=dig
+HKR,PinConfigOverrideVerbs,0043, 0x1,77,1f,a7,01	; DM2: PCON=n/c, LOC=mob lid/ins	*
+
+HKR,PinConfigOverrideVerbs,0044, 0x1,70,1c,b7,01	; DM3: ASSN=7h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0045, 0x1,00,1d,b7,01	; DM3: COL=unkn
+HKR,PinConfigOverrideVerbs,0046, 0x1,a0,1e,b7,01	; DM3: DD=MI, CTYP=unkn			*
+HKR,PinConfigOverrideVerbs,0047, 0x1,82,1f,b7,01	; DM3: PCON=fixed, LOC=prim/front	*
+
+HKR,PinConfigOverrideVerbs,0048, 0x1,90,1c,c7,01	; DM4: ASSN=9h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0049, 0x1,00,1d,c7,01	; DM4: COL=unkn
+HKR,PinConfigOverrideVerbs,0050, 0x1,a0,1e,c7,01	; DM4: DD=MI, CTYP=unkn			*
+HKR,PinConfigOverrideVerbs,0051, 0x1,81,1f,c7,01	; DM4: PCON=fixed, LOC=prim/rear	*
+
+HKR,PinConfigOverrideVerbs,0052, 0x1,d0,1c,d7,01	; TX1: ASSN=Dh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0053, 0x1,30,1d,d7,01	; TX1: COL=blue				*
+HKR,PinConfigOverrideVerbs,0054, 0x1,47,1e,d7,01	; TX1: DD=SPDO, CTYP=ana		*
+HKR,PinConfigOverrideVerbs,0055, 0x1,05,1f,d7,01	; TX1: PCON=jack, LOC=prim/top		*
+
+HKR,PinConfigOverrideVerbs,0056, 0x1,f0,1c,e7,01	; TX2: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0057, 0x1,00,1d,e7,01	; TX2: COL=unkn
+HKR,PinConfigOverrideVerbs,0058, 0x1,56,1e,e7,01	; TX2: DD=dig out, CTYP=dig
+HKR,PinConfigOverrideVerbs,0059, 0x1,50,1f,e7,01	; TX2: PCON=n/c, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,0060, 0x1,f0,1c,f7,01	; RX1: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0061, 0x1,00,1d,f7,01	; RX1: COL=unkn
+HKR,PinConfigOverrideVerbs,0062, 0x1,d6,1e,f7,01	; RX1: DD=dig in, CTYP=dig
+HKR,PinConfigOverrideVerbs,0063, 0x1,50,1f,f7,01	; RX1: PCON=n/c, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,0064, 0x1,f0,1c,07,02	; RX2: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0065, 0x1,00,1d,07,02	; RX2: COL=unkn
+HKR,PinConfigOverrideVerbs,0066, 0x1,d6,1e,07,02	; RX2: DD=dig in, CTYP=dig
+HKR,PinConfigOverrideVerbs,0067, 0x1,50,1f,07,02	; RX2: PCON=n/c, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,0068, 0x1,b0,1c,17,02	; SPDO: ASSN=Bh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0069, 0x1,20,1d,17,02	; SPDO: COL=gray			*
+HKR,PinConfigOverrideVerbs,0070, 0x1,4b,1e,17,02	; SPDO: DD=SPDO, CTYP=combo
+HKR,PinConfigOverrideVerbs,0071, 0x1,04,1f,17,02	; SPDO: PCON=jack, LOC=prim/right	*
+
+HKR,PinConfigOverrideVerbs,0072, 0x1,f0,1c,27,02	; SPDI: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0073, 0x1,20,1d,27,02	; SPDI: COL=gray			*
+HKR,PinConfigOverrideVerbs,0074, 0x1,cb,1e,27,02	; SPDI: DD=SPDI, CTYP=combo
+HKR,PinConfigOverrideVerbs,0075, 0x1,03,1f,27,02	; SPDI: PCON=jack, LOC=prim/left
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,4C,00,00,00
+
+[CDB4213HPLIPinConfigOverride]
+;; pin config overrides for CDB4213
+;; HP and line in only, no SPKR, no ana/dig mic
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CDB4213HP_LI
+
+HKR,PinConfigOverrideVerbs,0000, 0x1,10,1c,47,00	; HP: ASSN=1h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0003, 0x1,83,1f,47,00	; HP: PCON=fixed, LOC=left		*
+HKR,PinConfigOverrideVerbs,0007, 0x1,50,1f,57,00	; SP: PCON=n.c.				*
+HKR,PinConfigOverrideVerbs,0008, 0x1,30,1c,67,00	; LI: ASSN=3h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0011, 0x1,83,1f,67,00	; LI: PCON=fixed, LOC=left		*
+HKR,PinConfigOverrideVerbs,0015, 0x1,77,1f,77,00	; MI: PCON=n.c.				*
+HKR,PinConfigOverrideVerbs,0019, 0x1,77,1f,87,00	; DM: PCON=n.c.				*
+
+;; ======================================================================================
+
+[CDB4208APOParams]
+;; 500 Hz (2nd) LPF on FL/FR + 500 Hz (2nd) HPF on RL/RR
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Type",0x00010001,0x1
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","f0",0x00010001,500
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Order",0x00010001,2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","f0",0x00010001,500
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Order",0x00010001,2
+
+;; ======================================================================================
+
+[CONF_08xx.PinConfigOverride]
+;; baseline pin config overrides for CONF_08xx (HP only)
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CS4208 (CONF_08xx)
+
+HKR,PinConfigOverrideVerbs,0000, 0x1,f0,1c,07,01	; HP: ASSN=Fh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0001, 0x1,20,1d,07,01	; HP: COL=gray				*
+HKR,PinConfigOverrideVerbs,0002, 0x1,21,1e,07,01	; HP: DD=HP, CTYP=1/8"			*
+HKR,PinConfigOverrideVerbs,0003, 0x1,03,1f,07,01	; HP: PCON=jack, LOC=prim/left
+
+HKR,PinConfigOverrideVerbs,0007, 0x1,50,1f,17,01	; LO1: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0011, 0x1,50,1f,27,01	; LO2: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0015, 0x1,50,1f,37,01	; LO3: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0019, 0x1,50,1f,47,01	; LO4: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0023, 0x1,77,1f,57,01	; MI1: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0027, 0x1,77,1f,67,01	; MI2: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0031, 0x1,43,1f,77,01	; LI: PCON=n/c, LOC=prim/left		*
+HKR,PinConfigOverrideVerbs,0035, 0x1,43,1f,87,01	; HS: PCON=n/c, LOC=prim/left		*
+HKR,PinConfigOverrideVerbs,0039, 0x1,77,1f,97,01	; DM1: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0043, 0x1,77,1f,a7,01	; DM2: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0047, 0x1,77,1f,b7,01	; DM3: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0051, 0x1,77,1f,c7,01	; DM4: PCON=n/c, LOC=mob lid/ins	*
+HKR,PinConfigOverrideVerbs,0055, 0x1,50,1f,d7,01	; TX1: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0059, 0x1,50,1f,e7,01	; TX2: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0063, 0x1,50,1f,f7,01	; RX1: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0067, 0x1,50,1f,07,02	; RX2: PCON=n/c, LOC=int		*
+HKR,PinConfigOverrideVerbs,0071, 0x1,43,1f,17,02	; SPDO: PCON=n/c, LOC=prim/left		*
+HKR,PinConfigOverrideVerbs,0075, 0x1,43,1f,27,02	; SPDI: PCON=n/c, LOC=prim/left		*
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,4C,00,00,00
+
+[CONF_0800.PinConfigOverride]
+;; pin config overrides for CONF_0800 (+LO2, +DM4)
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CS4208 (CONF_0800)
+
+HKR,PinConfigOverrideVerbs,0008, 0x1,10,1c,27,01	; LO2: ASSN=1h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0009, 0x1,00,1d,27,01	; LO2: COL=unkn
+HKR,PinConfigOverrideVerbs,0010, 0x1,10,1e,27,01	; LO2: DD=SPKR, CTYP=unkn		*
+HKR,PinConfigOverrideVerbs,0011, 0x1,90,1f,27,01	; LO2: PCON=fixed, LOC=int
+
+HKR,PinConfigOverrideVerbs,0048, 0x1,90,1c,c7,01	; DM4: ASSN=9h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0049, 0x1,00,1d,c7,01	; DM4: COL=unkn
+HKR,PinConfigOverrideVerbs,0050, 0x1,a0,1e,c7,01	; DM4: DD=MI, CTYP=unkn			*
+HKR,PinConfigOverrideVerbs,0051, 0x1,90,1f,c7,01	; DM4: PCON=fixed, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,4C,00,00,00
+
+[CONF_0802.PinConfigOverride]
+;; pin config overrides for CONF_0802 (~HP, +LO2, +LO3, +DM4, +SPDO)
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CS4208 (CONF_0802)
+
+HKR,PinConfigOverrideVerbs,0002, 0x1,2b,1e,07,01	; HP: DD=HP, CTYP=combo			*
+
+HKR,PinConfigOverrideVerbs,0008, 0x1,12,1c,27,01	; LO2: ASSN=1h, SEQ=2h			*
+HKR,PinConfigOverrideVerbs,0009, 0x1,00,1d,27,01	; LO2: COL=unkn
+HKR,PinConfigOverrideVerbs,0010, 0x1,10,1e,27,01	; LO2: DD=SPKR, CTYP=unkn		*
+HKR,PinConfigOverrideVerbs,0011, 0x1,90,1f,27,01	; LO2: PCON=fixed, LOC=int
+
+HKR,PinConfigOverrideVerbs,0012, 0x1,10,1c,37,01	; LO3: ASSN=1h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0013, 0x1,00,1d,37,01	; LO3: COL=unkn
+HKR,PinConfigOverrideVerbs,0014, 0x1,10,1e,37,01	; LO3: DD=SPKR, CTYP=unkn		*
+HKR,PinConfigOverrideVerbs,0015, 0x1,90,1f,37,01	; LO3: PCON=fixed, LOC=int
+
+HKR,PinConfigOverrideVerbs,0048, 0x1,90,1c,c7,01	; DM4: ASSN=9h, SEQ=0h
+HKR,PinConfigOverrideVerbs,0049, 0x1,00,1d,c7,01	; DM4: COL=unkn
+HKR,PinConfigOverrideVerbs,0050, 0x1,a0,1e,c7,01	; DM4: DD=MI, CTYP=unkn			*
+HKR,PinConfigOverrideVerbs,0051, 0x1,90,1f,c7,01	; DM4: PCON=fixed, LOC=int		*
+
+HKR,PinConfigOverrideVerbs,0068, 0x1,f0,1c,17,02	; SPDO: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0069, 0x1,20,1d,17,02	; SPDO: COL=gray			*
+HKR,PinConfigOverrideVerbs,0070, 0x1,4b,1e,17,02	; SPDO: DD=SPDO, CTYP=combo
+HKR,PinConfigOverrideVerbs,0071, 0x1,03,1f,17,02	; SPDO: PCON=jack, LOC=prim/left
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,4C,00,00,00
+
+[CONF_0804.PinConfigOverride]
+;; pin config overrides for CONF_0804 (+LO2, +LO3, +SPDO)
+
+HKR,PinConfigOverrideVerbs,FriendlyName,,CS4208 (CONF_0804)
+
+HKR,PinConfigOverrideVerbs,0008, 0x1,10,1c,27,01	; LO2: ASSN=1h, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0009, 0x1,00,1d,27,01	; LO2: COL=unkn
+HKR,PinConfigOverrideVerbs,0010, 0x1,10,1e,27,01	; LO2: DD=SPKR, CTYP=unkn		*
+HKR,PinConfigOverrideVerbs,0011, 0x1,90,1f,27,01	; LO2: PCON=fixed, LOC=int
+
+HKR,PinConfigOverrideVerbs,0012, 0x1,f0,1c,37,01	; LO3: ASSN=Fh, SEQ=0h			*
+HKR,PinConfigOverrideVerbs,0013, 0x1,20,1d,37,01	; LO3: COL=gray				*
+HKR,PinConfigOverrideVerbs,0014, 0x1,0b,1e,37,01	; LO3: DD=LO, CTYP=combo		*
+HKR,PinConfigOverrideVerbs,0015, 0x1,01,1f,37,01	; LO3: PCON=jack, LOC=prim/rear		*
+
+HKR,PinConfigOverrideVerbs,0068, 0x1,f0,1c,17,02	; SPDO: ASSN=Fh, SEQ=0h
+HKR,PinConfigOverrideVerbs,0069, 0x1,20,1d,17,02	; SPDO: COL=gray			*
+HKR,PinConfigOverrideVerbs,0070, 0x1,4b,1e,17,02	; SPDO: DD=SPDO, CTYP=combo
+HKR,PinConfigOverrideVerbs,0071, 0x1,01,1f,17,02	; SPDO: PCON=jack, LOC=prim/rear	*
+
+HKR,PinConfigOverrideVerbs,NumVerbs, 0x1,4C,00,00,00
+
+[CONF_0800.InitVerbs]
+HKR,cs420x,InitVerbs,1,\					;
+  00,05,17,00,\							; AFG: PS-Set = D0
+  01,03,47,02,\							; VPW: proc on
+  33,00,45,02,  01,00,44,02,\					; CIR=33h, coeff=0001h (A1 ICS)
+  34,00,45,02,  01,1C,44,02					; CIR=34h, coeff=1C01h (A1 Enable, A threshold = 300 mV)
+
+;;  33,00,45,02,  41,00,44,02,\					; CIR=33h, coeff=0041h (A1 Inv, A1 ICS)				[CDB test only - invert A1]
+
+[CONF_0802.InitVerbs]
+HKR,cs420x,InitVerbs,1,\					;
+  00,05,17,00,\							; AFG: PS-Set = D0
+  01,03,47,02,\							; VPW: proc on
+  33,00,45,02,  93,44,44,02,\					; CIR=33h, coeff=4493h (A/C Gat, A2/C Inv, A1/A2/C ICS)
+  34,00,45,02,  13,1B,44,02					; CIR=34h, coeff=1B13h (A1/A2/C Enable, A threshold = 250 mV)
+
+;;  33,00,45,02,  53,44,44,02,\					; CIR=33h, coeff=4453h (A/C Gat, A1/C Inv, A1/A2/C ICS)		[CDB test only - invert A1, don't invert A2]
+
+HKR,cs420x,n21TXOutControl,	%REG_BINARY%,	0x21		; SPDO: control OUTE based on SPDO PDET
+
+[CONF_0804.InitVerbs]
+HKR,cs420x,InitVerbs,1,\					;
+  00,05,17,00,\							; AFG: PS-Set = D0
+  01,03,47,02,\							; VPW: proc on
+  33,00,45,02,  3D,43,44,02,\					; CIR=33h, coeff=433Dh (A/C Gat, B1/B2 Inv, A1/B1/B2/C/D ICS)
+  34,00,45,02,  71,24,44,02					; CIR=34h, coeff=2471h (A1/C/D Enable, A Assoc, A/B threshold = 300 mV)
+
+;;  33,00,45,02,  7D,44,44,02,\					; CIR=33h, coeff=447Dh (A/C Gat, A1/C Inv, A1/B1/B2/C/D ICS)	[CDB test only - invert A1/C, don't invert B1/B2]
+
+HKR,cs420x,n10URHysteresis,	%REG_BINARY%,	01		; HP: enable hysteresis on UR target widget
+HKR,cs420x,n10URRedirect,	%REG_BINARY%,	0x22		; HP: control jack presence based on SPDI PDET
+HKR,cs420x,n13WidgetCaps,	%REG_DWORD%,	0x00400581	; LO3: override widget caps: +UC
+HKR,cs420x,n13PinCaps,		%REG_DWORD%,	0x00000054	; LO3: override pin caps: +PDC
+HKR,cs420x,n13URHysteresis,	%REG_BINARY%,	01		; LO3: enable hysteresis on UR target widget
+HKR,cs420x,n13URRedirect,	%REG_BINARY%,	0x11		; LO3: control jack presence based on LO1 PDET
+HKR,cs420x,n21TXOutControl,	%REG_BINARY%,	0x21		; SPDO: control OUTE based on SPDO PDET
+
+[CONF_0800.Gpio]
+HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	03,00,00,01	; GPIO0 is an output controlled by DAC2 PS-Set
+
+[CONF_0802.Gpio]
+HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	03,04,01,01	; GPIO0 is an output controlled by DAC2 || DAC3 PS-Set
+
+[CONF_0804.Gpio]
+HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	03,00,00,01	; GPIO0 is an output controlled by DAC2 PS-Set
+HKR,cs420x,Gpio1ExtAmpCfg,	%REG_BINARY%,	04,00,00,01	; GPIO1 is an output controlled by DAC3 PS-Set
+
+[CONF_08xx.APOParams]
+;; 200 Hz (2nd) HPF on FL/FR + 200 Hz (2nd) HPF on RL/RR
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\0\\0","Order",0x00010001,2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\0","Order",0x00010001,2
+;; 200 Hz (2nd) HPF on FL/FR + 200 Hz (2nd) HPF on LFE
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\2\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\2\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\2\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\2\\0","Order",0x00010001,2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\3\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\3\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\3\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\3\\0","Order",0x00010001,2
+;; 200 Hz (2nd) HPF on FL/FR
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0","Order",0x00010001,2
+;; 200 Hz (2nd) HPF on C
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\5\\0","Type",0x00010001,0x2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\5\\0","f0",0x00010001,200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\5\\0","Q",0x00010001,100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\5\\0","Order",0x00010001,2
+
+[CONF_0800.APOParams]
+;; J41
+;; GAIN + HPF + 9-ch PEQ + HSF
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0", "Type", %REG_DWORD%, 9
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0", "GaindB", %REG_DWORD%, 1000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Type", %REG_DWORD%, 2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "f0", %REG_DWORD%, 198
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Q", %REG_DWORD%, 43
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Order", %REG_DWORD%, 2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "f0", %REG_DWORD%, 241
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "GaindB", %REG_DWORD%, -700
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "Q", %REG_DWORD%, 41
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "f0", %REG_DWORD%, 404
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "GaindB", %REG_DWORD%, -740
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "Q", %REG_DWORD%, 48
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "f0", %REG_DWORD%, 530
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "GaindB", %REG_DWORD%, -730
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "Q", %REG_DWORD%, 48
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "f0", %REG_DWORD%, 695
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "GaindB", %REG_DWORD%, -1100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "Q", %REG_DWORD%, 71
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "f0", %REG_DWORD%, 940
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "GaindB", %REG_DWORD%, -1600
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "Q", %REG_DWORD%, 89
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "f0", %REG_DWORD%, 2117
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "GaindB", %REG_DWORD%, -830
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "Q", %REG_DWORD%, 53
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "f0", %REG_DWORD%, 2472
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "GaindB", %REG_DWORD%, -1700
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "Q", %REG_DWORD%, 71
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "f0", %REG_DWORD%, 3575
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "GaindB", %REG_DWORD%, -760
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "Q", %REG_DWORD%, 36
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "f0", %REG_DWORD%, 4650
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "GaindB", %REG_DWORD%, -1100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "Q", %REG_DWORD%, 53
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "Type", %REG_DWORD%, 8
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "f0", %REG_DWORD%, 5500
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "GaindB", %REG_DWORD%, -1000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "Q", %REG_DWORD%, 75
+
+[CONF_0801.APOParams]
+;; J43
+;; GAIN + HPF + LPF + 8-ch PEQ + HSF
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0", "Type", %REG_DWORD%, 9
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\0", "GaindB", %REG_DWORD%, 1000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Type", %REG_DWORD%, 2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "f0", %REG_DWORD%, 197
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Q", %REG_DWORD%, 50
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\1", "Order", %REG_DWORD%, 2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "Type", %REG_DWORD%, 1
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "f0", %REG_DWORD%, 18000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "Q", %REG_DWORD%, 70
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\2", "Order", %REG_DWORD%, 2
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "f0", %REG_DWORD%, 230
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "GaindB", %REG_DWORD%, -1200
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\3", "Q", %REG_DWORD%, 71
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "f0", %REG_DWORD%, 431
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "GaindB", %REG_DWORD%, -1250
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\4", "Q", %REG_DWORD%, 117
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "f0", %REG_DWORD%, 700
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "GaindB", %REG_DWORD%, -1100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\5", "Q", %REG_DWORD%, 71
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "f0", %REG_DWORD%, 1290
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "GaindB", %REG_DWORD%, -900
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\6", "Q", %REG_DWORD%, 48
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "f0", %REG_DWORD%, 1520
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "GaindB", %REG_DWORD%, -1100
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\7", "Q", %REG_DWORD%, 71
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "f0", %REG_DWORD%, 2910
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "GaindB", %REG_DWORD%, -1400
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\8", "Q", %REG_DWORD%, 117
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "f0", %REG_DWORD%, 4875
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "GaindB", %REG_DWORD%, -1300
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\9", "Q", %REG_DWORD%, 94
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "Type", %REG_DWORD%, 6
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "f0", %REG_DWORD%, 10015
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "GaindB", %REG_DWORD%, -1000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\10", "Q", %REG_DWORD%, 60
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "Type", %REG_DWORD%, 8
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "f0", %REG_DWORD%, 6500
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "GaindB", %REG_DWORD%, -1000
+HKLM,"Software\\Cirrus\\APO\\FilterAPO\\4\\11", "Q", %REG_DWORD%, 66
+
+[CONF_0801.DSPCoeffs]
+;; J43
+;; 2-ch PEQ
+HKR,CS420x,EQ1S2RS0, %REG_BINARY%, 1F,47,5D,1B,C8,3D,C5,EF,91,1B,0F,9A,C5,EF,91,1D,56,8E,1C,02,D7,C7,E5,3C,19,59,66,C7,E5,3C
+HKR,CS420x,EQ1S2RS1, %REG_BINARY%, 1F,81,48,1D,1A,F3,C3,D8,55,1C,9C,3C,C3,D8,55,1E,27,A2,1D,3C,26,C5,2F,2A,1B,63,C8,C5,2F,2A
+HKR,CS420x,EQ1S2RS2, %REG_BINARY%, 1F,BE,CC,1E,82,B3,C1,DC,77,1E,41,7F,C1,DC,77,1F,0A,6B,1E,8F,FE,C2,8B,BD,1D,9A,6A,C2,8B,BD
+HKR,CS420x,EQ1S2RS3, %REG_BINARY%, 1F,DE,EF,1F,3E,A0,C0,EA,09,1F,1D,8F,C0,EA,09,1F,82,CA,1F,44,5F,C1,42,8F,1E,C7,2A,C1,42,8F
+
+;; ======================================================================================
+
+[HDAudio.Cirrus.NoApoTopo]
+AddReg = HDAudio.Cirrus.NoApoTopo.AddReg, OEMSettingsOverrideStereo.AddReg, MSSysFx.AddReg 
+
+[HDAudio.Cirrus.NoApoTopo.AddReg]
+HKR,,FriendlyName,,%PrimarySpeakerTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%                           
+
+[HDAudio.Cirrus.NoApoHPTopo]
+AddReg = HDAudio.Cirrus.NoApoHPTopo.AddReg, OEMSettingsOverrideStereo.AddReg, MSSysFx.AddReg 
+
+[HDAudio.Cirrus.NoApoHPTopo.AddReg]
+HKR,,FriendlyName,,%PrimaryHeadphoneTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[HDAudio.Cirrus.ApoQuadTopo]
+DelReg = HDAudio.Cirrus.APOParams.DelReg
+AddReg = HDAudio.Cirrus.ApoQuadTopo.AddReg, OEMSettingsOverrideQuad.AddReg, CirrusSysFx.AddReg
+
+[HDAudio.Cirrus.ApoQuadTopo.AddReg]
+HKR,,FriendlyName,,%PrimarySpeakerTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[HDAudio.Cirrus.ApoLfeTopo]
+DelReg = HDAudio.Cirrus.APOParams.DelReg
+AddReg = HDAudio.Cirrus.ApoLfeTopo.AddReg, OEMSettingsOverrideLFE.AddReg, CirrusSysFx.AddReg
+
+[HDAudio.Cirrus.ApoLfeTopo.AddReg]
+HKR,,FriendlyName,,%PrimarySpeakerTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[HDAudio.Cirrus.ApoStereoTopo]
+DelReg = HDAudio.Cirrus.APOParams.DelReg, HDAudio.Cirrus.DeviceDesc.DelReg
+AddReg = HDAudio.Cirrus.ApoStereoTopo.AddReg, OEMSettingsOverrideStereoAPO.AddReg, CirrusSysFx.AddReg
+
+[HDAudio.Cirrus.ApoStereoTopo.AddReg]
+HKR,,FriendlyName,,%PrimarySpeakerTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[HDAudio.Cirrus.ApoMonoTopo]
+DelReg = HDAudio.Cirrus.APOParams.DelReg
+AddReg = HDAudio.Cirrus.ApoMonoTopo.AddReg, OEMSettingsOverrideMonoAPO.AddReg, CirrusSysFx.AddReg
+
+[HDAudio.Cirrus.ApoMonoTopo.AddReg]
+HKR,,FriendlyName,,%PrimarySpeakerTopoDeviceName%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[HDAudio.Cirrus.LineOutTopo]
+AddReg = HDAudio.Cirrus.LineOutTopo.AddReg
+
+[HDAudio.Cirrus.LineOutTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %Line_Out_DeviceName%
+
+[HDAudio.Cirrus.SpdifOutTopo]
+AddReg = HDAudio.Cirrus.SpdifOutTopo.AddReg
+
+[HDAudio.Cirrus.SpdifOutTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %SPDIF_Out_DeviceName%
+
+[HDAudio.Cirrus.SpdifOut1Topo]
+AddReg = HDAudio.Cirrus.SpdifOut1Topo.AddReg
+
+[HDAudio.Cirrus.SpdifOut1Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %SPDIF_Out_1_DeviceName%
+
+[HDAudio.Cirrus.SpdifOut2Topo]
+AddReg = HDAudio.Cirrus.SpdifOut2Topo.AddReg
+
+[HDAudio.Cirrus.SpdifOut2Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %SPDIF_Out_2_DeviceName%
+
+[HDAudio.Cirrus.SpdifInTopo]
+AddReg = HDAudio.Cirrus.SpdifInTopo.AddReg
+
+[HDAudio.Cirrus.SpdifInTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %SPDIF_In_DeviceName%
+
+[HDAudio.Cirrus.TDMOutTopo]
+AddReg = HDAudio.Cirrus.TDMOutTopo.AddReg
+
+[HDAudio.Cirrus.TDMOutTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %TDM_Out_DeviceName%
+
+[HDAudio.Cirrus.MicIn1Topo]
+AddReg = HDAudio.Cirrus.MicIn1Topo.AddReg
+
+[HDAudio.Cirrus.MicIn1Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %MicIn_1_DeviceName%
+
+[HDAudio.Cirrus.MicIn2Topo]
+AddReg = HDAudio.Cirrus.MicIn2Topo.AddReg
+
+[HDAudio.Cirrus.MicIn2Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %MicIn_2_DeviceName%
+
+[HDAudio.Cirrus.DMicIn1Topo]
+AddReg = HDAudio.Cirrus.DMicIn1Topo.AddReg
+
+[HDAudio.Cirrus.DMicIn1Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %DMicIn_1_DeviceName%
+
+[HDAudio.Cirrus.DMicIn2Topo]
+AddReg = HDAudio.Cirrus.DMicIn2Topo.AddReg
+
+[HDAudio.Cirrus.DMicIn2Topo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %DMicIn_2_DeviceName%
+
+[HDAudio.Cirrus.HSInTopo]
+AddReg = HDAudio.Cirrus.HSInTopo.AddReg
+
+[HDAudio.Cirrus.HSInTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %HSIn_DeviceName%
+
+[HDAudio.Cirrus.StereoMixTopo]
+AddReg = HDAudio.Cirrus.StereoMixTopo.AddReg, LoopSysFx.AddReg
+
+[HDAudio.Cirrus.StereoMixTopo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%,, %StereoMix_DeviceName%
+
+[HDAudio.Cirrus.APOParams.DelReg]
+HKLM,"Software\\Cirrus\\APO\\FilterAPO"
+
+[HDAudio.Cirrus.DeviceDesc.DelReg]
+HKR,"EP\\0", %PKEY_Device_DeviceDesc%
+
+;; ======================================================================================
+
+;;
+;; Install Cirrus GFX APO, with Microsoft LFX and Property Page
+;;
+[CirrusSysFx.AddReg]
+HKR,"FX\\0","{C00953EE-4548-43b2-B5B5-17EE20C0D34F},0",0x00010001,1
+HKR,"FX\\0",%PKEY_ItemNameDisplay%,,%CIRRUS_SYSFX_FriendlyName%
+HKR,"FX\\0",%PKEY_SYSFX_PreMixClsid%,,%MS_SYSFX_PREMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_PostMixClsid%,,%CIRRUS_SYSFX_POSTMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_UiClsid%,,%MS_SYSFX_UI_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_Association%,,%KSNODETYPE_ANY%  ; GUID NULL means install on all endpoints
+                                                        ; supply a specific GUID to install on a particular bridge pin node type
+
+;;
+;; Install Microsoft GFX, LFX, and Property Page
+;;
+[MSSysFx.AddReg]
+HKR,"FX\\0",%PKEY_ItemNameDisplay%,,%CIRRUS_SYSFX_FriendlyName%
+HKR,"FX\\0",%PKEY_SYSFX_PreMixClsid%,,%MS_SYSFX_PREMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_PostMixClsid%,,%MS_SYSFX_POSTMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_UiClsid%,,%MS_SYSFX_UI_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_Association%,,%KSNODETYPE_ANY%  ; GUID NULL means install on all endpoints
+                                                        ; supply a specific GUID to install on a particular bridge pin node type
+
+;;
+;; Install Cirrus AEC LFX APO (loopback test)
+;;
+[LoopSysFx.AddReg]
+HKR,"FX\\0","{0418EF94-17EE-4EDE-B7A3-21E84FDA4A57},0",0x00010001,1		; LFX: 0 = passthrough, 1 = loopback
+HKR,"FX\\0","{0418EF94-17EE-4EDE-B7A3-21E84FDA4A57},1",0x00010001,1		; SRC: 0 = basic, 1 = libresample
+HKR,"FX\\0",%PKEY_ItemNameDisplay%,,%CIRRUS_SYSFX_FriendlyName%
+HKR,"FX\\0",%PKEY_SYSFX_PreMixClsid%,,%LOOPAPO_PREMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_PostMixClsid%,,%MS_SYSFX_POSTMIX_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_UiClsid%,,%MS_SYSFX_UI_CLSID%
+HKR,"FX\\0",%PKEY_SYSFX_Association%,,%KSNODETYPE_ANY%  ; GUID NULL means install on all endpoints
+                                                        ; supply a specific GUID to install on a particular bridge pin node type
+
+;; ======================================================================================
+
+;;
+;; All EP\\0 entries in the same grouping
+;;
+;; Set default format to 48kHz, 24-bit, Stereo
+[OEMSettingsOverrideStereo.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_AudioEngine_OEMFormat%, %REG_BINARY%, 41,00,C8,70,28,00,00,00,FE,FF,02,00,80,BB,00,00,00,DC,05,00,08,00,20,00,16,00,18,00,03,00,00,00,01,00,00,00,00,00,10,00,80,00,00,AA,00,38,9B,71
+
+;;
+;; All EP\\0 entries in the same grouping
+;;
+;; Set default format to 48kHz, 24-bit, Quad
+[OEMSettingsOverrideQuad.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_AudioEngine_OEMFormat%, %REG_BINARY%, 41,00,00,00,28,00,00,00,FE,FF,04,00,80,BB,00,00,00,B8,0B,00,10,00,20,00,16,00,18,00,33,00,00,00,01,00,00,00,00,00,10,00,80,00,00,AA,00,38,9B,71
+
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOProcessMode",0x00010001,0x2		; quad (FL/FR - woofers, RL/RR - tweeters)
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOWorkAround1",0x00010001,0x0
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOWorkAround1DisableMuteControl",0x00010001,0x0
+
+;;
+;; All EP\\0 entries in the same grouping
+;;
+;; Set default format to 48kHz, 24-bit, Quad
+[OEMSettingsOverrideLFE.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_AudioEngine_OEMFormat%, %REG_BINARY%, 41,00,00,00,28,00,00,00,FE,FF,04,00,80,BB,00,00,00,B8,0B,00,10,00,20,00,16,00,18,00,33,00,00,00,01,00,00,00,00,00,10,00,80,00,00,AA,00,38,9B,71
+
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOProcessMode",0x00010001,0x3		; 2.1 surround (FL/FR - tweeters, LFE - woofer)
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOWorkAround1",0x00010001,0x0
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOWorkAround1DisableMuteControl",0x00010001,0x0
+
+;;
+;; All EP\\0 entries in the same grouping
+;;
+;; Set default format to 48kHz, 24-bit, Stereo
+[OEMSettingsOverrideStereoAPO.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_AudioEngine_OEMFormat%, %REG_BINARY%, 41,00,C8,70,28,00,00,00,FE,FF,02,00,80,BB,00,00,00,DC,05,00,08,00,20,00,16,00,18,00,03,00,00,00,01,00,00,00,00,00,10,00,80,00,00,AA,00,38,9B,71
+
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOProcessMode",0x00010001,0x4		; stereo (FL/FR - full range)
+
+;;
+;; All EP\\0 entries in the same grouping
+;;
+;; Set default format to 48kHz, 24-bit, Stereo
+[OEMSettingsOverrideMonoAPO.AddReg]
+HKR,"EP\\0", %PKEY_AudioEndpoint_Association%,,%KSNODETYPE_ANY%
+HKR,"EP\\0", %PKEY_AudioEngine_OEMFormat%, %REG_BINARY%, 41,00,C8,70,28,00,00,00,FE,FF,02,00,80,BB,00,00,00,DC,05,00,08,00,20,00,16,00,18,00,03,00,00,00,01,00,00,00,00,00,10,00,80,00,00,AA,00,38,9B,71
+
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","APOProcessMode",0x00010001,0x5		; mono (LFE - full range)
+HKLM,"Software\\Cirrus\\APO\\FilterAPO","MonoModeChannel",0x00010001,0x1	; mono mix into L channel
+
+;; ======================================================================================
+
+[LowerFilt_Service_Inst]
+DisplayName    = %LowerFilt.SvcDesc%
+ServiceType    = 1 ; KERNEL_DRIVER
+StartType      = 3 ; DEMAND_START
+ErrorControl   = 0 ; ERROR_IGNORE
+ServiceBinary  = %12%\CSLFD.sys
+
+[UpperFilt_Service_Inst]
+DisplayName    = %UpperFilt.SvcDesc%
+ServiceType    = 1 ; KERNEL_DRIVER
+StartType      = 3 ; DEMAND_START
+ErrorControl   = 0 ; ERROR_IGNORE
+ServiceBinary  = %12%\CSUFD.sys
+
+;; ======================================================================================
+;;
+;; Copy lower/upper filter
+;;
+[CSxFD.CopyList]
+CSLFD.sys
+CSUFD.sys
+
+;;
+;; Copy custom SYSFX and property page
+;;
+[CLFiltAPO.CopyList]
+CLFiltAPO.dll
+;;CLFiltSysFXUI.dll
+
+[CLLoopAPO.CopyList]
+CLLoopAPO.dll
+
+;;
+;; Register custom SYSFX and property page
+;;
+[CLFiltAPO.RegisterDlls]
+11,,CLFiltAPO.dll,1
+;;11,,CLFiltSysFXUI.dll,1
+
+[CLLoopAPO.RegisterDlls]
+11,,CLLoopAPO.dll,1
+
+;;
+;; Copy and register co-installers
+;;
+[WdfCoInstaller.CopyList]
+WdfCoInstaller01011.dll
+
+[WdfCoInstaller.AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01011.dll,WdfCoInstaller"
+
+[KMDF_WDF_Version]
+KmdfLibraryVersion=1.11
+
+;; ======================================================================================
+
+[Strings]
+;;;; These are the names shown in the GUI
+ProviderName="Cirrus Logic, Inc."
+MfgName="Cirrus Logic, Inc."
+DiskDescription="Cirrus Logic HD Audio Codec Installation Media"
+
+HdAudioFunctionDriver.CS4206_10134206a.DeviceDesc = "Cirrus Logic CDB4206 (DMIC1 + DMIC2)"
+HdAudioFunctionDriver.CS4206_10134206b.DeviceDesc = "Cirrus Logic CDB4206 (DMIC1 + SPDO2)"
+HdAudioFunctionDriver.CS4207_10134207a.DeviceDesc = "Cirrus Logic CDB4207 (DMIC1 + DMIC2)"
+HdAudioFunctionDriver.CS4207_10134207b.DeviceDesc = "Cirrus Logic CDB4207 (DMIC1 + SPDO2)"
+HdAudioFunctionDriver.CS4208_10134208a.DeviceDesc = "Cirrus Logic CDB4208"
+HdAudioFunctionDriver.CS4208_10134208b.DeviceDesc = "Cirrus Logic CDB4208 (alt config)"
+HdAudioFunctionDriver.CS4213_10134213f.DeviceDesc = "Cirrus Logic CDB4213 (HP/LI only)"
+
+HdAudioFunctionDriver.CS4208_106B7100.DeviceDesc = "Cirrus Logic CS4208 (AB 113)"
+HdAudioFunctionDriver.CS4208_106B7200.DeviceDesc = "Cirrus Logic CS4208 (AB 114)"
+HdAudioFunctionDriver.CS4208_106B5D00.DeviceDesc = "Cirrus Logic CS4208 (AB 93)"
+HdAudioFunctionDriver.CS4208_106B5E00.DeviceDesc = "Cirrus Logic CS4208 (AB 94)"
+HdAudioFunctionDriver.CS4208_106B7800.DeviceDesc = "Cirrus Logic CS4208 (AB 120)"
+
+CirrusVersion_KEY	= "SOFTWARE\\Cirrus\\CS420x\\Versions"
+LowerFilt.SvcDesc	= "CS42xxLowerFilter"
+UpperFilt.SvcDesc	= "CS42xxUpperFilter"
+
+;;
+;; These are the strings passed to PcRegisterSubdevice for wave ports
+;;
+KSNAME_eSpeakerWave  = "eSpeakerWave"  ; non-localizable
+KSNAME_eSpeakerTopo  = "eSpeakerTopo"  ; non-localizable
+
+KSNAME_eLineOutWave  = "eLineOutWave"  ; non-localizable
+KSNAME_eLineOutTopo  = "eLineOutTopo"  ; non-localizable
+
+KSNAME_eLineConnectorWave  = "eLineConnectorWave"  ; non-localizable
+KSNAME_eLineConnectorTopo  = "eLineConnectorTopo"  ; non-localizable
+
+KSNAME_eHeadphoneWave  = "eHeadphoneWave"   ; non-localizable
+KSNAME_eHeadphoneTopo  = "eHeadphoneTopo"   ; non-localizable
+
+KSNAME_eSpdifOutWave = "eSpdifOutWave" ; non-localizable
+KSNAME_eSpdifOutTopo = "eSpdifOutTopo" ; non-localizable 
+
+KSNAME_eSpdifOut2Wave = "eSpdifOut2Wave" ; non-localizable
+KSNAME_eSpdifOut2Topo = "eSpdifOut2Topo" ; non-localizable 
+
+KSNAME_eSlavedHPSpeakerWave  = "eSlavedHPSpeakerWave"  ; non-localizable
+KSNAME_eSlavedHPSpeakerTopo  = "eSlavedHPSpeakerTopo"  ; non-localizable
+
+KSNAME_eMicInWave  = "eMicInWave" ; non-localizable
+KSNAME_eMicInTopo  = "eMicInTopo" ; non-localizable
+
+KSNAME_eMicIn2Wave = "eMicIn2Wave" ; non-localizable
+KSNAME_eMicIn2Topo = "eMicIn2Topo" ; non-localizable
+
+KSNAME_eMicIn3Wave = "eMicIn3Wave" ; non-localizable
+KSNAME_eMicIn3Topo = "eMicIn3Topo" ; non-localizable
+
+KSNAME_eSpdifInWave = "eSpdifInWave" ; non-localizable
+KSNAME_eSpdifInTopo = "eSpdifInTopo" ; non-localizable
+
+KSNAME_eAuxInWave = "eAuxInWave" ; non-localizable
+KSNAME_eAuxInTopo = "eAuxInTopo" ; non-localizable
+
+KSNAME_eMuxedCaptureWave  = "eMuxedCaptureWave"  ; non-localizable
+KSNAME_eMuxedCaptureTopo  = "eMuxedCaptureTopo"  ; non-localizable
+
+;;
+;; These are the name strings for the wave miniports displayed in mmsys.cpl
+;;
+PrimarySpeakerWaveDeviceName  = "HD Audio Speaker"
+PrimarySpeakerTopoDeviceName  = "HD Audio Speaker mixer"
+PrimaryHeadphoneTopoDeviceName  = "HD Audio Headphone mixer"
+PrimarySpdifOutTopoDeviceName = "HD Audio SPDIF out mixer"
+PrimarySpdifInTopoDeviceName  = "HD Audio Digital in mixer"
+
+;;
+;; These are the name strings for the device endpoints displayed in mmsys.cpl
+;;
+Line_Out_DeviceName	= "Line Out"
+SPDIF_Out_DeviceName	= "Digital Audio Out (S/PDIF)"
+SPDIF_In_DeviceName	= "Digital Audio In (S/PDIF)"
+SPDIF_Out_1_DeviceName	= "Digital Audio Out 1 (S/PDIF)"
+SPDIF_Out_2_DeviceName	= "Digital Audio Out 2 (S/PDIF)"
+TDM_Out_DeviceName	= "Digital Audio Out (TDM)"
+MicIn_1_DeviceName	= "External Microphone"
+MicIn_2_DeviceName	= "Internal Microphone"
+DMicIn_1_DeviceName	= "Digital Microphone 1"
+DMicIn_2_DeviceName	= "Digital Microphone 2"
+HSIn_DeviceName		= "Headset Microphone"
+StereoMix_DeviceName	= "Stereo Mix Loopback"
+
+;;
+;; PropertyKey GUIDS
+;;
+PKEY_SYSFX_Association      = "{D04E05A6-594B-4FB6-A80D-01AF5EED7D1D},0"
+PKEY_SYSFX_PreMixClsid      = "{D04E05A6-594B-4FB6-A80D-01AF5EED7D1D},1"
+PKEY_SYSFX_PostMixClsid     = "{D04E05A6-594B-4FB6-A80D-01AF5EED7D1D},2"
+PKEY_SYSFX_UiClsid          = "{D04E05A6-594B-4FB6-A80D-01AF5EED7D1D},3"
+PKEY_ItemNameDisplay            = "{B725F130-47EF-101A-A5F1-02608C9EEBAC},10"
+PKEY_AudioEndpoint_Ext_UiClsid  = "{1DA5D803-D492-4EDD-8C23-E0C0FFEE7F0E},1"
+PKEY_AudioEndpoint_Association  = "{1DA5D803-D492-4EDD-8C23-E0C0FFEE7F0E},2"
+PKEY_AudioEngine_OEMPeriod 	= "{E4870E26-3CC5-4CD2-BA46-CA0A9A70ED04},6"
+
+PKEY_AudioEndpoint_ControlPanelPageProvider = "{1DA5D803-D492-4EDD-8C23-E0C0FFEE7F0E}"
+
+PKEY_Device_DeviceDesc      = "{A45C254E-DF1C-4EFD-8020-67D146A850E0},2"
+
+;;
+;; PKEY_AudioEngine_OEMFormat:  Specifies the default format that is used for rendering/capturing.
+;; vartype = VT_BLOB
+;;
+PKEY_AudioEngine_OEMFormat = "{E4870E26-3CC5-4CD2-BA46-CA0A9A70ED04},3"
+
+AUDIOENDPOINT_EXT_UI_CLSID = "{6C57B2A2-91F5-4b90-93D5-FAB82485ECA6}"
+
+;;Cirrus GUIDS
+CIRRUS_SYSFX_UI_CLSID      = "{D6DFAF22-956F-47F3-8AA0-34BCC2BD5809}"
+CIRRUS_SYSFX_POSTMIX_CLSID = "{F805CC37-3E23-4504-A5D5-A6BB1C38DD31}"
+CIRRUS_SYSFX_FriendlyName  = "Cirrus Audio Effects"
+
+;;MS GUIDS
+MS_SYSFX_UI_CLSID          = "{5860E1C5-F95C-4a7a-8EC8-8AEF24F379A1}"
+MS_SYSFX_PREMIX_CLSID      = "{62dc1a93-ae24-464c-a43e-452f824c4250}"
+MS_SYSFX_POSTMIX_CLSID     = "{637c490d-eee3-4c0a-973f-371958802da2}"
+MS_SYSFX_FriendlyName      = "Microsoft Audio Home Theater Effects"
+
+;; LoopAPO/CirrusAEC
+LOOPAPO_PREMIX_CLSID	= "{9B762194-3BC9-4906-B23D-BD4203FDFC25}"
+LOOPAPO_SYSFXUI_CLSID  	= "{788C381C-2EFC-4295-B3E6-B8C01E3E1885}"
+
+KSCATEGORY_AUDIO    = "{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER   = "{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_CAPTURE  = "{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_TOPOLOGY = "{DDA54A40-1E4C-11D1-A050-405705C10000}"
+KSCATEGORY_REALTIME = "{EB115FFC-10C8-4964-831D-6DCB02E6F23F}"
+
+KSNODETYPE_ANY      = "{00000000-0000-0000-0000-000000000000}"
+KSNODETYPE_SPEAKER  = "{DFF21CE1-F70F-11D0-B917-00A0C9223196}"
+
+Proxy.CLSID         = "{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+
+REG_BINARY		= 0x00000001
+REG_DWORD		= 0x00010001
+
+DriverBuildDate	= "04/25/2013"
+DriverBuildVer	= "6.6001.3.09"

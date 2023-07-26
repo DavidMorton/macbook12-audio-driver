@@ -212,3 +212,49 @@ So the following registries are added:
     HKLM,"Software\\Cirrus\\APO\\FilterAPO\\1\\11", "Q", %REG_DWORD%, 29
 
     ;; ======================================================================================
+
+## By example: MBP11
+
+106b5e00
+
+Uses HDAudio.Cirrus_CONF_0803
+
+CONF_08xx.PinConfigOverride, CONF_0802.PinConfigOverride, CONF_0802.InitVerbs, CONF_0802.Gpio, CONF_0803.APOParams
+
+## By example MBA6
+
+106b7200 -> HDAudio.Cirrus_CONF_0800 -> CONF_08xx.PinConfigOverride, CONF_0800.PinConfigOverride
+106b7100 -> HDAudio.Cirrus_CONF_0801 -> CONF_08xx.PinConfigOverride, CONF_0800.PinConfigOverride
+
+## There are no speaker outs coming from alsa...
+
+I think this may be at the root of the issue...
+
+Evidence:
+
+    [    5.995611] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x1d/0x0/0x0/0x0/0x0) type:speaker
+    [    5.995620] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    5.995625] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.995628] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.995631] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+    [    5.995633] snd_hda_codec_cirrus hdaudioC0D0:      Internal Mic=0x19
+    [    5.995636] snd_hda_codec_cirrus hdaudioC0D0:      Mic=0x18
+
+There's a dev switch in hda_parser_auto.c at line 220
+
+This comes from get_defcfg_device which accepts def_conf.
+
+def_conf comes from snd_hda_codec_get_pincfg(codec, nid)
+* codec is the same object
+* nid is passed in
+* line 203 in hda_auto_parser
+
+### snd_hda_codec_get_pincfg
+
+This comes from hda_codec.c around line 528 or so.
+
+It first checks for whether the pin exists in the user_pins collection, then the driver_pins collection, then the init_pins collection. 
+
+nid is an hda_nid_t
+
+hid_nid_t is a u16, which is an unsigned short
