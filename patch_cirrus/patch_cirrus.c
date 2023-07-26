@@ -788,6 +788,10 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	// 	{ 0x14, 0x90170014 }
 	// };
 	
+	if (action == HDA_FIXUP_ACT_PROBE) {
+		codec_info(codec, "HDA_FIXUP_ACT_PROBE");
+		
+	}
 	
 	// snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs);
 }
@@ -854,11 +858,17 @@ static int patch_cs4208(struct hda_codec *codec)
 			   cs4208_fixups);
 	snd_hda_apply_fixup(codec, HDA_FIXUP_ACT_PRE_PROBE);
 
+	codec_info(codec, "start_nid: 0x%04x", codec->core.start_nid);
+	codec_info(codec, "num_nodes: %d", codec->core.num_nodes);
+	codec_info(codec, "wcap 0x18 = %x", get_wcaps(codec, 0x18));
+	
 	snd_hda_override_wcaps(codec, 0x18,
 			       get_wcaps(codec, 0x18) | AC_WCAP_STEREO);
 	cs4208_fix_amp_caps(codec, 0x18);
 	cs4208_fix_amp_caps(codec, 0x1b);
 	cs4208_fix_amp_caps(codec, 0x1c);
+
+	codec_info(codec, "Entering the parse auto-config for 4208.");
 
 	err = cs_parse_auto_config(codec);
 	if (err < 0)

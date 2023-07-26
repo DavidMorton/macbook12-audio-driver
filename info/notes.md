@@ -258,3 +258,16 @@ It first checks for whether the pin exists in the user_pins collection, then the
 nid is an hda_nid_t
 
 hid_nid_t is a u16, which is an unsigned short
+
+Managed to get several of the packages built by modifying the makefile and copying over more files.
+
+Now, the 0x1d is being discovered as an AC JACK SPEAKER, but is being ignored by wcaps. The get_wcaps method is what returns this value to the caller.
+
+get_wcaps seems to depend on codec->core.start_nid and nid number, getting the codec->wcaps value at the index of nid-start_nid or returning 0 if it's out of that bounds. (The 4208 patch has an override on this). 
+
+So what is wcaps?
+
+number of nodes is 35, and the start node is 2. 2+35 = 37.
+
+# Alsa files
+http://alsa-project.org/db/?f=ce64ed0d4758ad8c82729f65196d03f096854d22

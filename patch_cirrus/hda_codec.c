@@ -528,7 +528,7 @@ EXPORT_SYMBOL_GPL(snd_hda_codec_set_pincfg);
 unsigned int snd_hda_codec_get_pincfg(struct hda_codec *codec, hda_nid_t nid)
 {
 	struct hda_pincfg *pin;
-	codec_info(codec, "nid: %hu", nid);
+	codec_info(codec, "nid: %02hx", nid);
 
 #ifdef CONFIG_SND_HDA_RECONFIG
 	{
@@ -544,15 +544,15 @@ unsigned int snd_hda_codec_get_pincfg(struct hda_codec *codec, hda_nid_t nid)
 #endif
 	pin = look_up_pincfg(codec, &codec->driver_pins, nid);
 	if (pin) {
-		codec_info(codec, "nid: %hu, cfg: %u (driver)", nid, pin->cfg);
+		codec_info(codec, "nid: %02hx, cfg: %08hx (driver)", nid, pin->cfg);
 		return pin->cfg;
 	}
 	pin = look_up_pincfg(codec, &codec->init_pins, nid);
 	if (pin) {
-		codec_info(codec, "nid: %hu, cfg: %u (init)", nid, pin->cfg);
+		codec_info(codec, "nid: %02hx, cfg: %08hx (init)", nid, pin->cfg);
 		return pin->cfg;
 	}
-	codec_info(codec, "nid: %hu, cfg: 0 (init)", nid);
+	codec_info(codec, "nid: %02hx, cfg: 0 (init)", nid);
 	return 0;
 }
 EXPORT_SYMBOL_GPL(snd_hda_codec_get_pincfg);

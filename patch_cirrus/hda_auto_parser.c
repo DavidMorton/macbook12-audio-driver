@@ -206,6 +206,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			continue;
 		loc = get_defcfg_location(def_conf);
 		dev = get_defcfg_device(def_conf);
+		codec_info(codec, "dev: %08x", dev);
 
 		/* workaround for buggy BIOS setups */
 		if (dev == AC_JACK_LINE_OUT) {
@@ -221,6 +222,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 
 		switch (dev) {
 		case AC_JACK_LINE_OUT:
+			codec_info(codec, "LINE OUT");
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
 
@@ -248,6 +250,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			cfg->line_outs++;
 			break;
 		case AC_JACK_SPEAKER:
+			codec_info(codec, "AC JACK SPEAKER");
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
 			if (cfg->speaker_outs >= ARRAY_SIZE(cfg->speaker_pins)) {
@@ -257,6 +260,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 				continue;
 			}
 			if (get_wcaps(codec, nid) & AC_WCAP_DIGITAL) {
+				codec_info(codec, "Wcap result: 0x%x", get_wcaps(codec, nid));
 				codec_info(codec, "ignore pin 0x%x, digital wcaps\n", nid);
 				continue;
 			}
@@ -265,6 +269,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			cfg->speaker_outs++;
 			break;
 		case AC_JACK_HP_OUT:
+			codec_info(codec, "AC JACK HP_OUT");
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
 			if (cfg->hp_outs >= ARRAY_SIZE(cfg->hp_pins)) {
@@ -291,6 +296,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			break;
 		case AC_JACK_SPDIF_OUT:
 		case AC_JACK_DIG_OTHER_OUT:
+			codec_info(codec, "SPDIF OR OTHER");
 			if (cfg->dig_outs >= ARRAY_SIZE(cfg->dig_out_pins)) {
 				codec_info(codec,
 					   "ignore pin 0x%x, too many assigned pins\n",
