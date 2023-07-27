@@ -768,31 +768,54 @@ static void cs4208_fixup_spdif_switch(struct hda_codec *codec,
 static void cs4208_fixup_macbook81(struct hda_codec *codec, 
 						const struct hda_fixup *fix, int action)
 {
-	static const struct hda_pintbl hda_pintbl_mb82_pincfgs[] = {
-		{ 0x10, 0x002b4020 },
-		{ 0x11, 0x400000f0 },
-		{ 0x12, 0x400000f0 },
-		{ 0x13, 0x400000f0 },
-		{ 0x14, 0x400000f0 },
-		{ 0x15, 0x400000f0 },
-		{ 0x16, 0x400000f0 },
-		{ 0x17, 0x400000f0 },
-		{ 0x18, 0x00ab9030 },
-		{ 0x19, 0x90a60100 },
-		{ 0x1a, 0x400000f0 },
-		{ 0x1b, 0x400000f0 },
-		{ 0x1c, 0x400000f0 },
-		{ 0x1d, 0x90400010 },
-		{ 0x1e, 0x500000f0 },
-		{ 0x1f, 0x500000f0 },
-		{ 0x20, 0x500000f0 },
-		{ 0x21, 0x400000f0 },
-		{ 0x22, 0x400000f0 },
-		{} /* terminator */
-	};
+	// static const struct hda_pintbl hda_pintbl_mb82_pincfgs[] = {
+	// 	{ 0x10, 0x002b4020 },
+	// 	{ 0x11, 0x400000f0 },
+	// 	{ 0x12, 0x400000f0 },
+	// 	{ 0x13, 0x400000f0 },
+	// 	{ 0x14, 0x400000f0 },
+	// 	{ 0x15, 0x400000f0 },
+	// 	{ 0x16, 0x400000f0 },
+	// 	{ 0x17, 0x400000f0 },
+	// 	{ 0x18, 0x00ab9030 },
+	// 	{ 0x19, 0x90a60100 },
+	// 	{ 0x1a, 0x400000f0 },
+	// 	{ 0x1b, 0x400000f0 },
+	// 	{ 0x1c, 0x400000f0 },
+	// 	{ 0x1d, 0x90400010 },
+	// 	{ 0x1e, 0x500000f0 },
+	// 	{ 0x1f, 0x500000f0 },
+	// 	{ 0x20, 0x500000f0 },
+	// 	{ 0x21, 0x400000f0 },
+	// 	{ 0x22, 0x400000f0 },
+	// 	{} /* terminator */
+	// };
 	
-	static const struct hda_pintbl hda_pintbl_mb82_pincfgs_windows[] = {
-		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
+	// static const struct hda_pintbl hda_pintbl_mb81_init[] = {
+	// 	{ 0x10, 0x002b4020},
+	// 	{ 0x11, 0x400000f0},
+	// 	{ 0x12, 0x400000f0},
+	// 	{ 0x13, 0x400000f0},
+	// 	{ 0x14, 0x400000f0},
+	// 	{ 0x15, 0x400000f0},
+	// 	{ 0x16, 0x400000f0},
+	// 	{ 0x17, 0x400000f0},
+	// 	{ 0x18, 0x00ab9030},
+	// 	{ 0x19, 0x90a60100},
+	// 	{ 0x1a, 0x400000f0},
+	// 	{ 0x1b, 0x400000f0},
+	// 	{ 0x1c, 0x400000f0},
+	// 	{ 0x1d, 0x90100110},
+	// 	{ 0x1e, 0x400000f0},
+	// 	{ 0x1f, 0x400000f0},
+	// 	{ 0x20, 0x400000f0},
+	// 	{ 0x21, 0x400000f0},
+	// 	{ 0x22, 0x400000f0},
+	// 	{}
+	// };
+
+	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
+		{ 0x10, 0x042b2020 },  //stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //stereo
 		{ 0x12, 0x500000f0 },  //stereo
 		{ 0x13, 0x500000f0 },  //stereo
@@ -811,6 +834,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		{ 0x20, 0x500000f0 },  //8-Channels Digital
 		{ 0x21, 0x430000f0 },  //stereo digital
 		{ 0x22, 0x430000f0 },  //stereo digital
+		{} // Terminator
 	};
 
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
@@ -831,7 +855,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	
 	//codec_info(codec, "Trying to set pins");
 
-	//snd_hda_apply_pincfgs(codec, hda_pintbl_mb82_pincfgs_windows);	
+	snd_hda_apply_pincfgs(codec, hda_pintbl_mb81_pincfgs_windows);	
 }
 
 static const struct hda_fixup cs4208_fixups[] = {

@@ -316,7 +316,7 @@ If a pin matches 0x40000000 then it's apparently an ignored pin.
 
 The enums at the top of hda_auto_parser.h seem to have something to do with what the pin configurations are. 
 
-Following the thread to AC_PAR_PIN_CAP (0x0c), it seems that maybe these (at the top if hda_local.h) are the definitions of what each bit does in the pincfg?
+Following the thread to AC_PAR_PIN_CAP (0x0c), it seems that maybe these (at the top if hda_verbs.h) are the definitions of what each bit does in the pincfg?
 
 hda_proc.c has a print_pin_caps method that seems to detail this somehow? It calls param_read... This param_read maps to snd_hdac_read_parm_uncached (hdac_device.c). This, in turn, uses snd_hdac_regmap_encode_verb (hda_regmap.h)...
 
@@ -337,10 +337,83 @@ get_verb is defined as
 
     (((reg) >> 8) & 0xfff)
 
-Which would, in this case, return back 80c for our earlier 0x1d80c00 thing.
+Which would, in this case, return back (as "verb") 80c for our earlier 0x1d80c00 thing.
 
 We really need to get the codec->addr value, because that's used in hda_reg_read.
 
 Recompiling to get this value...
 
 Result is that codec->addr is 0x0, so not an issue.
+
+At this point, reg is still 0x1d80c00. 
+
+# 2023-07-27-08-33
+
+So if reg were 0x1d30c00 instead of 0x1d80c00, then when hdac_reg_read calls is_stereo_amp_verb, it'll return back True, which would mean, in short, these pin cfgs are bit values of variables...
+
+So, I've been thinking that it's the first bit that sets what the item is, but it's not. It's the third bit. Match the third bit in the config with the device types enum in hda_verbs, and that's what's assigned there.
+
+0x90a00070 <- a is for mics, so this is somehow a mic.
+
+0x90100010 <- 1 is for speakers, so this is a speaker. 
+
+So, [here's the whole details on intel's site...](https://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf)
+
+(From the right)
+
+* Bits 3-0 - Sequence
+* Bits 7-4 - Default Association
+* Bits 11-8 - Misc
+* Bits 15-12 - Color
+* Bits 19-16 - Connection Type
+* Bits 23-20 - Default device
+* Bits 29-24 - Location
+  * 29-28 are the gross location (external, internal, other)
+  * 27-24 are the geometric location (front, left, etc)
+* Bits 31-30 - Port Connectivity
+
+So a leading 4 would mean that it's an unconnected device with a location of "other"... most likely ignored. 
+
+A leading 9 (b1000) would be a fixed function device (a speaker, maybe). 
+
+Default device (4 bits) - Shows what the thing is. This corresponds to the device type enum in the hda_verbs.h file. 
+
+Default association and sequence are used to group pin complexes together to support multichannel operations
+
+So, looking at the hex code layout:
+
+* Pos 1: Port connectivity & Gross Location
+* Pos 2: Geometric location
+* Pos 3: Default Device
+* Pos 4: Connection Type
+* Pos 5: Color
+* Pos 6: Misc
+* Pos 7: Default Association
+* Pos 8: Sequence
+
+So when the output from the headphones stopped working in Leif Liddy's mapping of NID 0x10, he changed bit 2 from 0x0 to 0x4, which only changed the geometric location from None to left, which probably did nothing. Bit 5 was changed from 4 to 2, which only changed the color from Green to Gray, but bit 7 was changed from 2 to f, which switched the association group. THis most likely caused a problem. 
+
+I'm going to change bit 7 on the pin config on 0x10 back from f to 2, and reapply the pins to see what that does. I'm curious if the headphones will start working again with the windows pin configs posted [here](https://bugzilla.kernel.org/show_bug.cgi?id=110561#c40). Alsa-info incoming...
+
+Headphones are working again. 
+
+# 2023-07-27-08-38
+
+Actually, false positive. There was an error in the build. Adding a semicolon and trying again.
+
+Headphones still work.
+
+# New Notes
+
+Putting back f in place of 2 and see what happens.
+
+
+
+
+
+
+
+
+
+
+
