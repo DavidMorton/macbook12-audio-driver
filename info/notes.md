@@ -724,6 +724,20 @@ More logs. Trying to figure out why overriding wcaps isn't working.
 
 Kinda stumped. Gonna reach out to the community for more on this. 
 
+# 2023-07-27-15-19
+
+Commenting out the wcaps override for 0x18 to see if that does anything. It seems to maybe be applied to 0x17 in the alsa-info?
+
+# 2023-07-27-15-57
+
+Looks like this changed something, so gonna put it back.
+
+# 2023-07-27-16-04
+
+Alsa lies. 
+
+Don't count on the wcaps values in Alsa because they don't seem to be reliable. Changing the wcaps directly *does* change the way the system reacts, but it won't reflect in the wcaps. 
+
 
 
 

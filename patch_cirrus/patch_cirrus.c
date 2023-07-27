@@ -841,6 +841,8 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
 
+	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+
 	snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
 	
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
@@ -939,6 +941,8 @@ static int patch_cs4208(struct hda_codec *codec)
 			       get_wcaps(codec, 0x18) | AC_WCAP_STEREO);
 	codec_info(codec, "wcap 0x18 = %x", get_wcaps(codec, 0x18));
 	cs4208_fix_amp_caps(codec, 0x18);
+	cs4208_fix_amp_caps(codec, 0x19);
+	cs4208_fix_amp_caps(codec, 0x1a);
 	cs4208_fix_amp_caps(codec, 0x1b);
 	cs4208_fix_amp_caps(codec, 0x1c);
 

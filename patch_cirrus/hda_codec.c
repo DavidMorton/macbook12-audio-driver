@@ -1106,9 +1106,9 @@ EXPORT_SYMBOL_GPL(snd_hda_codec_device_new);
  */
 int snd_hda_codec_update_widgets(struct hda_codec *codec)
 {
-	codec_info(codec, "Forcibly updating widgets.")
 	hda_nid_t fg;
 	int err;
+	codec_info(codec, "Forcibly updating widgets.");
 
 	err = snd_hdac_refresh_widgets(&codec->core);
 	if (err < 0)
