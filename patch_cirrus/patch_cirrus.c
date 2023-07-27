@@ -815,25 +815,25 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	// };
 
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
-		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
-		{ 0x11, 0x500000f0 },  //stereo
-		{ 0x12, 0x90100010 },  //stereo  			   # speaker
-		{ 0x13, 0x500000f0 },  //stereo
-		{ 0x14, 0x500000f0 },  //stereo
-		{ 0x15, 0x770000f0 },  //stereo Amp-In
-		{ 0x16, 0x770000f0 },  //stereo Amp-In
-		{ 0x17, 0x430000f0 },  //stereo Amp-In
-		{ 0x18, 0x04ab2050 },  //mono Amp-In          #Mic Jack
-		{ 0x19, 0x90a00070 },  //stereo Amp-In        #internal Mic
-		{ 0x1a, 0x770000f0 },  //stereo Amp-In        
-		{ 0x1b, 0x770000f0 },  //stereo Amp-In
-		{ 0x1c, 0x770000f0 },  //stereo Amp-In
-		{ 0x1d, 0x500000f0 },  //8-Channels Digital
-		{ 0x1e, 0x500000f0 },  //8-Channels Digital
-		{ 0x1f, 0x500000f0 },  //8-Channels Digital
-		{ 0x20, 0x500000f0 },  //8-Channels Digital
-		{ 0x21, 0x430000f0 },  //stereo digital
-		{ 0x22, 0x430000f0 },  //stereo digital
+		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
+		{ 0x11, 0x500000f0 },  //0004 stereo
+		{ 0x12, 0x500000f0 },  //0008 stereo  			   
+		{ 0x13, 0x500000f0 },  //0012 stereo
+		{ 0x14, 0x500000f0 },  //0016 stereo
+		{ 0x15, 0x770000f0 },  //0020 stereo Amp-In
+		{ 0x16, 0x770000f0 },  //0024 stereo Amp-In
+		{ 0x17, 0x430000f0 },  //0028 stereo Amp-In
+		{ 0x18, 0x03ab2050 },  //0032 mono Amp-In          #Mic Jack
+		{ 0x19, 0x90a00070 },  //0036 stereo Amp-In        #internal Mic
+		{ 0x1a, 0x770000f0 },  //0040 stereo Amp-In        
+		{ 0x1b, 0x770000f0 },  //0044 stereo Amp-In
+		{ 0x1c, 0x770000f0 },  //0048 stereo Amp-In
+		{ 0x1d, 0x90400010 },  //0052 8-Channels Digital   # speaker (spdif)
+		{ 0x1e, 0x500000f0 },  //0056 8-Channels Digital
+		{ 0x1f, 0x500000f0 },  //0060 8-Channels Digital
+		{ 0x20, 0x500000f0 },  //0064 8-Channels Digital
+		{ 0x21, 0x430000f0 },  //0068 stereo digital
+		{ 0x22, 0x430000f0 },  //0072 stereo digital
 		{} // Terminator
 	};
 

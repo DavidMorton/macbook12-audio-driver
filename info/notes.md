@@ -417,7 +417,94 @@ Going to try his tack of moving the speaker to 0x12.
 
 Headphones still work. No speaker sound. 
 
+# 2023-07-27-08-57
 
+Changing 0x12 bit 3 from 1 to 4. (Speaker to S/PDIF)
 
+Don't have much hope here, but we'll see. 
 
+No real change here other than the S/PDIF changing. 
 
+# 2023-07-27-09-46
+
+Reading the INF file
+
+    HKR,PinConfigOverrideVerbs,0002, 0x1,2b,1e,07,01	; HP: DD=HP, CTYP=combo
+
+    HKR,PinConfigOverrideVerbs,0032, 0x1,50,1c,87,01	; HS: ASSN=5h, SEQ=0h			*
+    HKR,PinConfigOverrideVerbs,0033, 0x1,20,1d,87,01	; HS: COL=gray				*
+    HKR,PinConfigOverrideVerbs,0034, 0x1,ab,1e,87,01	; HS: DD=MI, CTYP=combo
+    HKR,PinConfigOverrideVerbs,0035, 0x1,03,1f,87,01	; HS: PCON=jack, LOC=prim/left
+
+So when looking at this, the 0002 in the first line is the 0-based decimal location of the pin. Let's say that we have this in the stack...
+
+	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
+		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
+		{ 0x11, 0x500000f0 },  //stereo
+		{ 0x12, 0x90400010 },  //stereo  			   # speaker
+		{ 0x13, 0x500000f0 },  //stereo
+		{ 0x14, 0x500000f0 },  //stereo
+		{ 0x15, 0x770000f0 },  //stereo Amp-In
+		{ 0x16, 0x770000f0 },  //stereo Amp-In
+		{ 0x17, 0x430000f0 },  //stereo Amp-In
+		{ 0x18, 0x04ab2050 },  //mono Amp-In          #Mic Jack
+		{ 0x19, 0x90a00070 },  //stereo Amp-In        #internal Mic
+		{ 0x1a, 0x770000f0 },  //stereo Amp-In        
+		{ 0x1b, 0x770000f0 },  //stereo Amp-In
+		{ 0x1c, 0x770000f0 },  //stereo Amp-In
+		{ 0x1d, 0x500000f0 },  //8-Channels Digital
+		{ 0x1e, 0x500000f0 },  //8-Channels Digital
+		{ 0x1f, 0x500000f0 },  //8-Channels Digital
+		{ 0x20, 0x500000f0 },  //8-Channels Digital
+		{ 0x21, 0x430000f0 },  //stereo digital
+		{ 0x22, 0x430000f0 },  //stereo digital
+		{} // Terminator
+	};
+
+The first line of the INF changes the third bit (which is the last 3rd and 4th digits of the first line in the hda_pintbl struct above) to 2b. 
+
+So, looking at the pin configs in the second block above, count the numbers from right to left in sets of 2, starting with 0. So to show the numbers...
+
+    0000 - f0
+    0001 - 20
+    0002 - 2b
+    0003 - 04
+    (next line)
+    0004 - f0
+    0005 - 00
+    0006 - 00
+    0007 - 50
+    (third line)
+    0008 - 10
+    (et cetera)
+
+I'm not quite sure what the third and fourth set of hex values are in the inf, but this clears up setting some of the pins. The windows pins don't really work as is, but it's a starting point.
+
+Applying these gives us the pin configs of the following:
+
+	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
+		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
+		{ 0x11, 0x500000f0 },  //0004 stereo
+		{ 0x12, 0x500000f0 },  //0008 stereo  			   # speaker
+		{ 0x13, 0x500000f0 },  //0012 stereo
+		{ 0x14, 0x500000f0 },  //0016 stereo
+		{ 0x15, 0x770000f0 },  //0020 stereo Amp-In
+		{ 0x16, 0x770000f0 },  //0024 stereo Amp-In
+		{ 0x17, 0x430000f0 },  //0028 stereo Amp-In
+		{ 0x18, 0x03ab2050 },  //0032 mono Amp-In          #Mic Jack
+		{ 0x19, 0x90a00070 },  //0036 stereo Amp-In        #internal Mic
+		{ 0x1a, 0x770000f0 },  //0040 stereo Amp-In        
+		{ 0x1b, 0x770000f0 },  //0044 stereo Amp-In
+		{ 0x1c, 0x770000f0 },  //0048 stereo Amp-In
+		{ 0x1d, 0x90400010 },  //0052 8-Channels Digital
+		{ 0x1e, 0x500000f0 },  //0056 8-Channels Digital
+		{ 0x1f, 0x500000f0 },  //0060 8-Channels Digital
+		{ 0x20, 0x500000f0 },  //0064 8-Channels Digital
+		{ 0x21, 0x430000f0 },  //0068 stereo digital
+		{ 0x22, 0x430000f0 },  //0072 stereo digital
+		{} // Terminator
+	};
+
+Testing this out to see how it goes...
+
+Headphones still work... Input still works, but no real change otherwise. Speakers still out. 
