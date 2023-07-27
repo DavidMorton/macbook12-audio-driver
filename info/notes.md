@@ -485,7 +485,7 @@ Applying these gives us the pin configs of the following:
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //0004 stereo
-		{ 0x12, 0x500000f0 },  //0008 stereo  			   # speaker
+		{ 0x12, 0x500000f0 },  //0008 stereo  			   
 		{ 0x13, 0x500000f0 },  //0012 stereo
 		{ 0x14, 0x500000f0 },  //0016 stereo
 		{ 0x15, 0x770000f0 },  //0020 stereo Amp-In
@@ -496,7 +496,7 @@ Applying these gives us the pin configs of the following:
 		{ 0x1a, 0x770000f0 },  //0040 stereo Amp-In        
 		{ 0x1b, 0x770000f0 },  //0044 stereo Amp-In
 		{ 0x1c, 0x770000f0 },  //0048 stereo Amp-In
-		{ 0x1d, 0x90400010 },  //0052 8-Channels Digital
+		{ 0x1d, 0x90400010 },  //0052 8-Channels Digital   # speaker
 		{ 0x1e, 0x500000f0 },  //0056 8-Channels Digital
 		{ 0x1f, 0x500000f0 },  //0060 8-Channels Digital
 		{ 0x20, 0x500000f0 },  //0064 8-Channels Digital
@@ -543,3 +543,89 @@ There's a section of code around the proprobe that I am not really sure about. I
 
 Seems to have done exactly nothing commenting it out. Still no speaker sound.
 
+# 2023-07-27-13-20
+
+Todo: need to implement the following lines from the InitVerbs section
+
+    HKR,cs420x,n06AllowedInAmpIndex,%REG_BINARY%,	02		; ADC1: only allow SetAmpGain verbs with index=2
+
+    HKR,cs420x,n0AWidgetCaps,	%REG_DWORD%,	0x00042631	; TX1: override widget caps: CCE=1
+    HKR,cs420x,n0ASuppBitsRates,	%REG_DWORD%,	0x000E0040	; TX1: override rate caps: -R6
+
+Also these GPIO settings: 
+
+    [CONF_0807.Gpio]
+    HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	0A,00,00,01	; GPIO0 is an output controlled by TX1 PS-Set
+    HKR,cs420x,Gpio4ExtAmpCfg,	%REG_BINARY%,	01,00,00,01	; GPIO4 is an output controlled by AFG PS-Set (to HS3 DFET)
+    HKR,cs420x,Gpio5ExtAmpCfg,	%REG_BINARY%,	01,00,00,01	; GPIO5 is an output controlled by AFG PS-Set (to HS4 DFET)
+
+There are also APO parameters which seem to be HPFs and LPFs on the speakers, but first, let's get some sound out. 
+
+Models 0x7100 and 0x7200 seem to have some GPIO settings on them, as does the MacMini, which is 0x6c00. Looking in the INF files to compare the details there. 
+
+7100 -> CONF_0800 -> Conf_0800.Gpio
+7200 -> CONF_0801 -> Conf_0800.Gpio
+6c00 -> CONF_0806 -> Conf_0806.Gpio
+
+    [CONF_0800.Gpio]
+    HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	03,00,00,01	; GPIO0 is an output controlled by DAC2 PS-Set
+    HKR,cs420x,Gpio4ExtAmpCfg,	%REG_BINARY%,	01,00,00,01	; GPIO4 is an output controlled by AFG PS-Set (to HS3/4 DFET)
+
+    [CONF_0806.Gpio]
+    HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	03,00,00,01	; GPIO0 is an output controlled by DAC2 PS-Set
+
+All three of these point to CS4208_GPIO0, which is in cs4208_fixup_gpio0. 
+
+    static void cs4208_fixup_gpio0(struct hda_codec *codec,
+                    const struct hda_fixup *fix, int action)
+    {
+        codec_info(codec, "Running gpio fixup");
+        if (action == HDA_FIXUP_ACT_PRE_PROBE) {
+            struct cs_spec *spec = codec->spec;
+
+            spec->gpio_eapd_hp = 0;
+            spec->gpio_eapd_speaker = 1;
+            spec->gpio_mask = spec->gpio_dir =
+                spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
+        }
+    }
+
+iMac27 uses the GPIO_13 setting... That's 0x106b, 0x2000. Is this in the inf? MBP81 and MBP55 also do... 1c00
+
+Side note: additional pin config in cs4208_39.inf:
+
+    HKR,PinConfigOverrideVerbs,0035, 0x1,01,1f,87,01	; HS: PCON=jack, LOC=prim/rear		*
+
+iMac27_122 is an alias for GPIO_23...
+
+Thinking that gpio_eapd_hp should be 1, because that is where the headphones are... in GPIO1. 
+
+I think gpio_eapd_hp is a bit flag to apply to the IO stream, hence the mask. 
+
+Right now the mask is all zeros.
+
+    GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
+    IO[0]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[4]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[5]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+
+When it was enabled before, it looked like this:
+
+    GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
+    IO[0]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+    IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[4]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+    IO[5]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+
+That's because the enable is set to 0x31, which is 49, or b110001. 
+
+The mask is right with 1, 4 and 5. It should be 0x31 or 49. 
+
+Trying to assign the speaker to two GPIO ports. We'll see. 
+
+No new news. Everything else is still working though.
