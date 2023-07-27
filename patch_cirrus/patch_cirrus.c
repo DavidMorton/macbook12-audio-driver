@@ -815,9 +815,9 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	// };
 
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
-		{ 0x10, 0x042b2020 },  //stereo amp-out        #HP jack
+		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //stereo
-		{ 0x12, 0x500000f0 },  //stereo
+		{ 0x12, 0x90100010 },  //stereo  			   # speaker
 		{ 0x13, 0x500000f0 },  //stereo
 		{ 0x14, 0x500000f0 },  //stereo
 		{ 0x15, 0x770000f0 },  //stereo Amp-In
@@ -828,7 +828,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		{ 0x1a, 0x770000f0 },  //stereo Amp-In        
 		{ 0x1b, 0x770000f0 },  //stereo Amp-In
 		{ 0x1c, 0x770000f0 },  //stereo Amp-In
-		{ 0x1d, 0x90400010 },  //8-Channels Digital   #digital speaker amplifier
+		{ 0x1d, 0x500000f0 },  //8-Channels Digital
 		{ 0x1e, 0x500000f0 },  //8-Channels Digital
 		{ 0x1f, 0x500000f0 },  //8-Channels Digital
 		{ 0x20, 0x500000f0 },  //8-Channels Digital

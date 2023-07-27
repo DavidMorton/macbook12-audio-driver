@@ -403,15 +403,19 @@ Actually, false positive. There was an error in the build. Adding a semicolon an
 
 Headphones still work.
 
-# New Notes
+# 2023-07-27-08-41
 
 Putting back f in place of 2 and see what happens.
 
+Headphones still work. Association group doesn't seem to matter. 
 
+With the earlier situation, it seems that the verbs were really the issue. 
 
+# 2023-07-27-08-49 
 
+Going to try his tack of moving the speaker to 0x12.
 
-
+Headphones still work. No speaker sound. 
 
 
 
