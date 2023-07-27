@@ -843,15 +843,15 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 
 	snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
 
-	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
-		struct cs_spec *spec = codec->spec;
-		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
+	// if (action == HDA_FIXUP_ACT_PRE_PROBE) {
+	// 	struct cs_spec *spec = codec->spec;
+	// 	codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
-		spec->gpio_eapd_hp = 0;
-		spec->gpio_eapd_speaker = 1;
-		spec->gpio_mask = 0x31;
-		spec->gpio_dir = 0x31;
-	}
+	// 	spec->gpio_eapd_hp = 0;
+	// 	spec->gpio_eapd_speaker = 1;
+	// 	spec->gpio_mask = 0x31;
+	// 	spec->gpio_dir = 0x31;
+	// }
 
 	codec_info(codec, "codec->addr = %08x", codec->addr);
 	// cs4208_fixup_gpio0(codec, fix, action);

@@ -537,7 +537,9 @@ Applying the sequence like this, which seems to correspond with how everyone els
 
 Headphones are working again, as is input, but speaker is still out. 
 
-# New research
+# 2023-07-27-10-46
 
+There's a section of code around the proprobe that I am not really sure about. I'm commenting it out and trying again.
 
+Seems to have done exactly nothing commenting it out. Still no speaker sound.
 
