@@ -853,7 +853,9 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		spec->gpio_eapd_speaker = ((1<<4)|(1<<5));
 		spec->gpio_mask = spec->gpio_dir =
 			spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
-	    //spec->gpio_data
+		codec_info(codec, "before - gpio data = 0x%08x", spec->gpio_data);
+	    spec->gpio_data = 0xA;
+		codec_info(codec, "after  - gpio data = 0x%08x", spec->gpio_data);
 	}
 
 	codec_info(codec, "codec->addr = %08x", codec->addr);

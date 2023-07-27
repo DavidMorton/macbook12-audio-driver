@@ -738,7 +738,11 @@ Alsa lies.
 
 Don't count on the wcaps values in Alsa because they don't seem to be reliable. Changing the wcaps directly *does* change the way the system reacts, but it won't reflect in the wcaps. 
 
+Setting gpio_data to 0xA. 
 
+# 2023-07-27-16-23
+
+Still no-go.
 
 
 
