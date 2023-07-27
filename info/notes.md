@@ -508,3 +508,36 @@ Applying these gives us the pin configs of the following:
 Testing this out to see how it goes...
 
 Headphones still work... Input still works, but no real change otherwise. Speakers still out. 
+
+# 2023-07-27-10-02
+
+Adding back in the verbs after a brief review.
+
+Headphones broken. No sound. Input device gone. Everything broke.
+
+# 2023-07-27-10-14
+
+Commenting out a ton of verbs and trying again... May have to go through this in bits.
+
+Still no sound. Still broken. 
+
+# 2023-07-27-10-24
+
+Still doesn't work. It's probably something with how I'm sending in the hda verbs. 
+
+Trying a different structure. Probably won't work. 
+
+Didn't work
+
+# 2023-07-27-10-38
+
+    snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
+
+Applying the sequence like this, which seems to correspond with how everyone else is doing it. We'll see. 
+
+Headphones are working again, as is input, but speaker is still out. 
+
+# New research
+
+
+

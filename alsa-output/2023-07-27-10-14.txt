@@ -1,0 +1,1115 @@
+upload=true&script=true&cardinfo=
+!!################################
+!!ALSA Information Script v 0.5.1
+!!################################
+
+!!Script ran on: Thu Jul 27 15:14:27 UTC 2023
+
+
+!!Linux Distribution
+!!------------------
+
+Ubuntu 22.04.2 LTS \n \l DISTRIB_ID=Ubuntu DISTRIB_DESCRIPTION="Ubuntu 22.04.2 LTS" PRETTY_NAME="Ubuntu 22.04.2 LTS" NAME="Ubuntu" ID=ubuntu ID_LIKE=debian HOME_URL="https://www.ubuntu.com/" SUPPORT_URL="https://help.ubuntu.com/" BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/" PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy" UBUNTU_CODENAME=jammy
+
+
+!!DMI Information
+!!---------------
+
+Manufacturer:      Apple Inc.
+Product Name:      MacBook8,1
+Product Version:   1.0
+Firmware Version:  476.0.0.0.0
+System SKU:        System SKU#
+Board Vendor:      Apple Inc.
+Board Name:        Mac-BE0E8AC46FE800CC
+
+
+!!ACPI Device Status Information
+!!---------------
+
+/sys/bus/acpi/devices/ACPI0001:00/status 	 15
+/sys/bus/acpi/devices/ACPI0008:00/status 	 15
+/sys/bus/acpi/devices/APP0001:00/status 	 11
+/sys/bus/acpi/devices/APP0002:00/status 	 11
+/sys/bus/acpi/devices/APP000D:00/status 	 15
+/sys/bus/acpi/devices/APPLE-I2C-HPM0:00/status 	 15
+/sys/bus/acpi/devices/APPLE-UART-SSDC:00/status 	 15
+/sys/bus/acpi/devices/BCM2E7C:00/status 	 15
+/sys/bus/acpi/devices/INT33C1:00/status 	 15
+/sys/bus/acpi/devices/PNP0103:00/status 	 15
+/sys/bus/acpi/devices/PNP0C0E:00/status 	 11
+/sys/bus/acpi/devices/PNP0C0F:00/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:01/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:02/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:03/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:04/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:05/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:06/status 	 9
+/sys/bus/acpi/devices/PNP0C0F:07/status 	 9
+/sys/bus/acpi/devices/device:0f/status 	 15
+/sys/bus/acpi/devices/device:10/status 	 15
+/sys/bus/acpi/devices/device:11/status 	 15
+/sys/bus/acpi/devices/device:15/status 	 15
+/sys/bus/acpi/devices/device:16/status 	 15
+/sys/bus/acpi/devices/device:17/status 	 15
+/sys/bus/acpi/devices/device:18/status 	 15
+
+
+!!Kernel Information
+!!------------------
+
+Kernel release:    5.19.0-50-generic
+Operating System:  GNU/Linux
+Architecture:      x86_64
+Processor:         x86_64
+SMP Enabled:       Yes
+
+
+!!ALSA Version
+!!------------
+
+Driver version:     k5.19.0-50-generic
+Library version:    1.2.6.1
+Utilities version:  1.2.6
+
+
+!!Loaded ALSA modules
+!!-------------------
+
+snd_hda_intel (card 1)
+
+
+!!Sound Servers on this system
+!!----------------------------
+
+PipeWire:
+      Installed - Yes (/usr/bin/pipewire)
+      Running - Yes
+
+Pulseaudio:
+      Installed - Yes (/usr/bin/pulseaudio)
+      Running - Yes
+
+
+!!Soundcards recognised by ALSA
+!!-----------------------------
+
+ 1 [HDMI           ]: HDA-Intel - HDA Intel HDMI
+                      HDA Intel HDMI at 0xc1810000 irq 54
+
+
+!!PCI Soundcards installed in the system
+!!--------------------------------------
+
+00:03.0 Audio device [0403]: Intel Corporation Broadwell-U Audio Controller [8086:160c] (rev 09)
+	Subsystem: Apple Inc. Broadwell-U Audio Controller [106b:013e]
+00:1b.0 Audio device [0403]: Intel Corporation Wildcat Point-LP High Definition Audio Controller [8086:9ca0] (rev 03)
+	Subsystem: Intel Corporation Wildcat Point-LP High Definition Audio Controller [8086:7270]
+
+
+!!Modprobe options (Sound related)
+!!--------------------------------
+
+snd_pcsp: index=-2
+snd_usb_audio: index=-2
+snd_atiixp_modem: index=-2
+snd_intel8x0m: index=-2
+snd_via82xx_modem: index=-2
+snd_atiixp_modem: index=-2
+snd_intel8x0m: index=-2
+snd_via82xx_modem: index=-2
+snd_usb_audio: index=-2
+snd_usb_caiaq: index=-2
+snd_usb_ua101: index=-2
+snd_usb_us122l: index=-2
+snd_usb_usx2y: index=-2
+snd_cmipci: mpu_port=0x330 fm_port=0x388
+snd_pcsp: index=-2
+snd_usb_audio: index=-2
+snd_hda_intel: id=PCH index=0
+snd_hda_intel: id=HDMI index=1
+
+
+!!Loaded sound module options
+!!---------------------------
+
+!!Module: snd_hda_intel
+	align_buffer_size : -1
+	bdl_pos_adj : -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+	beep_mode : N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+	dmic_detect : Y
+	enable : Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y
+	enable_msi : -1
+	id : HDMI,(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null)
+	index : 1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+	jackpoll_ms : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	model : (null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null)
+	patch : (null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null),(null)
+	pm_blacklist : Y
+	position_fix : -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+	power_save : 1
+	power_save_controller : Y
+	probe_mask : -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+	probe_only : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	single_cmd : -1
+	snoop : -1
+
+
+!!Sysfs card info
+!!---------------
+
+!!Card: /sys/class/sound/card1
+Driver: /sys/bus/pci/drivers/snd_hda_intel
+Tree:
+	/sys/class/sound/card1
+	|-- controlC1
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- device -> ../../../0000:00:03.0
+	|-- hwC1D0
+	|   |-- afg
+	|   |-- chip_name
+	|   |-- clear
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- driver_pin_configs
+	|   |-- hints
+	|   |-- init_pin_configs
+	|   |-- init_verbs
+	|   |-- mfg
+	|   |-- modelname
+	|   |-- power
+	|   |-- power_off_acct
+	|   |-- power_on_acct
+	|   |-- reconfig
+	|   |-- revision_id
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   |-- subsystem_id
+	|   |-- uevent
+	|   |-- user_pin_configs
+	|   |-- vendor_id
+	|   `-- vendor_name
+	|-- id
+	|-- input10
+	|   |-- capabilities
+	|   |-- device -> ../../card1
+	|   |-- event10
+	|   |-- id
+	|   |-- inhibited
+	|   |-- modalias
+	|   |-- name
+	|   |-- phys
+	|   |-- power
+	|   |-- properties
+	|   |-- subsystem -> ../../../../../../class/input
+	|   |-- uevent
+	|   `-- uniq
+	|-- input11
+	|   |-- capabilities
+	|   |-- device -> ../../card1
+	|   |-- event11
+	|   |-- id
+	|   |-- inhibited
+	|   |-- modalias
+	|   |-- name
+	|   |-- phys
+	|   |-- power
+	|   |-- properties
+	|   |-- subsystem -> ../../../../../../class/input
+	|   |-- uevent
+	|   `-- uniq
+	|-- input7
+	|   |-- capabilities
+	|   |-- device -> ../../card1
+	|   |-- event7
+	|   |-- id
+	|   |-- inhibited
+	|   |-- modalias
+	|   |-- name
+	|   |-- phys
+	|   |-- power
+	|   |-- properties
+	|   |-- subsystem -> ../../../../../../class/input
+	|   |-- uevent
+	|   `-- uniq
+	|-- input8
+	|   |-- capabilities
+	|   |-- device -> ../../card1
+	|   |-- event8
+	|   |-- id
+	|   |-- inhibited
+	|   |-- modalias
+	|   |-- name
+	|   |-- phys
+	|   |-- power
+	|   |-- properties
+	|   |-- subsystem -> ../../../../../../class/input
+	|   |-- uevent
+	|   `-- uniq
+	|-- input9
+	|   |-- capabilities
+	|   |-- device -> ../../card1
+	|   |-- event9
+	|   |-- id
+	|   |-- inhibited
+	|   |-- modalias
+	|   |-- name
+	|   |-- phys
+	|   |-- power
+	|   |-- properties
+	|   |-- subsystem -> ../../../../../../class/input
+	|   |-- uevent
+	|   `-- uniq
+	|-- number
+	|-- pcmC1D10p
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- pcm_class
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- pcmC1D3p
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- pcm_class
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- pcmC1D7p
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- pcm_class
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- pcmC1D8p
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- pcm_class
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- pcmC1D9p
+	|   |-- dev
+	|   |-- device -> ../../card1
+	|   |-- pcm_class
+	|   |-- power
+	|   |-- subsystem -> ../../../../../../class/sound
+	|   `-- uevent
+	|-- power
+	|   |-- async
+	|   |-- autosuspend_delay_ms
+	|   |-- control
+	|   |-- runtime_active_kids
+	|   |-- runtime_active_time
+	|   |-- runtime_enabled
+	|   |-- runtime_status
+	|   |-- runtime_suspended_time
+	|   `-- runtime_usage
+	|-- subsystem -> ../../../../../class/sound
+	`-- uevent
+
+
+!!HDA-Intel Codec information
+!!---------------------------
+--startcollapse--
+
+Codec: Intel Broadwell HDMI
+Address: 0
+AFG Function Id: 0x1 (unsol 0)
+Vendor Id: 0x80862808
+Subsystem Id: 0x80860101
+Revision Id: 0x100000
+No Modem Function Group found
+Default PCM:
+    rates [0x0]:
+    bits [0x0]:
+    formats [0x0]:
+Default Amp-In caps: N/A
+Default Amp-Out caps: N/A
+State of AFG node 0x01:
+  Power states:  D0 D3 CLKSTOP EPSS
+  Power: setting=D0, actual=D0, Clock-stop-OK
+GPIO: io=0, o=0, i=0, unsolicited=0, wake=0
+Node 0x02 [Audio Output] wcaps 0x6611: 8-Channels Digital
+  Converter: stream=0, channel=0
+  Digital: Enabled KAE
+  Digital category: 0x0
+  IEC Coding Type: 0x0
+  PCM:
+    rates [0x7f0]: 32000 44100 48000 88200 96000 176400 192000
+    bits [0x1e]: 16 20 24 32
+    formats [0x5]: PCM AC3
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+Node 0x03 [Audio Output] wcaps 0x6611: 8-Channels Digital
+  Converter: stream=0, channel=0
+  Digital: Enabled KAE
+  Digital category: 0x0
+  IEC Coding Type: 0x0
+  PCM:
+    rates [0x7f0]: 32000 44100 48000 88200 96000 176400 192000
+    bits [0x1e]: 16 20 24 32
+    formats [0x5]: PCM AC3
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+Node 0x04 [Audio Output] wcaps 0x6611: 8-Channels Digital
+  Converter: stream=0, channel=0
+  Digital: Enabled KAE
+  Digital category: 0x0
+  IEC Coding Type: 0x0
+  PCM:
+    rates [0x7f0]: 32000 44100 48000 88200 96000 176400 192000
+    bits [0x1e]: 16 20 24 32
+    formats [0x5]: PCM AC3
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+Node 0x05 [Pin Complex] wcaps 0x40778d: 8-Channels Digital Amp-Out CP
+  Amp-Out caps: ofs=0x00, nsteps=0x00, stepsize=0x00, mute=1
+  Amp-Out vals:  [0x00 0x00]
+  Pincap 0x0b000094: OUT Detect HBR HDMI DP
+  Pin Default 0x18560010: [Jack] Digital Out at Int HDMI
+    Conn = Digital, Color = Unknown
+    DefAssociation = 0x1, Sequence = 0x0
+  Pin-ctls: 0x00:
+  Unsolicited: tag=00, enabled=0
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+  Devices: 0
+  Connection: 0
+Node 0x06 [Pin Complex] wcaps 0x40778d: 8-Channels Digital Amp-Out CP
+  Amp-Out caps: ofs=0x00, nsteps=0x00, stepsize=0x00, mute=1
+  Amp-Out vals:  [0x00 0x00]
+  Pincap 0x0b000094: OUT Detect HBR HDMI DP
+  Pin Default 0x18560010: [Jack] Digital Out at Int HDMI
+    Conn = Digital, Color = Unknown
+    DefAssociation = 0x1, Sequence = 0x0
+  Pin-ctls: 0x00:
+  Unsolicited: tag=00, enabled=0
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+  Devices: 0
+  Connection: 0
+Node 0x07 [Pin Complex] wcaps 0x40778d: 8-Channels Digital Amp-Out CP
+  Amp-Out caps: ofs=0x00, nsteps=0x00, stepsize=0x00, mute=1
+  Amp-Out vals:  [0x00 0x00]
+  Pincap 0x0b000094: OUT Detect HBR HDMI DP
+  Pin Default 0x18560010: [Jack] Digital Out at Int HDMI
+    Conn = Digital, Color = Unknown
+    DefAssociation = 0x1, Sequence = 0x0
+  Pin-ctls: 0x00:
+  Unsolicited: tag=00, enabled=0
+  Power states:  D0 D3 EPSS
+  Power: setting=D0, actual=D0
+  Devices: 0
+  Connection: 0
+Node 0x08 [Vendor Defined Widget] wcaps 0xf00000: Mono
+--endcollapse--
+
+
+!!ALSA Device nodes
+!!-----------------
+
+crw-rw----+ 1 root audio 116,  8 Jul 27 10:12 /dev/snd/controlC1
+crw-rw----+ 1 root audio 116,  7 Jul 27 10:12 /dev/snd/hwC1D0
+crw-rw----+ 1 root audio 116,  6 Jul 27 10:13 /dev/snd/pcmC1D10p
+crw-rw----+ 1 root audio 116,  2 Jul 27 10:13 /dev/snd/pcmC1D3p
+crw-rw----+ 1 root audio 116,  3 Jul 27 10:13 /dev/snd/pcmC1D7p
+crw-rw----+ 1 root audio 116,  4 Jul 27 10:13 /dev/snd/pcmC1D8p
+crw-rw----+ 1 root audio 116,  5 Jul 27 10:13 /dev/snd/pcmC1D9p
+crw-rw----+ 1 root audio 116,  1 Jul 27 10:12 /dev/snd/seq
+crw-rw----+ 1 root audio 116, 33 Jul 27 10:12 /dev/snd/timer
+
+/dev/snd/by-path:
+total 0
+drwxr-xr-x 2 root root  60 Jul 27 10:12 .
+drwxr-xr-x 3 root root 240 Jul 27 10:12 ..
+lrwxrwxrwx 1 root root  12 Jul 27 10:12 pci-0000:00:03.0 -> ../controlC1
+
+
+!!Aplay/Arecord output
+!!--------------------
+
+APLAY
+
+**** List of PLAYBACK Hardware Devices ****
+card 1: HDMI [HDA Intel HDMI], device 3: HDMI 0 [HDMI 0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: HDMI [HDA Intel HDMI], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: HDMI [HDA Intel HDMI], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: HDMI [HDA Intel HDMI], device 9: HDMI 3 [HDMI 3]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: HDMI [HDA Intel HDMI], device 10: HDMI 4 [HDMI 4]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+ARECORD
+
+**** List of CAPTURE Hardware Devices ****
+
+!!Amixer output
+!!-------------
+
+!!-------Mixer controls for card HDMI
+
+Card sysdefault:1 'HDMI'/'HDA Intel HDMI at 0xc1810000 irq 54'
+  Mixer name	: 'Intel Broadwell HDMI'
+  Components	: 'HDA:80862808,80860101,00100000'
+  Controls      : 35
+  Simple ctrls  : 5
+Simple mixer control 'IEC958',0
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'IEC958',1
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'IEC958',2
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'IEC958',3
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'IEC958',4
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+
+
+!!Alsactl output
+!!--------------
+
+--startcollapse--
+state.HDMI {
+	control.1 {
+		iface CARD
+		name 'HDMI/DP,pcm=3 Jack'
+		value false
+		comment {
+			access read
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.2 {
+		iface MIXER
+		name 'IEC958 Playback Con Mask'
+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.3 {
+		iface MIXER
+		name 'IEC958 Playback Pro Mask'
+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.4 {
+		iface MIXER
+		name 'IEC958 Playback Default'
+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access 'read write'
+			type IEC958
+			count 1
+		}
+	}
+	control.5 {
+		iface MIXER
+		name 'IEC958 Playback Switch'
+		value true
+		comment {
+			access 'read write'
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.6 {
+		iface PCM
+		device 3
+		name ELD
+		value ''
+		comment {
+			access 'read volatile'
+			type BYTES
+			count 0
+		}
+	}
+	control.7 {
+		iface CARD
+		name 'HDMI/DP,pcm=7 Jack'
+		value false
+		comment {
+			access read
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.8 {
+		iface MIXER
+		name 'IEC958 Playback Con Mask'
+		index 1
+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.9 {
+		iface MIXER
+		name 'IEC958 Playback Pro Mask'
+		index 1
+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.10 {
+		iface MIXER
+		name 'IEC958 Playback Default'
+		index 1
+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access 'read write'
+			type IEC958
+			count 1
+		}
+	}
+	control.11 {
+		iface MIXER
+		name 'IEC958 Playback Switch'
+		index 1
+		value true
+		comment {
+			access 'read write'
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.12 {
+		iface PCM
+		device 7
+		name ELD
+		value ''
+		comment {
+			access 'read volatile'
+			type BYTES
+			count 0
+		}
+	}
+	control.13 {
+		iface CARD
+		name 'HDMI/DP,pcm=8 Jack'
+		value false
+		comment {
+			access read
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.14 {
+		iface MIXER
+		name 'IEC958 Playback Con Mask'
+		index 2
+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.15 {
+		iface MIXER
+		name 'IEC958 Playback Pro Mask'
+		index 2
+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.16 {
+		iface MIXER
+		name 'IEC958 Playback Default'
+		index 2
+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access 'read write'
+			type IEC958
+			count 1
+		}
+	}
+	control.17 {
+		iface MIXER
+		name 'IEC958 Playback Switch'
+		index 2
+		value true
+		comment {
+			access 'read write'
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.18 {
+		iface PCM
+		device 8
+		name ELD
+		value ''
+		comment {
+			access 'read volatile'
+			type BYTES
+			count 0
+		}
+	}
+	control.19 {
+		iface CARD
+		name 'HDMI/DP,pcm=9 Jack'
+		value false
+		comment {
+			access read
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.20 {
+		iface MIXER
+		name 'IEC958 Playback Con Mask'
+		index 3
+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.21 {
+		iface MIXER
+		name 'IEC958 Playback Pro Mask'
+		index 3
+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.22 {
+		iface MIXER
+		name 'IEC958 Playback Default'
+		index 3
+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access 'read write'
+			type IEC958
+			count 1
+		}
+	}
+	control.23 {
+		iface MIXER
+		name 'IEC958 Playback Switch'
+		index 3
+		value true
+		comment {
+			access 'read write'
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.24 {
+		iface PCM
+		device 9
+		name ELD
+		value ''
+		comment {
+			access 'read volatile'
+			type BYTES
+			count 0
+		}
+	}
+	control.25 {
+		iface CARD
+		name 'HDMI/DP,pcm=10 Jack'
+		value false
+		comment {
+			access read
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.26 {
+		iface MIXER
+		name 'IEC958 Playback Con Mask'
+		index 4
+		value '0fff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.27 {
+		iface MIXER
+		name 'IEC958 Playback Pro Mask'
+		index 4
+		value '0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access read
+			type IEC958
+			count 1
+		}
+	}
+	control.28 {
+		iface MIXER
+		name 'IEC958 Playback Default'
+		index 4
+		value '0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+		comment {
+			access 'read write'
+			type IEC958
+			count 1
+		}
+	}
+	control.29 {
+		iface MIXER
+		name 'IEC958 Playback Switch'
+		index 4
+		value true
+		comment {
+			access 'read write'
+			type BOOLEAN
+			count 1
+		}
+	}
+	control.30 {
+		iface PCM
+		device 10
+		name ELD
+		value ''
+		comment {
+			access 'read volatile'
+			type BYTES
+			count 0
+		}
+	}
+	control.31 {
+		iface PCM
+		device 3
+		name 'Playback Channel Map'
+		value.0 0
+		value.1 0
+		value.2 0
+		value.3 0
+		value.4 0
+		value.5 0
+		value.6 0
+		value.7 0
+		comment {
+			access 'read write'
+			type INTEGER
+			count 8
+			range '0 - 36'
+		}
+	}
+	control.32 {
+		iface PCM
+		device 7
+		name 'Playback Channel Map'
+		value.0 0
+		value.1 0
+		value.2 0
+		value.3 0
+		value.4 0
+		value.5 0
+		value.6 0
+		value.7 0
+		comment {
+			access 'read write'
+			type INTEGER
+			count 8
+			range '0 - 36'
+		}
+	}
+	control.33 {
+		iface PCM
+		device 8
+		name 'Playback Channel Map'
+		value.0 0
+		value.1 0
+		value.2 0
+		value.3 0
+		value.4 0
+		value.5 0
+		value.6 0
+		value.7 0
+		comment {
+			access 'read write'
+			type INTEGER
+			count 8
+			range '0 - 36'
+		}
+	}
+	control.34 {
+		iface PCM
+		device 9
+		name 'Playback Channel Map'
+		value.0 0
+		value.1 0
+		value.2 0
+		value.3 0
+		value.4 0
+		value.5 0
+		value.6 0
+		value.7 0
+		comment {
+			access 'read write'
+			type INTEGER
+			count 8
+			range '0 - 36'
+		}
+	}
+	control.35 {
+		iface PCM
+		device 10
+		name 'Playback Channel Map'
+		value.0 0
+		value.1 0
+		value.2 0
+		value.3 0
+		value.4 0
+		value.5 0
+		value.6 0
+		value.7 0
+		comment {
+			access 'read write'
+			type INTEGER
+			count 8
+			range '0 - 36'
+		}
+	}
+}
+--endcollapse--
+
+
+!!All Loaded Modules
+!!------------------
+
+8250_lpss
+acpi_als
+aesni_intel
+apple_bl
+applesmc
+applespi
+autofs4
+binfmt_misc
+bluetooth
+bnep
+brcmfmac
+brcmutil
+btbcm
+btintel
+btqca
+btrtl
+cec
+cfg80211
+cmdlinepart
+coretemp
+crc32_pclmul
+crct10dif_pclmul
+cryptd
+crypto_simd
+drm
+drm_buddy
+drm_display_helper
+drm_kms_helper
+dw_dmac
+dw_dmac_core
+dw_dmac_pci
+ecc
+ecdh_generic
+efi_pstore
+fb_sys_fops
+ghash_clmulni_intel
+hci_uart
+i2c_algo_bit
+i2c_i801
+i2c_smbus
+i915
+industrialio
+industrialio_triggered_buffer
+input_leds
+intel_cstate
+intel_pch_thermal
+intel_powerclamp
+intel_rapl_common
+intel_rapl_msr
+ip_tables
+joydev
+kfifo_buf
+kvm
+kvm_intel
+ledtrig_audio
+lp
+lpc_ich
+mac_hid
+mei
+mei_hdcp
+mei_me
+mei_pxp
+msr
+mtd
+nls_iso8859_1
+nvme
+nvme_core
+parport
+parport_pc
+ppdev
+pstore_blk
+pstore_zone
+ramoops
+rapl
+rc_core
+reed_solomon
+sbs
+sbshc
+sch_fq_codel
+snd
+snd_hda_codec
+snd_hda_codec_cirrus
+snd_hda_codec_generic
+snd_hda_codec_hdmi
+snd_hda_core
+snd_hda_intel
+snd_hwdep
+snd_intel_dspcfg
+snd_intel_sdw_acpi
+snd_pcm
+snd_rawmidi
+snd_seq
+snd_seq_device
+snd_seq_midi
+snd_seq_midi_event
+snd_timer
+soundcore
+spi_intel
+spi_intel_platform
+spi_nor
+spi_pxa2xx_pci
+spi_pxa2xx_platform
+syscopyarea
+sysfillrect
+sysimgblt
+ttm
+video
+x86_pkg_temp_thermal
+x_tables
+xhci_pci
+xhci_pci_renesas
+
+
+!!Sysfs Files
+!!-----------
+
+/sys/class/sound/hwC1D0/init_pin_configs:
+0x05 0x18560010
+0x06 0x18560010
+0x07 0x18560010
+
+/sys/class/sound/hwC1D0/driver_pin_configs:
+
+/sys/class/sound/hwC1D0/user_pin_configs:
+
+/sys/class/sound/hwC1D0/init_verbs:
+
+/sys/class/sound/hwC1D0/hints:
+
+
+!!ALSA/HDA dmesg
+!!--------------
+
+[    0.124580] ACPI: Added _OSI(Linux-Dell-Video)
+[    0.124580] ACPI: Added _OSI(Linux-Lenovo-NV-HDMI-Audio)
+[    0.124580] ACPI: Added _OSI(Linux-HPI-Hybrid-Graphics)
+--
+[    3.926945] brcmfmac 0000:01:00.0: Direct firmware load for brcm/brcmfmac4350c2-pcie.txt failed with error -2
+[    4.168472] snd_hda_codec: loading out-of-tree module taints kernel.
+[    4.168831] snd_hda_codec: module verification failed: signature and/or required key missing - tainting kernel
+[    4.189672] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4350c2-pcie for chip BCM4350/5
+--
+[    4.616246] Hardware name: Apple Inc. MacBook8,1/Mac-BE0E8AC46FE800CC, BIOS 476.0.0.0.0 09/06/2022
+[    4.616279] RIP: 0010:cs4208_coef_init_verbs_mb81+0x0/0xfffffffffffff540 [snd_hda_codec_cirrus]
+[    4.616320] Code: 00 00 00 04 00 00 08 00 00 00 11 00 00 00 03 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 <01> 00 00 00 05 07 00 00 00 00 00 00 24 00 00 00 03 07 00 00 02 00
+--
+[    4.616645]  <TASK>
+[    4.616658]  ? __snd_hda_apply_fixup+0x1ad/0x280 [snd_hda_codec]
+[    4.616714]  snd_hda_apply_fixup+0x22/0x40 [snd_hda_codec]
+[    4.616750]  cs4208_fixup_mac+0x5f/0x80 [snd_hda_codec_cirrus]
+[    4.616776]  __snd_hda_apply_fixup+0x1ad/0x280 [snd_hda_codec]
+[    4.616812]  snd_hda_apply_fixup+0x22/0x40 [snd_hda_codec]
+[    4.616845]  patch_cs4208+0xe5/0x146 [snd_hda_codec_cirrus]
+[    4.616868]  hda_codec_driver_probe+0xad/0x190 [snd_hda_codec]
+[    4.616902]  ? driver_sysfs_add+0x80/0xf0
+--
+[    4.617083]  ? 0xffffffffc08d2000
+[    4.617099]  __hda_codec_driver_register+0x5d/0x70 [snd_hda_codec]
+[    4.617139]  cirrus_driver_init+0x23/0x1000 [snd_hda_codec_cirrus]
+[    4.617168]  do_one_initcall+0x49/0x230
+--
+[    4.617674]  </TASK>
+[    4.617685] Modules linked in: snd_hda_codec_cirrus(OE+) mei_hdcp(+) snd_hda_codec_generic(OE) ledtrig_audio i915(+) intel_rapl_common x86_pkg_temp_thermal snd_hda_intel(OE) intel_powerclamp nls_iso8859_1 snd_intel_dspcfg coretemp snd_intel_sdw_acpi snd_hda_codec(OE) kvm_intel snd_hda_core applesmc snd_hwdep kvm snd_pcm drm_buddy ttm crct10dif_pclmul ghash_clmulni_intel snd_seq_midi drm_display_helper snd_seq_midi_event aesni_intel crypto_simd cryptd hci_uart cec btqca snd_rawmidi rc_core rapl intel_cstate btrtl brcmfmac btbcm drm_kms_helper snd_seq cmdlinepart brcmutil i2c_algo_bit spi_nor snd_seq_device fb_sys_fops btintel mtd intel_pch_thermal snd_timer cfg80211 bluetooth syscopyarea snd joydev input_leds soundcore mei_me sysfillrect acpi_als sysimgblt mei ecdh_generic 8250_lpss dw_dmac_pci industrialio_triggered_buffer ecc sbs kfifo_buf industrialio sbshc mac_hid apple_bl sch_fq_codel msr parport_pc ppdev lp ramoops parport drm reed_solomon pstore_blk pstore_zone efi_pstore
+[    4.617751]  ip_tables x_tables autofs4 spi_intel_platform spi_intel crc32_pclmul nvme lpc_ich i2c_i801 nvme_core i2c_smbus spi_pxa2xx_pci xhci_pci xhci_pci_renesas applespi spi_pxa2xx_platform dw_dmac video dw_dmac_core
+--
+[    4.617955] ---[ end trace 0000000000000000 ]---
+[    4.628738] RIP: 0010:cs4208_coef_init_verbs_mb81+0x0/0xfffffffffffff540 [snd_hda_codec_cirrus]
+[    4.628765] Code: 00 00 00 04 00 00 08 00 00 00 11 00 00 00 03 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 <01> 00 00 00 05 07 00 00 00 00 00 00 24 00 00 00 03 07 00 00 02 00
+--
+[    4.899308] intel_rapl_common: Found RAPL domain dram
+[    4.920174] snd_hda_intel 0000:00:03.0: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
+[    5.119477] kauditd_printk_skb: 24 callbacks suppressed
+--
+[    6.576148] i915 0000:00:02.0: [drm] fb0: i915drmfb frame buffer device
+[    6.605668] snd_hda_codec_hdmi hdaudioC1D0: nid: 05
+[    6.605673] snd_hda_codec_hdmi hdaudioC1D0: nid: 05, cfg: 00000010 (init)
+[    6.605832] snd_hda_codec_hdmi hdaudioC1D0: nid: 06
+[    6.605834] snd_hda_codec_hdmi hdaudioC1D0: nid: 06, cfg: 00000010 (init)
+[    6.606007] snd_hda_codec_hdmi hdaudioC1D0: nid: 07
+[    6.606012] snd_hda_codec_hdmi hdaudioC1D0: nid: 07, cfg: 00000010 (init)
+[    6.609252] input: HDA Intel HDMI HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:03.0/sound/card1/input7
+[    6.609342] input: HDA Intel HDMI HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:03.0/sound/card1/input8
+[    6.609436] input: HDA Intel HDMI HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:03.0/sound/card1/input9
+[    6.609507] input: HDA Intel HDMI HDMI/DP,pcm=9 as /devices/pci0000:00/0000:00:03.0/sound/card1/input10
+[    6.609590] input: HDA Intel HDMI HDMI/DP,pcm=10 as /devices/pci0000:00/0000:00:03.0/sound/card1/input11
+[    8.403015] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+
+
+!!Packages installed
+!!--------------------
+
+ii  alsa-tools                                 1.2.5-2                                 amd64        Console based ALSA utilities for specific hardware
+ii  alsa-tools-gui                             1.2.5-2                                 amd64        GUI based ALSA utilities for specific hardware
+ii  alsa-topology-conf                         1.2.5.1-2                               all          ALSA topology configuration files
+ii  alsa-ucm-conf                              1.2.6.3-1ubuntu1.4                      all          ALSA Use Case Manager configuration files
+ii  alsa-utils                                 1.2.6-1ubuntu1                          amd64        Utilities for configuring and using ALSA
+

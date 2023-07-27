@@ -235,8 +235,10 @@ static const struct hda_verb cs4208_coef_init_verbs[] = {
 static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
 	{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
 	{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */
+	
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
 	{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
+
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
 	{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
 
@@ -253,7 +255,7 @@ static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
 	{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
 	
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0036}, 
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
 	{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
@@ -839,10 +841,11 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
 
+	snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
+
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
-		
 
 		spec->gpio_eapd_hp = 0;
 		spec->gpio_eapd_speaker = 1;
