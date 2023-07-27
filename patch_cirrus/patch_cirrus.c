@@ -860,7 +860,9 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	//codec_info(codec, "Trying to set pins");
 
 	snd_hda_apply_pincfgs(codec, hda_pintbl_mb81_pincfgs_windows);	
+	codec_info(codec, "wcap 0xa = %x", get_wcaps(codec, 0xa));
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+	codec_info(codec, "wcap 0xa = %x", get_wcaps(codec, 0xa));
 	
 }
 
@@ -913,6 +915,9 @@ static int patch_cs4208(struct hda_codec *codec)
 	struct cs_spec *spec;
 	int err;
 
+	// lets put it here too.
+	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+
 	spec = cs_alloc_spec(codec, CS4208_VENDOR_NID);
 	if (!spec)
 		return -ENOMEM;
@@ -932,6 +937,7 @@ static int patch_cs4208(struct hda_codec *codec)
 	
 	snd_hda_override_wcaps(codec, 0x18,
 			       get_wcaps(codec, 0x18) | AC_WCAP_STEREO);
+	codec_info(codec, "wcap 0x18 = %x", get_wcaps(codec, 0x18));
 	cs4208_fix_amp_caps(codec, 0x18);
 	cs4208_fix_amp_caps(codec, 0x1b);
 	cs4208_fix_amp_caps(codec, 0x1c);
@@ -943,6 +949,9 @@ static int patch_cs4208(struct hda_codec *codec)
 		goto error;
 
 	snd_hda_apply_fixup(codec, HDA_FIXUP_ACT_PROBE);
+
+	codec_info(codec, "(recheck) wcap 0x18 = %x", get_wcaps(codec, 0x18));
+	codec_info(codec, "(recheck) wcap 0xa = %x", get_wcaps(codec, 0xa));
 
 	return 0;
 

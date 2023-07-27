@@ -437,6 +437,7 @@ static int read_widget_caps(struct hda_codec *codec, hda_nid_t fg_node)
 	if (!codec->wcaps)
 		return -ENOMEM;
 	nid = codec->core.start_nid;
+	codec_info(codec, "Doing a codec write from codec->core. This overrides wcaps.");
 	for (i = 0; i < codec->core.num_nodes; i++, nid++)
 		codec->wcaps[i] = snd_hdac_read_parm_uncached(&codec->core,
 													  nid, AC_PAR_AUDIO_WIDGET_CAP);
@@ -1105,6 +1106,7 @@ EXPORT_SYMBOL_GPL(snd_hda_codec_device_new);
  */
 int snd_hda_codec_update_widgets(struct hda_codec *codec)
 {
+	codec_info(codec, "Forcibly updating widgets.")
 	hda_nid_t fg;
 	int err;
 

@@ -27,10 +27,13 @@ fi
 
 tar --strip-components=3 -xvf $build_dir/linux-$kernel_version.tar.xz linux-$kernel_version/sound/pci/hda --directory=build/
 mv hda $hda_dir
+
 mv $hda_dir/Makefile $hda_dir/Makefile.orig
 mv $hda_dir/patch_cirrus.c $hda_dir/patch_cirrus.c.orig
-#cp $patch_dir/Makefile $patch_dir/patch_cirrus.c $patch_dir/patch_cirrus_a1534_setup.h $patch_dir/patch_cirrus_a1534_pcm.h $hda_dir/
-cp $patch_dir/Makefile $patch_dir/patch_cirrus.c $hda_dir/
+mv $hda_dir/hda_auto_parser.c $hda_dir/hda_auto_parser.c.orig
+mv $hda_dir/hda_codec.c $hda_dir/hda_codec.c.orig
+#cp $patch_dir/Makefile $patch_dir/hda_auto_parser.c $patch_dir/patch_cirrus.c $patch_dir/patch_cirrus_a1534_setup.h $patch_dir/patch_cirrus_a1534_pcm.h $hda_dir/
+cp $patch_dir/Makefile $patch_dir/hda_codec.c $patch_dir/hda_auto_parser.c $patch_dir/patch_cirrus.c $hda_dir/
 
 # if kernel version is < 5.6 then change
 # timespec64 to timespec

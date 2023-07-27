@@ -652,7 +652,7 @@ Breaking to shift to IO[0]. brb
 
 Same overall state. 
 
-# New research
+# 2023-07-27-14-15
 
 HS == Headset?
 
@@ -700,8 +700,6 @@ Rebooting.
 
 Hrm... Wcaps value didn't change... wondering why...
 
-# 2023-07-27-14-15
-
 Moving it to the end of the fixup sequence to see if that makes a difference.
 
 Here we go.
@@ -709,6 +707,26 @@ Here we go.
 Still no change
 
 # 2023-07-27-14-23
+
+Adding some logging.
+
+It's changing, but not holding for some reason.
+
+# 2023-07-27-14-32
+
+Adding some logging to see what's going on. 
+
+There's some new error about device having limited channels... interesting.... This is only from the 13-34 and 14-54 logs, though. 
+
+# 2023-07-27-14-54
+
+More logs. Trying to figure out why overriding wcaps isn't working. 
+
+Kinda stumped. Gonna reach out to the community for more on this. 
+
+
+
+
 
 
 
