@@ -296,6 +296,7 @@ http://alsa-project.org/db/?f=d611b443886d1122285a73bbc819791aacb03f00
 
 ### 2023-07-26-16-04
 Replaced the pin config the way it was before, but headphone sound still isn't coming through...
+
 http://alsa-project.org/db/?f=4cc7e14917ca7a2afaddc90add004fa951a9bce6
 
 ### 2023-07-26-16-15
@@ -306,3 +307,40 @@ Node 0x06 Capture volume was changed from D0 to D3, and the Converter stream wen
 **Something is wrong with the verbs**
 
 http://alsa-project.org/db/?f=c6c8a3157e13c2c47c1a39a939ed3ffec6f2f6fb
+
+### 2023-07-27-06-44
+
+A note: The structure accepted by the set_pincfg consists of NIDs and a cfg value. 
+
+If a pin matches 0x40000000 then it's apparently an ignored pin.
+
+The enums at the top of hda_auto_parser.h seem to have something to do with what the pin configurations are. 
+
+Following the thread to AC_PAR_PIN_CAP (0x0c), it seems that maybe these (at the top if hda_local.h) are the definitions of what each bit does in the pincfg?
+
+hda_proc.c has a print_pin_caps method that seems to detail this somehow? It calls param_read... This param_read maps to snd_hdac_read_parm_uncached (hdac_device.c). This, in turn, uses snd_hdac_regmap_encode_verb (hda_regmap.h)...
+
+    #define snd_hdac_regmap_encode_verb(nid, verb)		\
+	(((verb) << 8) | 0x80000 | ((unsigned int)(nid) << 20))
+
+In this situation, verb is AC_PAR_PIN_CAP (0x0c), which would mean it's     
+
+    (0x0c << 8) | 0x80000 | ((unsigned int)(nid) << 20)
+
+This would return back something like 0x1d80c00 for 0x1d
+
+This value is then sent (as cmd) into snd_hdac_regmap_read_raw_uncached (as "reg" in hdac_regmap.c) which points to __snd_hdac_regmap_read_raw.
+
+This calls hda_reg_read (hdac_regmap.c), which calls get_verb...
+
+get_verb is defined as
+
+    (((reg) >> 8) & 0xfff)
+
+Which would, in this case, return back 80c for our earlier 0x1d80c00 thing.
+
+We really need to get the codec->addr value, because that's used in hda_reg_read.
+
+Recompiling to get this value...
+
+Result is that codec->addr is 0x0, so not an issue.

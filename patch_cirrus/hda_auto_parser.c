@@ -26,7 +26,8 @@ static int is_in_nid_list(hda_nid_t nid, const hda_nid_t *list)
 }
 
 /* a pair of input pin and its sequence */
-struct auto_out_pin {
+struct auto_out_pin
+{
 	hda_nid_t pin;
 	short seq;
 };
@@ -43,7 +44,7 @@ static int compare_seq(const void *ap, const void *bp)
  * then store it to a pin array.
  */
 static void sort_pins_by_sequence(hda_nid_t *pins, struct auto_out_pin *list,
-				  int num_pins)
+								  int num_pins)
 {
 	int i;
 	sort(list, num_pins, sizeof(list[0]), compare_seq, NULL);
@@ -51,12 +52,12 @@ static void sort_pins_by_sequence(hda_nid_t *pins, struct auto_out_pin *list,
 		pins[i] = list[i].pin;
 }
 
-
 /* add the found input-pin to the cfg->inputs[] table */
 static void add_auto_cfg_input_pin(struct hda_codec *codec, struct auto_pin_cfg *cfg,
-				   hda_nid_t nid, int type)
+								   hda_nid_t nid, int type)
 {
-	if (cfg->num_inputs < AUTO_CFG_MAX_INS) {
+	if (cfg->num_inputs < AUTO_CFG_MAX_INS)
+	{
 		cfg->inputs[cfg->num_inputs].pin = nid;
 		cfg->inputs[cfg->num_inputs].type = type;
 		cfg->inputs[cfg->num_inputs].has_boost_on_pin =
@@ -92,7 +93,8 @@ static int compare_input_type(const void *ap, const void *bp)
  */
 static void reorder_outputs(unsigned int nums, hda_nid_t *pins)
 {
-	switch (nums) {
+	switch (nums)
+	{
 	case 3:
 	case 4:
 		swap(pins[1], pins[2]);
@@ -102,7 +104,7 @@ static void reorder_outputs(unsigned int nums, hda_nid_t *pins)
 
 /* check whether the given pin has a proper pin I/O capability bit */
 static bool check_pincap_validity(struct hda_codec *codec, hda_nid_t pin,
-				  unsigned int dev)
+								  unsigned int dev)
 {
 	unsigned int pincap = snd_hda_query_pin_caps(codec, pin);
 
@@ -110,7 +112,8 @@ static bool check_pincap_validity(struct hda_codec *codec, hda_nid_t pin,
 	if (!pincap)
 		return true;
 
-	switch (dev) {
+	switch (dev)
+	{
 	case AC_JACK_LINE_OUT:
 	case AC_JACK_SPEAKER:
 	case AC_JACK_HP_OUT:
@@ -123,8 +126,8 @@ static bool check_pincap_validity(struct hda_codec *codec, hda_nid_t pin,
 }
 
 static bool can_be_headset_mic(struct hda_codec *codec,
-			       struct auto_pin_cfg_item *item,
-			       int seq_number)
+							   struct auto_pin_cfg_item *item,
+							   int seq_number)
 {
 	int attr;
 	unsigned int def_conf;
@@ -139,7 +142,8 @@ static bool can_be_headset_mic(struct hda_codec *codec,
 	if (attr <= INPUT_PIN_ATTR_DOCK)
 		return false;
 
-	if (seq_number >= 0) {
+	if (seq_number >= 0)
+	{
 		int seq = get_defcfg_sequence(def_conf);
 		if (seq != seq_number)
 			return false;
@@ -166,9 +170,9 @@ static bool can_be_headset_mic(struct hda_codec *codec,
  * respectively.
  */
 int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
-			     struct auto_pin_cfg *cfg,
-			     const hda_nid_t *ignore_nids,
-			     unsigned int cond_flags)
+							 struct auto_pin_cfg *cfg,
+							 const hda_nid_t *ignore_nids,
+							 unsigned int cond_flags)
 {
 	hda_nid_t nid;
 	short seq, assoc_line_out;
@@ -187,7 +191,8 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	memset(hp_out, 0, sizeof(hp_out));
 	assoc_line_out = 0;
 
-	for_each_hda_codec_node(nid, codec) {
+	for_each_hda_codec_node(nid, codec)
+	{
 		unsigned int wid_caps = get_wcaps(codec, nid);
 		unsigned int wid_type = get_wcaps_type(wid_caps);
 		unsigned int def_conf;
@@ -209,18 +214,21 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 		codec_info(codec, "dev: %08x", dev);
 
 		/* workaround for buggy BIOS setups */
-		if (dev == AC_JACK_LINE_OUT) {
+		if (dev == AC_JACK_LINE_OUT)
+		{
 			if (conn == AC_JACK_PORT_FIXED ||
-			    conn == AC_JACK_PORT_BOTH)
+				conn == AC_JACK_PORT_BOTH)
 				dev = AC_JACK_SPEAKER;
 		}
 
-		if (!check_pincap_validity(codec, nid, dev)) {
+		if (!check_pincap_validity(codec, nid, dev))
+		{
 			codec_info(codec, "Pincaps are not valid");
 			continue;
 		}
 
-		switch (dev) {
+		switch (dev)
+		{
 		case AC_JACK_LINE_OUT:
 			codec_info(codec, "LINE OUT");
 			seq = get_defcfg_sequence(def_conf);
@@ -233,16 +241,18 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 				continue;
 			if (!assoc_line_out)
 				assoc_line_out = assoc;
-			else if (assoc_line_out != assoc) {
+			else if (assoc_line_out != assoc)
+			{
 				codec_info(codec,
-					   "ignore pin 0x%x with mismatching assoc# 0x%x vs 0x%x\n",
-					   nid, assoc, assoc_line_out);
+						   "ignore pin 0x%x with mismatching assoc# 0x%x vs 0x%x\n",
+						   nid, assoc, assoc_line_out);
 				continue;
 			}
-			if (cfg->line_outs >= ARRAY_SIZE(cfg->line_out_pins)) {
+			if (cfg->line_outs >= ARRAY_SIZE(cfg->line_out_pins))
+			{
 				codec_info(codec,
-					   "ignore pin 0x%x, too many assigned pins\n",
-					   nid);
+						   "ignore pin 0x%x, too many assigned pins\n",
+						   nid);
 				continue;
 			}
 			line_out[cfg->line_outs].pin = nid;
@@ -253,13 +263,15 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			codec_info(codec, "AC JACK SPEAKER");
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
-			if (cfg->speaker_outs >= ARRAY_SIZE(cfg->speaker_pins)) {
+			if (cfg->speaker_outs >= ARRAY_SIZE(cfg->speaker_pins))
+			{
 				codec_info(codec,
-					   "ignore pin 0x%x, too many assigned pins\n",
-					   nid);
+						   "ignore pin 0x%x, too many assigned pins\n",
+						   nid);
 				continue;
 			}
-			if (get_wcaps(codec, nid) & AC_WCAP_DIGITAL) {
+			if (get_wcaps(codec, nid) & AC_WCAP_DIGITAL)
+			{
 				codec_info(codec, "Wcap result: 0x%x", get_wcaps(codec, nid));
 				codec_info(codec, "ignore pin 0x%x, digital wcaps\n", nid);
 				continue;
@@ -272,10 +284,11 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			codec_info(codec, "AC JACK HP_OUT");
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
-			if (cfg->hp_outs >= ARRAY_SIZE(cfg->hp_pins)) {
+			if (cfg->hp_outs >= ARRAY_SIZE(cfg->hp_pins))
+			{
 				codec_info(codec,
-					   "ignore pin 0x%x, too many assigned pins\n",
-					   nid);
+						   "ignore pin 0x%x, too many assigned pins\n",
+						   nid);
 				continue;
 			}
 			hp_out[cfg->hp_outs].pin = nid;
@@ -297,16 +310,16 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 		case AC_JACK_SPDIF_OUT:
 		case AC_JACK_DIG_OTHER_OUT:
 			codec_info(codec, "SPDIF OR OTHER");
-			if (cfg->dig_outs >= ARRAY_SIZE(cfg->dig_out_pins)) {
+			if (cfg->dig_outs >= ARRAY_SIZE(cfg->dig_out_pins))
+			{
 				codec_info(codec,
-					   "ignore pin 0x%x, too many assigned pins\n",
-					   nid);
+						   "ignore pin 0x%x, too many assigned pins\n",
+						   nid);
 				continue;
 			}
 			cfg->dig_out_pins[cfg->dig_outs] = nid;
 			cfg->dig_out_type[cfg->dig_outs] =
-				(loc == AC_JACK_LOC_HDMI) ?
-				HDA_PCM_TYPE_HDMI : HDA_PCM_TYPE_SPDIF;
+				(loc == AC_JACK_LOC_HDMI) ? HDA_PCM_TYPE_HDMI : HDA_PCM_TYPE_SPDIF;
 			cfg->dig_outs++;
 			break;
 		case AC_JACK_SPDIF_IN:
@@ -321,26 +334,34 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	}
 
 	/* Find a pin that could be a headset or headphone mic */
-	if (cond_flags & HDA_PINCFG_HEADSET_MIC || cond_flags & HDA_PINCFG_HEADPHONE_MIC) {
+	if (cond_flags & HDA_PINCFG_HEADSET_MIC || cond_flags & HDA_PINCFG_HEADPHONE_MIC)
+	{
 		bool hsmic = !!(cond_flags & HDA_PINCFG_HEADSET_MIC);
 		bool hpmic = !!(cond_flags & HDA_PINCFG_HEADPHONE_MIC);
 		for (i = 0; (hsmic || hpmic) && (i < cfg->num_inputs); i++)
-			if (hsmic && can_be_headset_mic(codec, &cfg->inputs[i], 0xc)) {
+			if (hsmic && can_be_headset_mic(codec, &cfg->inputs[i], 0xc))
+			{
 				cfg->inputs[i].is_headset_mic = 1;
 				hsmic = false;
-			} else if (hpmic && can_be_headset_mic(codec, &cfg->inputs[i], 0xd)) {
+			}
+			else if (hpmic && can_be_headset_mic(codec, &cfg->inputs[i], 0xd))
+			{
 				cfg->inputs[i].is_headphone_mic = 1;
 				hpmic = false;
 			}
 
 		/* If we didn't find our sequence number mark, fall back to any sequence number */
-		for (i = 0; (hsmic || hpmic) && (i < cfg->num_inputs); i++) {
+		for (i = 0; (hsmic || hpmic) && (i < cfg->num_inputs); i++)
+		{
 			if (!can_be_headset_mic(codec, &cfg->inputs[i], -1))
 				continue;
-			if (hsmic) {
+			if (hsmic)
+			{
 				cfg->inputs[i].is_headset_mic = 1;
 				hsmic = false;
-			} else if (hpmic) {
+			}
+			else if (hpmic)
+			{
 				cfg->inputs[i].is_headphone_mic = 1;
 				hpmic = false;
 			}
@@ -357,11 +378,14 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	 * some of them might be the real line-outs.
 	 */
 	if (!cfg->line_outs && cfg->hp_outs > 1 &&
-	    !(cond_flags & HDA_PINCFG_NO_HP_FIXUP)) {
+		!(cond_flags & HDA_PINCFG_NO_HP_FIXUP))
+	{
 		i = 0;
-		while (i < cfg->hp_outs) {
+		while (i < cfg->hp_outs)
+		{
 			/* The real HPs should have the sequence 0x0f */
-			if ((hp_out[i].seq & 0x0f) == 0x0f) {
+			if ((hp_out[i].seq & 0x0f) == 0x0f)
+			{
 				i++;
 				continue;
 			}
@@ -369,19 +393,18 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			line_out[cfg->line_outs++] = hp_out[i];
 			cfg->hp_outs--;
 			memmove(hp_out + i, hp_out + i + 1,
-				sizeof(hp_out[0]) * (cfg->hp_outs - i));
+					sizeof(hp_out[0]) * (cfg->hp_outs - i));
 		}
 		memset(hp_out + cfg->hp_outs, 0,
-		       sizeof(hp_out[0]) * (AUTO_CFG_MAX_OUTS - cfg->hp_outs));
+			   sizeof(hp_out[0]) * (AUTO_CFG_MAX_OUTS - cfg->hp_outs));
 		if (!cfg->hp_outs)
 			cfg->line_out_type = AUTO_PIN_HP_OUT;
-
 	}
 
 	/* sort by sequence */
 	sort_pins_by_sequence(cfg->line_out_pins, line_out, cfg->line_outs);
 	sort_pins_by_sequence(cfg->speaker_pins, speaker_out,
-			      cfg->speaker_outs);
+						  cfg->speaker_outs);
 	sort_pins_by_sequence(cfg->hp_pins, hp_out, cfg->hp_outs);
 
 	/*
@@ -389,18 +412,22 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	 * as a primary output
 	 */
 	if (!cfg->line_outs &&
-	    !(cond_flags & HDA_PINCFG_NO_LO_FIXUP)) {
-		if (cfg->speaker_outs) {
+		!(cond_flags & HDA_PINCFG_NO_LO_FIXUP))
+	{
+		if (cfg->speaker_outs)
+		{
 			cfg->line_outs = cfg->speaker_outs;
 			memcpy(cfg->line_out_pins, cfg->speaker_pins,
-			       sizeof(cfg->speaker_pins));
+				   sizeof(cfg->speaker_pins));
 			cfg->speaker_outs = 0;
 			memset(cfg->speaker_pins, 0, sizeof(cfg->speaker_pins));
 			cfg->line_out_type = AUTO_PIN_SPEAKER_OUT;
-		} else if (cfg->hp_outs) {
+		}
+		else if (cfg->hp_outs)
+		{
 			cfg->line_outs = cfg->hp_outs;
 			memcpy(cfg->line_out_pins, cfg->hp_pins,
-			       sizeof(cfg->hp_pins));
+				   sizeof(cfg->hp_pins));
 			cfg->hp_outs = 0;
 			memset(cfg->hp_pins, 0, sizeof(cfg->hp_pins));
 			cfg->line_out_type = AUTO_PIN_HP_OUT;
@@ -413,35 +440,34 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 
 	/* sort inputs in the order of AUTO_PIN_* type */
 	sort(cfg->inputs, cfg->num_inputs, sizeof(cfg->inputs[0]),
-	     compare_input_type, NULL);
+		 compare_input_type, NULL);
 
 	/*
 	 * debug prints of the parsed results
 	 */
 	codec_info(codec, "autoconfig for %s: line_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x) type:%s\n",
-		   codec->core.chip_name, cfg->line_outs, cfg->line_out_pins[0],
-		   cfg->line_out_pins[1], cfg->line_out_pins[2],
-		   cfg->line_out_pins[3], cfg->line_out_pins[4],
-		   cfg->line_out_type == AUTO_PIN_HP_OUT ? "hp" :
-		   (cfg->line_out_type == AUTO_PIN_SPEAKER_OUT ?
-		    "speaker" : "line"));
+			   codec->core.chip_name, cfg->line_outs, cfg->line_out_pins[0],
+			   cfg->line_out_pins[1], cfg->line_out_pins[2],
+			   cfg->line_out_pins[3], cfg->line_out_pins[4],
+			   cfg->line_out_type == AUTO_PIN_HP_OUT ? "hp" : (cfg->line_out_type == AUTO_PIN_SPEAKER_OUT ? "speaker" : "line"));
 	codec_info(codec, "   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
-		   cfg->speaker_outs, cfg->speaker_pins[0],
-		   cfg->speaker_pins[1], cfg->speaker_pins[2],
-		   cfg->speaker_pins[3], cfg->speaker_pins[4]);
+			   cfg->speaker_outs, cfg->speaker_pins[0],
+			   cfg->speaker_pins[1], cfg->speaker_pins[2],
+			   cfg->speaker_pins[3], cfg->speaker_pins[4]);
 	codec_info(codec, "   hp_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
-		   cfg->hp_outs, cfg->hp_pins[0],
-		   cfg->hp_pins[1], cfg->hp_pins[2],
-		   cfg->hp_pins[3], cfg->hp_pins[4]);
+			   cfg->hp_outs, cfg->hp_pins[0],
+			   cfg->hp_pins[1], cfg->hp_pins[2],
+			   cfg->hp_pins[3], cfg->hp_pins[4]);
 	codec_info(codec, "   mono: mono_out=0x%x\n", cfg->mono_out_pin);
 	if (cfg->dig_outs)
 		codec_info(codec, "   dig-out=0x%x/0x%x\n",
-			   cfg->dig_out_pins[0], cfg->dig_out_pins[1]);
+				   cfg->dig_out_pins[0], cfg->dig_out_pins[1]);
 	codec_info(codec, "   inputs:\n");
-	for (i = 0; i < cfg->num_inputs; i++) {
+	for (i = 0; i < cfg->num_inputs; i++)
+	{
 		codec_info(codec, "     %s=0x%x\n",
-			    hda_get_autocfg_input_label(codec, cfg, i),
-			    cfg->inputs[i].pin);
+				   hda_get_autocfg_input_label(codec, cfg, i),
+				   cfg->inputs[i].pin);
 	}
 	if (cfg->dig_in_pin)
 		codec_info(codec, "   dig-in=0x%x\n", cfg->dig_in_pin);
@@ -490,18 +516,18 @@ EXPORT_SYMBOL_GPL(snd_hda_get_input_pin_attr);
  * "Rear", "Internal".
  */
 static const char *hda_get_input_pin_label(struct hda_codec *codec,
-					   const struct auto_pin_cfg_item *item,
-					   hda_nid_t pin, bool check_location)
+										   const struct auto_pin_cfg_item *item,
+										   hda_nid_t pin, bool check_location)
 {
 	unsigned int def_conf;
-	static const char * const mic_names[] = {
-		"Internal Mic", "Dock Mic", "Mic", "Rear Mic", "Front Mic"
-	};
+	static const char *const mic_names[] = {
+		"Internal Mic", "Dock Mic", "Mic", "Rear Mic", "Front Mic"};
 	int attr;
 
 	def_conf = snd_hda_codec_get_pincfg(codec, pin);
 
-	switch (get_defcfg_device(def_conf)) {
+	switch (get_defcfg_device(def_conf))
+	{
 	case AC_JACK_MIC_IN:
 		if (item && item->is_headset_mic)
 			return "Headset Mic";
@@ -542,8 +568,8 @@ static const char *hda_get_input_pin_label(struct hda_codec *codec,
  * have to put "Front" prefix to each label.  In such a case, returns false.
  */
 static int check_mic_location_need(struct hda_codec *codec,
-				   const struct auto_pin_cfg *cfg,
-				   int input)
+								   const struct auto_pin_cfg *cfg,
+								   int input)
 {
 	unsigned int defc;
 	int i, attr, attr2;
@@ -555,10 +581,12 @@ static int check_mic_location_need(struct hda_codec *codec,
 		return 1;
 
 	attr = 0;
-	for (i = 0; i < cfg->num_inputs; i++) {
+	for (i = 0; i < cfg->num_inputs; i++)
+	{
 		defc = snd_hda_codec_get_pincfg(codec, cfg->inputs[i].pin);
 		attr2 = snd_hda_get_input_pin_attr(defc);
-		if (attr2 >= INPUT_PIN_ATTR_NORMAL) {
+		if (attr2 >= INPUT_PIN_ATTR_NORMAL)
+		{
 			if (attr && attr != attr2)
 				return 1; /* different locations found */
 			attr = attr2;
@@ -579,21 +607,21 @@ static int check_mic_location_need(struct hda_codec *codec,
  * possible.
  */
 const char *hda_get_autocfg_input_label(struct hda_codec *codec,
-					const struct auto_pin_cfg *cfg,
-					int input)
+										const struct auto_pin_cfg *cfg,
+										int input)
 {
 	int type = cfg->inputs[input].type;
 	int has_multiple_pins = 0;
 
 	if ((input > 0 && cfg->inputs[input - 1].type == type) ||
-	    (input < cfg->num_inputs - 1 && cfg->inputs[input + 1].type == type))
+		(input < cfg->num_inputs - 1 && cfg->inputs[input + 1].type == type))
 		has_multiple_pins = 1;
 	if (has_multiple_pins && type == AUTO_PIN_MIC)
 		has_multiple_pins &= check_mic_location_need(codec, cfg, input);
 	has_multiple_pins |= codec->force_pin_prefix;
 	return hda_get_input_pin_label(codec, &cfg->inputs[input],
-				       cfg->inputs[input].pin,
-				       has_multiple_pins);
+								   cfg->inputs[input].pin,
+								   has_multiple_pins);
 }
 EXPORT_SYMBOL_GPL(hda_get_autocfg_input_label);
 
@@ -609,11 +637,10 @@ static int find_idx_in_nid_list(hda_nid_t nid, const hda_nid_t *list, int nums)
 
 /* get a unique suffix or an index number */
 static const char *check_output_sfx(hda_nid_t nid, const hda_nid_t *pins,
-				    int num_pins, int *indexp)
+									int num_pins, int *indexp)
 {
-	static const char * const channel_sfx[] = {
-		" Front", " Surround", " CLFE", " Side"
-	};
+	static const char *const channel_sfx[] = {
+		" Front", " Surround", " CLFE", " Side"};
 	int i;
 
 	i = find_idx_in_nid_list(nid, pins, num_pins);
@@ -621,7 +648,8 @@ static const char *check_output_sfx(hda_nid_t nid, const hda_nid_t *pins,
 		return NULL;
 	if (num_pins == 1)
 		return "";
-	if (num_pins > ARRAY_SIZE(channel_sfx)) {
+	if (num_pins > ARRAY_SIZE(channel_sfx))
+	{
 		if (indexp)
 			*indexp = i;
 		return "";
@@ -635,7 +663,8 @@ static const char *check_output_pfx(struct hda_codec *codec, hda_nid_t nid)
 	int attr = snd_hda_get_input_pin_attr(def_conf);
 
 	/* check the location */
-	switch (attr) {
+	switch (attr)
+	{
 	case INPUT_PIN_ATTR_DOCK:
 		return "Dock ";
 	case INPUT_PIN_ATTR_FRONT:
@@ -645,7 +674,7 @@ static const char *check_output_pfx(struct hda_codec *codec, hda_nid_t nid)
 }
 
 static int get_hp_label_index(struct hda_codec *codec, hda_nid_t nid,
-			      const hda_nid_t *pins, int num_pins)
+							  const hda_nid_t *pins, int num_pins)
 {
 	int i, j, idx = 0;
 
@@ -662,9 +691,9 @@ static int get_hp_label_index(struct hda_codec *codec, hda_nid_t nid,
 }
 
 static int fill_audio_out_name(struct hda_codec *codec, hda_nid_t nid,
-			       const struct auto_pin_cfg *cfg,
-			       const char *name, char *label, int maxlen,
-			       int *indexp)
+							   const struct auto_pin_cfg *cfg,
+							   const char *name, char *label, int maxlen,
+							   int *indexp)
 {
 	unsigned int def_conf = snd_hda_codec_get_pincfg(codec, nid);
 	int attr = snd_hda_get_input_pin_attr(def_conf);
@@ -675,17 +704,19 @@ static int fill_audio_out_name(struct hda_codec *codec, hda_nid_t nid,
 		name = "Speaker";
 	pfx = check_output_pfx(codec, nid);
 
-	if (cfg) {
+	if (cfg)
+	{
 		/* try to give a unique suffix if needed */
 		sfx = check_output_sfx(nid, cfg->line_out_pins, cfg->line_outs,
-				       indexp);
+							   indexp);
 		if (!sfx)
 			sfx = check_output_sfx(nid, cfg->speaker_pins, cfg->speaker_outs,
-					       indexp);
-		if (!sfx) {
+								   indexp);
+		if (!sfx)
+		{
 			/* don't add channel suffix for Headphone controls */
 			int idx = get_hp_label_index(codec, nid, cfg->hp_pins,
-						     cfg->hp_outs);
+										 cfg->hp_outs);
 			if (idx >= 0 && indexp)
 				*indexp = idx;
 			sfx = "";
@@ -718,8 +749,8 @@ static int fill_audio_out_name(struct hda_codec *codec, hda_nid_t nid,
  * index number is stored in the pointer.
  */
 int snd_hda_get_pin_label(struct hda_codec *codec, hda_nid_t nid,
-			  const struct auto_pin_cfg *cfg,
-			  char *label, int maxlen, int *indexp)
+						  const struct auto_pin_cfg *cfg,
+						  char *label, int maxlen, int *indexp)
 {
 	unsigned int def_conf = snd_hda_codec_get_pincfg(codec, nid);
 	const char *name = NULL;
@@ -731,22 +762,24 @@ int snd_hda_get_pin_label(struct hda_codec *codec, hda_nid_t nid,
 	if (get_defcfg_connect(def_conf) == AC_JACK_PORT_NONE)
 		return 0;
 
-	switch (get_defcfg_device(def_conf)) {
+	switch (get_defcfg_device(def_conf))
+	{
 	case AC_JACK_LINE_OUT:
 		return fill_audio_out_name(codec, nid, cfg, "Line Out",
-					   label, maxlen, indexp);
+								   label, maxlen, indexp);
 	case AC_JACK_SPEAKER:
 		return fill_audio_out_name(codec, nid, cfg, "Speaker",
-					   label, maxlen, indexp);
+								   label, maxlen, indexp);
 	case AC_JACK_HP_OUT:
 		return fill_audio_out_name(codec, nid, cfg, "Headphone",
-					   label, maxlen, indexp);
+								   label, maxlen, indexp);
 	case AC_JACK_SPDIF_OUT:
 	case AC_JACK_DIG_OTHER_OUT:
 		hdmi = is_hdmi_cfg(def_conf);
 		name = hdmi ? "HDMI" : "SPDIF";
 		if (cfg && indexp)
-			for (i = 0; i < cfg->dig_outs; i++) {
+			for (i = 0; i < cfg->dig_outs; i++)
+			{
 				hda_nid_t pin = cfg->dig_out_pins[i];
 				unsigned int c;
 				if (pin == nid)
@@ -757,8 +790,10 @@ int snd_hda_get_pin_label(struct hda_codec *codec, hda_nid_t nid,
 			}
 		break;
 	default:
-		if (cfg) {
-			for (i = 0; i < cfg->num_inputs; i++) {
+		if (cfg)
+		{
+			for (i = 0; i < cfg->num_inputs; i++)
+			{
 				if (cfg->inputs[i].pin != nid)
 					continue;
 				name = hda_get_autocfg_input_label(codec, cfg, i);
@@ -786,7 +821,7 @@ EXPORT_SYMBOL_GPL(snd_hda_get_pin_label);
  * performed at init and resume time via snd_hda_apply_verbs().
  */
 int snd_hda_add_verbs(struct hda_codec *codec,
-		      const struct hda_verb *list)
+					  const struct hda_verb *list)
 {
 	const struct hda_verb **v;
 	v = snd_array_new(&codec->verbs);
@@ -817,7 +852,7 @@ EXPORT_SYMBOL_GPL(snd_hda_apply_verbs);
  * @cfg: NULL-terminated pin config table
  */
 void snd_hda_apply_pincfgs(struct hda_codec *codec,
-			   const struct hda_pintbl *cfg)
+						   const struct hda_pintbl *cfg)
 {
 	for (; cfg->nid; cfg++)
 		snd_hda_codec_set_pincfg(codec, cfg->nid, cfg->val);
@@ -825,7 +860,7 @@ void snd_hda_apply_pincfgs(struct hda_codec *codec,
 EXPORT_SYMBOL_GPL(snd_hda_apply_pincfgs);
 
 static void set_pin_targets(struct hda_codec *codec,
-			    const struct hda_pintbl *cfg)
+							const struct hda_pintbl *cfg)
 {
 	for (; cfg->nid; cfg++)
 		snd_hda_set_pin_ctl_cache(codec, cfg->nid, cfg->val);
@@ -835,7 +870,8 @@ void __snd_hda_apply_fixup(struct hda_codec *codec, int id, int action, int dept
 {
 	const char *modelname = codec->fixup_name;
 
-	while (id >= 0) {
+	while (id >= 0)
+	{
 		const struct hda_fixup *fix = codec->fixup_list + id;
 
 		if (++depth > 10)
@@ -843,38 +879,39 @@ void __snd_hda_apply_fixup(struct hda_codec *codec, int id, int action, int dept
 		if (fix->chained_before)
 			__snd_hda_apply_fixup(codec, fix->chain_id, action, depth + 1);
 
-		switch (fix->type) {
+		switch (fix->type)
+		{
 		case HDA_FIXUP_PINS:
 			if (action != HDA_FIXUP_ACT_PRE_PROBE || !fix->v.pins)
 				break;
 			codec_dbg(codec, "%s: Apply pincfg for %s\n",
-				    codec->core.chip_name, modelname);
+					  codec->core.chip_name, modelname);
 			snd_hda_apply_pincfgs(codec, fix->v.pins);
 			break;
 		case HDA_FIXUP_VERBS:
 			if (action != HDA_FIXUP_ACT_PROBE || !fix->v.verbs)
 				break;
 			codec_dbg(codec, "%s: Apply fix-verbs for %s\n",
-				    codec->core.chip_name, modelname);
+					  codec->core.chip_name, modelname);
 			snd_hda_add_verbs(codec, fix->v.verbs);
 			break;
 		case HDA_FIXUP_FUNC:
 			if (!fix->v.func)
 				break;
 			codec_dbg(codec, "%s: Apply fix-func for %s\n",
-				    codec->core.chip_name, modelname);
+					  codec->core.chip_name, modelname);
 			fix->v.func(codec, fix, action);
 			break;
 		case HDA_FIXUP_PINCTLS:
 			if (action != HDA_FIXUP_ACT_PROBE || !fix->v.pins)
 				break;
 			codec_dbg(codec, "%s: Apply pinctl for %s\n",
-				    codec->core.chip_name, modelname);
+					  codec->core.chip_name, modelname);
 			set_pin_targets(codec, fix->v.pins);
 			break;
 		default:
 			codec_err(codec, "%s: Invalid fixup type %d\n",
-				   codec->core.chip_name, fix->type);
+					  codec->core.chip_name, fix->type);
 			break;
 		}
 		if (!fix->chained || fix->chained_before)
@@ -899,13 +936,14 @@ EXPORT_SYMBOL_GPL(snd_hda_apply_fixup);
 #define IGNORE_SEQ_ASSOC (~(AC_DEFCFG_SEQUENCE | AC_DEFCFG_DEF_ASSOC))
 
 static bool pin_config_match(struct hda_codec *codec,
-			     const struct hda_pintbl *pins,
-			     bool match_all_pins)
+							 const struct hda_pintbl *pins,
+							 bool match_all_pins)
 {
 	const struct hda_pincfg *pin;
 	int i;
 
-	snd_array_for_each(&codec->init_pins, i, pin) {
+	snd_array_for_each(&codec->init_pins, i, pin)
+	{
 		hda_nid_t nid = pin->nid;
 		u32 cfg = pin->cfg;
 		const struct hda_pintbl *t_pins;
@@ -913,8 +951,10 @@ static bool pin_config_match(struct hda_codec *codec,
 
 		t_pins = pins;
 		found = 0;
-		for (; t_pins->nid; t_pins++) {
-			if (t_pins->nid == nid) {
+		for (; t_pins->nid; t_pins++)
+		{
+			if (t_pins->nid == nid)
+			{
 				found = 1;
 				if ((t_pins->val & IGNORE_SEQ_ASSOC) == (cfg & IGNORE_SEQ_ASSOC))
 					break;
@@ -925,7 +965,7 @@ static bool pin_config_match(struct hda_codec *codec,
 			}
 		}
 		if (match_all_pins &&
-		    !found && (cfg & 0xf0000000) != 0x40000000)
+			!found && (cfg & 0xf0000000) != 0x40000000)
 			return false;
 	}
 
@@ -940,26 +980,28 @@ static bool pin_config_match(struct hda_codec *codec,
  * @match_all_pins: all valid pins must match with the table entries
  */
 void snd_hda_pick_pin_fixup(struct hda_codec *codec,
-			    const struct snd_hda_pin_quirk *pin_quirk,
-			    const struct hda_fixup *fixlist,
-			    bool match_all_pins)
+							const struct snd_hda_pin_quirk *pin_quirk,
+							const struct hda_fixup *fixlist,
+							bool match_all_pins)
 {
 	const struct snd_hda_pin_quirk *pq;
 
 	if (codec->fixup_id != HDA_FIXUP_ID_NOT_SET)
 		return;
 
-	for (pq = pin_quirk; pq->subvendor; pq++) {
+	for (pq = pin_quirk; pq->subvendor; pq++)
+	{
 		if ((codec->core.subsystem_id & 0xffff0000) != (pq->subvendor << 16))
 			continue;
 		if (codec->core.vendor_id != pq->codec)
 			continue;
-		if (pin_config_match(codec, pq->pins, match_all_pins)) {
+		if (pin_config_match(codec, pq->pins, match_all_pins))
+		{
 			codec->fixup_id = pq->value;
 #ifdef CONFIG_SND_DEBUG_VERBOSE
 			codec->fixup_name = pq->name;
 			codec_dbg(codec, "%s: picked fixup %s (pin match)\n",
-				  codec->core.chip_name, codec->fixup_name);
+					  codec->core.chip_name, codec->fixup_name);
 #endif
 			codec->fixup_list = fixlist;
 			return;
@@ -986,9 +1028,9 @@ EXPORT_SYMBOL_GPL(snd_hda_pick_pin_fixup);
  * If still nothing matched, try to look up the codec SSID.
  */
 void snd_hda_pick_fixup(struct hda_codec *codec,
-			const struct hda_model_fixup *models,
-			const struct snd_pci_quirk *quirk,
-			const struct hda_fixup *fixlist)
+						const struct hda_model_fixup *models,
+						const struct snd_pci_quirk *quirk,
+						const struct hda_fixup *fixlist)
 {
 	const struct snd_pci_quirk *q;
 	int id = HDA_FIXUP_ID_NOT_SET;
@@ -1000,22 +1042,26 @@ void snd_hda_pick_fixup(struct hda_codec *codec,
 		return;
 
 	/* when model=nofixup is given, don't pick up any fixups */
-	if (codec->modelname && !strcmp(codec->modelname, "nofixup")) {
+	if (codec->modelname && !strcmp(codec->modelname, "nofixup"))
+	{
 		id = HDA_FIXUP_ID_NO_FIXUP;
 		fixlist = NULL;
 		codec_dbg(codec, "%s: picked no fixup (nofixup specified)\n",
-			  codec->core.chip_name);
+				  codec->core.chip_name);
 		goto found;
 	}
 
 	/* match with the model name string */
-	if (codec->modelname && models) {
-		while (models->name) {
-			if (!strcmp(codec->modelname, models->name)) {
+	if (codec->modelname && models)
+	{
+		while (models->name)
+		{
+			if (!strcmp(codec->modelname, models->name))
+			{
 				id = models->id;
 				name = models->name;
 				codec_dbg(codec, "%s: picked fixup %s (model specified)\n",
-					  codec->core.chip_name, codec->fixup_name);
+						  codec->core.chip_name, codec->fixup_name);
 				goto found;
 			}
 			models++;
@@ -1027,9 +1073,11 @@ void snd_hda_pick_fixup(struct hda_codec *codec,
 
 	/* match with the SSID alias given by the model string "XXXX:YYYY" */
 	if (codec->modelname &&
-	    sscanf(codec->modelname, "%04x:%04x", &vendor, &device) == 2) {
+		sscanf(codec->modelname, "%04x:%04x", &vendor, &device) == 2)
+	{
 		q = snd_pci_quirk_lookup_id(vendor, device, quirk);
-		if (q) {
+		if (q)
+		{
 			type = "alias SSID";
 			goto found_device;
 		}
@@ -1037,31 +1085,33 @@ void snd_hda_pick_fixup(struct hda_codec *codec,
 
 	/* match with the PCI SSID */
 	q = snd_pci_quirk_lookup(codec->bus->pci, quirk);
-	if (q) {
+	if (q)
+	{
 		type = "PCI SSID";
 		goto found_device;
 	}
 
 	/* match with the codec SSID */
 	q = snd_pci_quirk_lookup_id(codec->core.subsystem_id >> 16,
-				    codec->core.subsystem_id & 0xffff,
-				    quirk);
-	if (q) {
+								codec->core.subsystem_id & 0xffff,
+								quirk);
+	if (q)
+	{
 		type = "codec SSID";
 		goto found_device;
 	}
 
 	return; /* no matching */
 
- found_device:
+found_device:
 	id = q->value;
 #ifdef CONFIG_SND_DEBUG_VERBOSE
 	name = q->name;
 #endif
 	codec_dbg(codec, "%s: picked fixup %s for %s %04x:%04x\n",
-		  codec->core.chip_name, name ? name : "",
-		  type, q->subvendor, q->subdevice);
- found:
+			  codec->core.chip_name, name ? name : "",
+			  type, q->subvendor, q->subdevice);
+found:
 	codec->fixup_id = id;
 	codec->fixup_list = fixlist;
 	codec->fixup_name = name;

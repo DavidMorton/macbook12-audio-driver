@@ -826,6 +826,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		spec->gpio_dir = 0x31;
 	}
 
+	codec_info(codec, "codec->addr = %08x", codec->addr);
 	// cs4208_fixup_gpio0(codec, fix, action);
 	
 	//codec_info(codec, "Trying to set pins");
