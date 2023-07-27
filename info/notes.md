@@ -744,7 +744,17 @@ Setting gpio_data to 0xA.
 
 Still no-go.
 
+Change the speaker to non-digital... let's see.
 
+# 2023-07-27-17-01
+
+Still no go
+
+Bad. Putting it back.
+
+# 2023-07-27-17-04
+
+It's put back. 
 
 
 
