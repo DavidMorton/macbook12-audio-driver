@@ -847,7 +847,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
-		spec->gpio_eapd_hp = (1<<1);
+		spec->gpio_eapd_hp = (1<<0);
 		spec->gpio_eapd_speaker = ((1<<4)|(1<<5));
 		spec->gpio_mask = spec->gpio_dir =
 			spec->gpio_eapd_hp | spec->gpio_eapd_speaker;

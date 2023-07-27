@@ -629,3 +629,25 @@ The mask is right with 1, 4 and 5. It should be 0x31 or 49.
 Trying to assign the speaker to two GPIO ports. We'll see. 
 
 No new news. Everything else is still working though.
+
+# 2023-07-27-13-34
+
+Interesting note from these two lines:
+
+    04,00,45,02,  04,0C,44,02,\					; CIR=04h, coeff=0C04h (TX1 ch 0: slot  4, ch 1: slot 12)
+    05,00,45,02,  00,10,44,02,\					; CIR=05h, coeff=1000h (TX1 ch 2: slot  0, ch 3: slot 16)
+
+Based on this, this might be our two channels for TX1 ref'd in the verbs:
+
+    [CONF_0807.Gpio]
+    HKR,cs420x,Gpio0ExtAmpCfg,	%REG_BINARY%,	0A,00,00,01	; GPIO0 is an output controlled by TX1 PS-Set
+    HKR,cs420x,Gpio4ExtAmpCfg,	%REG_BINARY%,	01,00,00,01	; GPIO4 is an output controlled by AFG PS-Set (to HS3 DFET)
+    HKR,cs420x,Gpio5ExtAmpCfg,	%REG_BINARY%,	01,00,00,01	; GPIO5 is an output controlled by AFG PS-Set (to HS4 DFET)
+
+So if that's the case, then there may be something to the 0xA setting above... A = b1010
+
+In a zero based system, maybe this corresponds ot ch 1 and ch 3?
+
+Breaking to shift to IO[0]. brb
+
+Same overall state. 
