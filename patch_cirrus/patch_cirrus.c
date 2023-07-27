@@ -842,7 +842,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
 
 	snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
-
+	
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
@@ -860,6 +860,8 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	//codec_info(codec, "Trying to set pins");
 
 	snd_hda_apply_pincfgs(codec, hda_pintbl_mb81_pincfgs_windows);	
+	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+	
 }
 
 static const struct hda_fixup cs4208_fixups[] = {

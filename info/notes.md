@@ -651,3 +651,66 @@ In a zero based system, maybe this corresponds ot ch 1 and ch 3?
 Breaking to shift to IO[0]. brb
 
 Same overall state. 
+
+# New research
+
+HS == Headset?
+
+    HKR,cs420x,n06AllowedInAmpIndex,%REG_BINARY%,	02		; ADC1: only allow SetAmpGain verbs with index=2
+
+    HKR,cs420x,n0AWidgetCaps,	%REG_DWORD%,	0x00042631	; TX1: override widget caps: CCE=1
+    HKR,cs420x,n0ASuppBitsRates,	%REG_DWORD%,	0x000E0040	; TX1: override rate caps: -R6
+
+cs4208_fix_amp_caps works with that firist line above?
+
+    [SettingsAllIdlePowerdown]					; makes the codec always enter D3 when idle
+    HKR,PowerSettings,PerformanceIdleTime, %REG_BINARY%, 2C, 00, 00, 00	; power down after 44 + 16 = 60 sec when on ext. power
+    HKR,PowerSettings,ConservationIdleTime,%REG_BINARY%, 04, 00, 00, 00	; power down after  4 + 16 = 20 sec when on battery
+
+D3 must be idle or off.
+
+    HKR,cs420x,n0AWidgetCaps,	%REG_DWORD%,	0x00042631	; TX1: override widget caps: CCE=1
+
+applies to this:
+
+    Node 0x0a [Audio Output] wcaps 0x46631: 8-Channels Digital Stripe
+        Control: name="IEC958 Playback Con Mask", index=0, device=0
+        Control: name="IEC958 Playback Pro Mask", index=0, device=0
+        Control: name="IEC958 Playback Default", index=0, device=0
+        Control: name="IEC958 Playback Switch", index=0, device=0
+        Control: name="IEC958 Default PCM Playback Switch", index=0, device=0
+        Device: name="CS4208 Digital", type="SPDIF", device=1
+        Converter: stream=0, channel=0
+        Digital: Enabled Non-Copyright
+        Digital category: 0x1
+        IEC Coding Type: 0x0
+        PCM:
+            rates [0x60]: 44100 48000
+            bits [0xe]: 16 20 24
+            formats [0x1]: PCM
+        Power states:  D0 D3 EPSS
+        Power: setting=D3, actual=D3
+        Delay: 4 samples
+
+Take a look at the wcaps values. We need to figure out how to change that.
+
+snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+
+Rebooting. 
+
+Hrm... Wcaps value didn't change... wondering why...
+
+# 2023-07-27-14-15
+
+Moving it to the end of the fixup sequence to see if that makes a difference.
+
+Here we go.
+
+Still no change
+
+# 2023-07-27-14-23
+
+
+
+
+
