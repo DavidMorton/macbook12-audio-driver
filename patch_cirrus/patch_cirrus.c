@@ -322,6 +322,71 @@ static int cs_init(struct hda_codec *codec)
 	return 0;
 }
 
+static int cs_init_mb81(struct hda_codec *codec)
+{
+	struct cs_spec *spec = codec->spec;
+
+	static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
+		{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
+		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
+		{} /* terminator */
+	};
+
+	codec_info(codec, "MB81 Vendor NID: %04x",spec->vendor_nid);
+
+	if (spec->vendor_nid == CS4208_VENDOR_NID) {
+		snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
+	}
+
+	snd_hda_gen_init(codec);
+
+	if (spec->gpio_mask) {
+		snd_hda_codec_write(codec, 0x1, 0, AC_VERB_SET_GPIO_MASK,
+				    spec->gpio_mask);
+		snd_hda_codec_write(codec, 0x1, 0, AC_VERB_SET_GPIO_DIRECTION,
+				    spec->gpio_dir);
+		snd_hda_codec_write(codec, 0x1, 0, AC_VERB_SET_GPIO_DATA,
+				    spec->gpio_data);
+	}
+
+	if (spec->vendor_nid == CS420X_VENDOR_NID) {
+		init_input_coef(codec);
+		init_digital_coef(codec);
+	}
+
+	return 0;
+}
+
 static int cs_build_controls(struct hda_codec *codec)
 {
 	int err;
@@ -339,6 +404,14 @@ static const struct hda_codec_ops cs_patch_ops = {
 	.build_controls = cs_build_controls,
 	.build_pcms = snd_hda_gen_build_pcms,
 	.init = cs_init,
+	.free = cs_free,
+	.unsol_event = snd_hda_jack_unsol_event,
+};
+
+static const struct hda_codec_ops cs_patch_ops_mb81 = {
+	.build_controls = cs_build_controls,
+	.build_pcms = snd_hda_gen_build_pcms,
+	.init = cs_init_mb81, // change this for our model
 	.free = cs_free,
 	.unsol_event = snd_hda_jack_unsol_event,
 };
@@ -772,92 +845,9 @@ static void cs4208_spdif_automute(struct hda_codec *codec,
 	cs_automute(codec);
 }
 
-static void cs4208_fixup_macbook81(struct hda_codec *codec, 
+static void cs4208_fixup_mb81(struct hda_codec *codec, 
 						const struct hda_fixup *fix, int action)
-{
-	// static const struct hda_pintbl hda_pintbl_mb82_pincfgs[] = {
-	// 	{ 0x10, 0x002b4020 },
-	// 	{ 0x11, 0x400000f0 },
-	// 	{ 0x12, 0x400000f0 },
-	// 	{ 0x13, 0x400000f0 },
-	// 	{ 0x14, 0x400000f0 },
-	// 	{ 0x15, 0x400000f0 },
-	// 	{ 0x16, 0x400000f0 },
-	// 	{ 0x17, 0x400000f0 },
-	// 	{ 0x18, 0x00ab9030 },
-	// 	{ 0x19, 0x90a60100 },
-	// 	{ 0x1a, 0x400000f0 },
-	// 	{ 0x1b, 0x400000f0 },
-	// 	{ 0x1c, 0x400000f0 },
-	// 	{ 0x1d, 0x90400010 },
-	// 	{ 0x1e, 0x500000f0 },
-	// 	{ 0x1f, 0x500000f0 },
-	// 	{ 0x20, 0x500000f0 },
-	// 	{ 0x21, 0x400000f0 },
-	// 	{ 0x22, 0x400000f0 },
-	// 	{} /* terminator */
-	// };
-	
-	// static const struct hda_pintbl hda_pintbl_mb81_init[] = {
-	// 	{ 0x10, 0x002b4020},
-	// 	{ 0x11, 0x400000f0},
-	// 	{ 0x12, 0x400000f0},
-	// 	{ 0x13, 0x400000f0},
-	// 	{ 0x14, 0x400000f0},
-	// 	{ 0x15, 0x400000f0},
-	// 	{ 0x16, 0x400000f0},
-	// 	{ 0x17, 0x400000f0},
-	// 	{ 0x18, 0x00ab9030},
-	// 	{ 0x19, 0x90a60100},
-	// 	{ 0x1a, 0x400000f0},
-	// 	{ 0x1b, 0x400000f0},
-	// 	{ 0x1c, 0x400000f0},
-	// 	{ 0x1d, 0x90100110},
-	// 	{ 0x1e, 0x400000f0},
-	// 	{ 0x1f, 0x400000f0},
-	// 	{ 0x20, 0x400000f0},
-	// 	{ 0x21, 0x400000f0},
-	// 	{ 0x22, 0x400000f0},
-	// 	{}
-	// };
-
-	// nid, verb, param
-	static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
-		{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
-		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
-		{} /* terminator */
-	};
-	
+{	
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //0004 stereo
@@ -882,11 +872,9 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	};
 
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
+	codec_info(codec, "subsystem_id, %08x", codec->core.subsystem_id);
 
-	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
 
-	snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
-	
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
@@ -894,23 +882,17 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		spec->gpio_eapd_hp = (1<<0);
 		spec->gpio_eapd_speaker = 0xa;
 		spec->gpio_mask = 0x31;
-		spec->gpio_dir = 0xc0; // Maybe the headphone drives but but the other two sense?
-		
-			//spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
-		// codec_info(codec, "before - gpio data = 0x%08x", spec->gpio_data);
-	    // spec->gpio_data = 0xA;
-		// codec_info(codec, "after  - gpio data = 0x%08x", spec->gpio_data);
+		spec->gpio_dir = 0x31; // Maybe the headphone drives but but the other two sense?
+		spec->gpio_data = 0x30; 
 	}
 
+	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
+
 	codec_info(codec, "codec->addr = %08x", codec->addr);
-	// cs4208_fixup_gpio0(codec, fix, action);
-	
-	//codec_info(codec, "Trying to set pins");
 
 	snd_hda_apply_pincfgs(codec, hda_pintbl_mb81_pincfgs_windows);	
-	codec_info(codec, "wcap 0xa = %x", get_wcaps(codec, 0xa));
+	
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
-	codec_info(codec, "wcap 0xa = %x", get_wcaps(codec, 0xa));
 	
 	cs4208_spdif_automute(codec, NULL);
 }
@@ -944,7 +926,7 @@ static const struct hda_fixup cs4208_fixups[] = {
 	},
 	[CS4208_MB81] = {
 		.type = HDA_FIXUP_FUNC,
-		.v.func = cs4208_fixup_macbook81
+		.v.func = cs4208_fixup_mb81
 	}
 };
 
@@ -964,14 +946,12 @@ static int patch_cs4208(struct hda_codec *codec)
 	struct cs_spec *spec;
 	int err;
 
-	// lets put it here too.
-	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
-
 	spec = cs_alloc_spec(codec, CS4208_VENDOR_NID);
 	if (!spec)
 		return -ENOMEM;
 
-	codec->patch_ops = cs_patch_ops;
+	codec->patch_ops = cs_patch_ops_mb81;
+
 	spec->gen.automute_hook = cs_automute;
 	/* exclude NID 0x10 (HP) from output volumes due to different steps */
 	spec->gen.out_vol_mask = 1ULL << 0x10;

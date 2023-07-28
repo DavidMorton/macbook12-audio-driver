@@ -1095,4 +1095,54 @@ Putting in some of the 421x stuff into the 4208. There's some kind of weird digi
 
 Interestingly, the stream count went to 1, when it's been consistently 0, I think. I have to check into that more.
 
+    Converter: stream=1, channel=0
+
+From the notes about GPIO Direction...
+
+    Control is a bit field representing the configuration of the GPIO signals.  If a bit position is a 0, the 
+    associated GPIO signal is configured as an input.  If the bit is set to a 1, the associated GPIO signal 
+    is configured as an output. 
+
+In one of the other patches, I noticed that the GPIO data in the cs_automute (I think it was in ca0132_alt_select_out_quirk_set) is being set alternately depending on whether the headphones are hooked up or not. I'm curious if that has something to do with the sound maybe going through the headphones, but not through the speakers.
+
+0xA = 0x0010010. Another one of these sets the speaker to 0x8. 
+
+eapd_speaker directs to the GPIO that applies... so, GPIO0 goes to 0x1, and GPIO1 goes to 0x2. 
+
+    GPIO0 = 1
+    GPIO1 = 2
+    GPIO2 = 4
+    GPIO3 = 8
+    GPIO4 = 16
+    GPIO5 = 32
+
+So GPIO4&5 should be going to 48?
+
+Trying this.
+
+# 2023-07-28/17-50
+
+No go, but no big change either. 
+
+I need a proper init function here. 
+
+cs_init passes the cs4208 coef init verbs, but not necessarily the ones that we need.
+
+Beginning to restructure the whole code base to give the card it's own patch info and everything.
+
+Temporarily pointing the patch ops to a custom version of the patch ops in the cs4208.
+
+TODO: Put back if this doesn't work. 
+
+# 2023-07-28/18-24
+
+No change. This has only managed to disable the GPIO pins. Going to see why...
+
+Fixing one small thing about the GPIO pins and restarting.
+
+# 2023-07-28/18-37
+
+Okay. GPIO fixed. Now, what's going on with that 0x0A in the INF file for the GPIO setting... I really feel like that's sorta important.
+
+Headphones don't switch over now.
 
