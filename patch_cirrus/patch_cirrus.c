@@ -348,12 +348,15 @@ static int cs_parse_auto_config(struct hda_codec *codec)
 	struct cs_spec *spec = codec->spec;
 	int err;
 	int i;
-	struct auto_pin_cfg cfg = spec->gen.autocfg;
+
+	struct auto_pin_cfg *cfg = &spec->gen.autocfg;
 	
 	codec_info(codec, "prepre   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
-		cfg.speaker_outs, cfg.speaker_pins[0],
-		cfg.speaker_pins[1], cfg.speaker_pins[2],
-		cfg.speaker_pins[3], cfg.speaker_pins[4]);
+		cfg->speaker_outs, cfg->speaker_pins[0],
+		cfg->speaker_pins[1], cfg->speaker_pins[2],
+		cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
+	cfg->speaker_pins[0] = 0x12;
 
 	err = snd_hda_parse_pin_defcfg(codec, &spec->gen.autocfg, NULL, 0);
 	if (err < 0)

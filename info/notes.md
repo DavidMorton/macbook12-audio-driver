@@ -982,3 +982,20 @@ Analysing the speaker_pin configs first before the call into the hda_auto_parser
 # 2023-07-28-09-51
 
 As suspected, speaker pins are set to 0 here. Is this a spec from the mfr?
+
+Trying to manually set it...
+
+# 2023-07-28-10-00
+
+    [    5.186894] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.186899] snd_hda_codec_cirrus hdaudioC0D0: Running the HDA_PINCFG_NO_LO_FIXUP
+    [    5.186901] snd_hda_codec_cirrus hdaudioC0D0: Found some speaker outs
+    [    5.186903] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x12/0x0/0x0/0x0/0x0) type:speaker
+    [    5.186908] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    5.186912] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.186915] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.186918] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.186920] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Headphones working, but still no change... I might not be setting it right...
+
