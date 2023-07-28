@@ -348,9 +348,8 @@ static int cs_parse_auto_config(struct hda_codec *codec)
 	struct cs_spec *spec = codec->spec;
 	int err;
 	int i;
-	unsigned int cond_flags = HDA_PINCFG_NO_LO_FIXUP;
 
-	err = snd_hda_parse_pin_defcfg(codec, &spec->gen.autocfg, NULL, cond_flags);
+	err = snd_hda_parse_pin_defcfg(codec, &spec->gen.autocfg, NULL, 0);
 	if (err < 0)
 		return err;
 

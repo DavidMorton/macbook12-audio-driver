@@ -953,3 +953,12 @@ Headphones don't work anymore. So it seems that the dig-out and the line_outs ar
 
 So I thought that it was going to set the line_outs to 2 things, and the speaker_outs and hp_outs to nothing, but it looks like, instead, it eliminated all of them...
 
+Putting this back. The line-out seems to be just line out, and not for speakers at all.
+
+Now I'm wondering how I can get the speaker_outs value working with the line outs as well....
+
+Rebooting for a clean alsa-info.
+
+# 2023-07-28-09-35
+
+Back to where we were before.
