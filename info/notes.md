@@ -828,5 +828,32 @@ Still no speaker sound, but a few things are different. In settings, we now have
 
 We still have no speaker_outs. I'm curious why. The AC JACK SPEAKER section is being called in the code. 
 
+Adding some logging and rebooting.
+
+# 2023-07-28-08-30
+
+Obviously still no sound, but let's see what's changed.
+
+We have this in the log now...
+
+    [    5.364555] snd_hda_codec_cirrus hdaudioC0D0: SPEAKER pin: 12, seq: 10
+
+More logs.
+
+# 2023-07-28-08-35
+
+    [    5.150754] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.150762] snd_hda_codec_cirrus hdaudioC0D0: Running the HDA_PINCFG_NO_LO_FIXUP
+    [    5.150765] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x12/0x0/0x0/0x0/0x0) type:speaker
+    [    5.150770] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+
+Something is shutting down the speaker_outs in the HDA_PINCFG_NO_LO_FIXUP
+
+Notable that the line_outs has changed to 0x12. 
+
+Wondering if the speaker is really maybe 0x11 instead of 0x12. Changing to that.
+
+
+
 
 

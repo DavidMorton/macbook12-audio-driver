@@ -278,6 +278,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			}
 			speaker_out[cfg->speaker_outs].pin = nid;
 			speaker_out[cfg->speaker_outs].seq = (assoc << 4) | seq;
+			codec_info(codec, "SPEAKER pin: %02x, seq: %02x", speaker_out[cfg->speaker_outs].pin, speaker_out[cfg->speaker_outs].seq);
 			cfg->speaker_outs++;
 			break;
 		case AC_JACK_HP_OUT:
@@ -333,6 +334,11 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 		}
 	}
 
+	codec_info(codec, "pre   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
+			cfg->speaker_outs, cfg->speaker_pins[0],
+			cfg->speaker_pins[1], cfg->speaker_pins[2],
+			cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
 	/* Find a pin that could be a headset or headphone mic */
 	if (cond_flags & HDA_PINCFG_HEADSET_MIC || cond_flags & HDA_PINCFG_HEADPHONE_MIC)
 	{
@@ -380,6 +386,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	if (!cfg->line_outs && cfg->hp_outs > 1 &&
 		!(cond_flags & HDA_PINCFG_NO_HP_FIXUP))
 	{
+		codec_info(codec, "HDA_PINCFG_NO_HP_FIXUP");
 		i = 0;
 		while (i < cfg->hp_outs)
 		{
@@ -414,8 +421,10 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 	if (!cfg->line_outs &&
 		!(cond_flags & HDA_PINCFG_NO_LO_FIXUP))
 	{
+		codec_info(codec, "Running the HDA_PINCFG_NO_LO_FIXUP");
 		if (cfg->speaker_outs)
 		{
+			codec_info(codec, "Found some speaker outs");
 			cfg->line_outs = cfg->speaker_outs;
 			memcpy(cfg->line_out_pins, cfg->speaker_pins,
 				   sizeof(cfg->speaker_pins));
@@ -425,6 +434,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 		}
 		else if (cfg->hp_outs)
 		{
+			codec_info(codec, "Found some hp outs");
 			cfg->line_outs = cfg->hp_outs;
 			memcpy(cfg->line_out_pins, cfg->hp_pins,
 				   sizeof(cfg->hp_pins));
