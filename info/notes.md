@@ -999,3 +999,21 @@ Trying to manually set it...
 
 Headphones working, but still no change... I might not be setting it right...
 
+A bit of logging to figure out what's going on.
+
+# 2023-07-28-10-06
+
+    [    5.515618] snd_hda_codec_cirrus hdaudioC0D0: AC JACK SPEAKER
+    [    5.515620] snd_hda_codec_cirrus hdaudioC0D0: 1 SPEAKER pin: 00, seq: 00
+    [    5.515623] snd_hda_codec_cirrus hdaudioC0D0: 2 SPEAKER pin: 12, seq: 10
+
+Speaker pin is being set here in AC JACK SPEAKER
+
+# 2023-07-28-10-10
+
+Speaker pins is moved to 1, but then the actual pin goes missing...
+
+This is likely because of the no pin config...
+
+What happens when we put that back...
+
