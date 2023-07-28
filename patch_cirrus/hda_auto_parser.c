@@ -279,9 +279,10 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 				codec_info(codec, "ignore pin 0x%x, digital wcaps\n", nid);
 				continue;
 			}
+			codec_info(codec, "1 SPEAKER pin: %02x, seq: %02x", speaker_out[cfg->speaker_outs].pin, speaker_out[cfg->speaker_outs].seq);
 			speaker_out[cfg->speaker_outs].pin = nid;
 			speaker_out[cfg->speaker_outs].seq = (assoc << 4) | seq;
-			codec_info(codec, "SPEAKER pin: %02x, seq: %02x", speaker_out[cfg->speaker_outs].pin, speaker_out[cfg->speaker_outs].seq);
+			codec_info(codec, "2 SPEAKER pin: %02x, seq: %02x", speaker_out[cfg->speaker_outs].pin, speaker_out[cfg->speaker_outs].seq);
 			cfg->speaker_outs++;
 			break;
 		case AC_JACK_HP_OUT:
@@ -341,6 +342,7 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			cfg->speaker_outs, cfg->speaker_pins[0],
 			cfg->speaker_pins[1], cfg->speaker_pins[2],
 			cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
 
 	/* Find a pin that could be a headset or headphone mic */
 	if (cond_flags & HDA_PINCFG_HEADSET_MIC || cond_flags & HDA_PINCFG_HEADPHONE_MIC)

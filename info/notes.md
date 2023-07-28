@@ -962,3 +962,23 @@ Rebooting for a clean alsa-info.
 # 2023-07-28-09-35
 
 Back to where we were before.
+
+    [    7.079498] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    7.079501] snd_hda_codec_cirrus hdaudioC0D0: Running the HDA_PINCFG_NO_LO_FIXUP
+    [    7.079503] snd_hda_codec_cirrus hdaudioC0D0: Found some speaker outs
+    [    7.079505] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x12/0x0/0x0/0x0/0x0) type:speaker
+    [    7.079508] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    7.079510] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    7.079513] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    7.079514] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    7.079516] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Interesting that speaker_outs is showing 1 before the NO_LO_FIXUP, but then is showing 0 after, but the values for the pins are still 0x0.
+
+    &spec->gen.autocfg from cs_parse_autoconfig in patch_cirrus.c. This is from codec->spec. Which maybe has no speaker pins...
+
+Analysing the speaker_pin configs first before the call into the hda_auto_parser.c method.
+
+# 2023-07-28-09-51
+
+As suspected, speaker pins are set to 0 here. Is this a spec from the mfr?
