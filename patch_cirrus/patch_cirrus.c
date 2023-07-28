@@ -820,7 +820,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //0004 stereo
-		{ 0x12, 0x500000f0 },  //0008 stereo  			   
+		{ 0x12, 0x90100010 },  //0008 stereo  			   
 		{ 0x13, 0x500000f0 },  //0012 stereo
 		{ 0x14, 0x500000f0 },  //0016 stereo
 		{ 0x15, 0x770000f0 },  //0020 stereo Amp-In
@@ -850,7 +850,6 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
-		codec->
 		spec->gpio_eapd_hp = (1<<0);
 		spec->gpio_eapd_speaker = ((1<<4)|(1<<5));
 		spec->gpio_mask = spec->gpio_dir =

@@ -785,5 +785,48 @@ It fetches from cfg->speaker_pins
 
 Working in line 428 of hda_auto_parser trying to decide what's happening. Stopping for the moment.
 
+# 2023-07-28-08-08
+
+The case statement on line 262 of hda_auto_parser.c has the AC_JACK_SPEAKER enum check... Again, it's pulling from cfg->speaker_pins.
+
+This case statement is never called... why?
+
+dev should be set to AC_JACK_SPEAKER
+
+    213 dev = get_defcfg_device(def_conf);
+
+hda_local.c 370
+
+    #define get_defcfg_device(cfg) \
+	    ((cfg & AC_DEFCFG_DEVICE) >> AC_DEFCFG_DEVICE_SHIFT)  # 
+    
+hda_verbs.h 452
+
+    #define AC_DEFCFG_DEVICE		(0xf<<20) # f00000
+    #define AC_DEFCFG_DEVICE_SHIFT		20
+
+Basically pulls the third bit in the defcfg value.
+
+    0x01 = 0x2
+    0x18 = 0xa
+    0x19 = 0xa
+    0x1d = 0x4
+
+All others are 0.
+
+Let's pop in another speaker into 0x12 and see what happens, leaving the digital one in place.
+
+# 2023-07-28-08-22
+
+Still no speaker sound, but a few things are different. In settings, we now have a speaker as well as an S/PDIF output. This is a change from the previous setup.
+
+    [    4.726786] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    4.726789] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    4.726793] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    4.726795] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    4.726798] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+We still have no speaker_outs. I'm curious why. The AC JACK SPEAKER section is being called in the code. 
+
 
 
