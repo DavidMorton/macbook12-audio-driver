@@ -881,3 +881,44 @@ Headphones are no longer working as of now. It seems that the line_outs has to c
 Line outs are still set to 0x11. Gonna see what happens when we remove the headphone jack and force the speaker, although I can't imagine that that would be that different. There apparently can only be one line_out... Gonna try the last configuration again. I might have gotten a false positive. The volume control beep wasn't working, but the test was. 
 
 
+# 2023-07-28-08-52
+
+    [    5.865393] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.865398] snd_hda_codec_cirrus hdaudioC0D0: Running the HDA_PINCFG_NO_LO_FIXUP
+    [    5.865399] snd_hda_codec_cirrus hdaudioC0D0: Found some speaker outs
+    [    5.865401] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x12/0x0/0x0/0x0/0x0) type:speaker
+    [    5.865406] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    5.865409] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.865412] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.865414] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.865416] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+The speaker still doesn't work, but the line out does work. Wondering if I need to reset the sequence here?
+
+	if (!cfg->line_outs &&
+		!(cond_flags & HDA_PINCFG_NO_LO_FIXUP))
+	{
+		codec_info(codec, "Running the HDA_PINCFG_NO_LO_FIXUP");
+
+So what is cond_flags?
+
+It's being passed in directly...
+
+    int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
+							 struct auto_pin_cfg *cfg,
+							 const hda_nid_t *ignore_nids,
+							 unsigned int cond_flags)
+
+But it's modified here... in hda_auto_parser.c
+
+	if (!snd_hda_get_int_hint(codec, "parser_flags", &i))
+		cond_flags = i;
+
+I'm wondering what that method is doing, and if that's our culprit. Rebooting again.
+
+# 2023-07-28-09-07
+
+No dice. There's nothing happening there.
+
+Directly outputting the cond flags. Trying again.
+
