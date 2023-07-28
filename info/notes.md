@@ -1146,3 +1146,12 @@ Okay. GPIO fixed. Now, what's going on with that 0x0A in the INF file for the GP
 
 Headphones don't switch over now.
 
+We weren't running the init_input_coef and init_digital_coef anymore.
+
+Something is really broken now.... 
+
+Taking data out of 0x30... Putting it on 0x31.
+
+# 2023-07-28-18-50
+
+Changing back to the old init to see what that does.

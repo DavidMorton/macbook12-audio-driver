@@ -371,6 +371,8 @@ static int cs_init_mb81(struct hda_codec *codec)
 	snd_hda_gen_init(codec);
 
 	if (spec->gpio_mask) {
+		codec_info(codec, "Writing GPIO Data");
+		codec_info(codec, "GPIO Data = 0x%08x", spec->gpio_data);
 		snd_hda_codec_write(codec, 0x1, 0, AC_VERB_SET_GPIO_MASK,
 				    spec->gpio_mask);
 		snd_hda_codec_write(codec, 0x1, 0, AC_VERB_SET_GPIO_DIRECTION,
@@ -379,7 +381,7 @@ static int cs_init_mb81(struct hda_codec *codec)
 				    spec->gpio_data);
 	}
 
-	if (spec->vendor_nid == CS420X_VENDOR_NID) {
+	if (spec->vendor_nid == CS4208_VENDOR_NID) {
 		init_input_coef(codec);
 		init_digital_coef(codec);
 	}
@@ -883,7 +885,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		spec->gpio_eapd_speaker = 0xa;
 		spec->gpio_mask = 0x31;
 		spec->gpio_dir = 0x31; // Maybe the headphone drives but but the other two sense?
-		spec->gpio_data = 0x30; 
+		spec->gpio_data = 0x31; 
 	}
 
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
@@ -950,7 +952,7 @@ static int patch_cs4208(struct hda_codec *codec)
 	if (!spec)
 		return -ENOMEM;
 
-	codec->patch_ops = cs_patch_ops_mb81;
+	codec->patch_ops = cs_patch_ops;
 
 	spec->gen.automute_hook = cs_automute;
 	/* exclude NID 0x10 (HP) from output volumes due to different steps */
