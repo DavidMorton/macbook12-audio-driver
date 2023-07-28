@@ -1017,3 +1017,18 @@ This is likely because of the no pin config...
 
 What happens when we put that back...
 
+# 2023-07-28-10-17
+
+    [    5.759979] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.759984] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=0 (0x0/0x0/0x0/0x0/0x0) type:line
+    [    5.759989] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=1 (0x12/0x0/0x0/0x0/0x0)
+    [    5.759993] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.759997] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.760000] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.760002] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Speaker is now settled in speaker_outs, but again, the line_outs is empty. Output devices are missing again.
+
+No HP sound or device.
+No Speaker sound or device.
+
