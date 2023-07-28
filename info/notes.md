@@ -853,7 +853,31 @@ Notable that the line_outs has changed to 0x12.
 
 Wondering if the speaker is really maybe 0x11 instead of 0x12. Changing to that.
 
+# 2023-07-28-08-41
 
+    [    5.206913] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.206918] snd_hda_codec_cirrus hdaudioC0D0: Running the HDA_PINCFG_NO_LO_FIXUP
+    [    5.206920] snd_hda_codec_cirrus hdaudioC0D0: Found some speaker outs
+    [    5.206922] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x11/0x0/0x0/0x0/0x0) type:speaker
+    [    5.206928] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    5.206933] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.206937] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.206940] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.206943] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
 
+So now I know how to get the line_outs set to what I want, but it's weird. 
+
+Headphones are no longer working as of now. It seems that the line_outs has to contain the headphones. What we want is line_outs set to 0x10 and whatever the speaker is, with the speaker_outs also set to the speaker, but that seems to be getting slaughtered somewhere.
+
+# 2023-07-28-08-47
+
+    [    4.170639] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x10/0x0/0x0/0x0/0x0) type:hp
+    [    4.170643] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    4.170646] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    4.170649] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    4.170651] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    4.170654] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Line outs are still set to 0x11. Gonna see what happens when we remove the headphone jack and force the speaker, although I can't imagine that that would be that different. There apparently can only be one line_out... Gonna try the last configuration again. I might have gotten a false positive. The volume control beep wasn't working, but the test was. 
 
 
