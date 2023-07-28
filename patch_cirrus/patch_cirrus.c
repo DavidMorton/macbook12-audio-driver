@@ -333,7 +333,7 @@ static int cs_build_controls(struct hda_codec *codec)
 	return 0;
 }
 
-#define cs_free		snd_hda_gen_free
+#define cs_free	snd_hda_gen_free
 
 static const struct hda_codec_ops cs_patch_ops = {
 	.build_controls = cs_build_controls,
@@ -800,7 +800,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	// nid, verb, param
 	static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
 		{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
-		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */
+		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
 		
 		{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
 		{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
@@ -837,7 +837,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //0004 stereo
-		{ 0x12, 0x90100010 },  //0008 stereo  			   
+		{ 0x12, 0x500000f0 },  //0008 stereo  			   
 		{ 0x13, 0x500000f0 },  //0012 stereo
 		{ 0x14, 0x500000f0 },  //0016 stereo
 		{ 0x15, 0x770000f0 },  //0020 stereo Amp-In
@@ -868,12 +868,14 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
 		spec->gpio_eapd_hp = (1<<0);
-		spec->gpio_eapd_speaker = ((1<<4)|(1<<5));
-		spec->gpio_mask = spec->gpio_dir =
-			spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
-		codec_info(codec, "before - gpio data = 0x%08x", spec->gpio_data);
-	    spec->gpio_data = 0xA;
-		codec_info(codec, "after  - gpio data = 0x%08x", spec->gpio_data);
+		spec->gpio_eapd_speaker = 0xa;
+		spec->gpio_mask = 0x31;
+		spec->gpio_dir = 0xc0; // Maybe the headphone drives but but the other two sense?
+		
+			//spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
+		// codec_info(codec, "before - gpio data = 0x%08x", spec->gpio_data);
+	    // spec->gpio_data = 0xA;
+		// codec_info(codec, "after  - gpio data = 0x%08x", spec->gpio_data);
 	}
 
 	codec_info(codec, "codec->addr = %08x", codec->addr);

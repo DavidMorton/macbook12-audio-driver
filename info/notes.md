@@ -1049,3 +1049,38 @@ HP sound & device
 Input works
 Speaker device, but no sound.
 
+Swapping the last bit of the speaker from 1 to f. Curious what will happen.
+
+# 2023-07-28-12-31
+
+Headphones work just fine.
+
+No speaker working.
+
+Literally nothing else changed.
+
+Moving from 0x12 to 0x11 for output.
+
+Stumped. Same issue again. 
+
+What is TX1 and AFG?
+
+AFG is Audio Function Group
+
+There's a pin config # verbs setting in the INF file that corresponds to the number of verbs listed, which is 76. 
+
+We pass the verbs into snd_hda_sequence_write (both in hda_codec.c), which in turn passes it to snd_hda_codec_write (hda_codec.h), which copies core and sends to snd_hdac_codec_write (hdac_device.c) which passes to codec_write (hdac_device.c) which gets cmd from snd_hdac_make_cmd (hdac_device.c) and passes it into snd_hdac_exec_verb (hdac_device.c), and then if codec->exec_verb exists, it calls that, otherwise it calls snd_hdac_bus_exec_verb (hdac_bus.c) which calls snd_hdac_bus_exec_verb_unlocked (hdac_bus.c) and returns from there (after applying a mutex).
+
+So, these terms are sent sequentially to the end. It's curious that we would do that, because these seem to be generally overrides. I'm wondering if this should be applied, and then the whole thing sent across. 
+
+Randomly changing to group 3 for pin 0x12. Why not. didn't seem to make a difference anyways. 
+
+Trying to set gpio data to sense only the headphones, but not the speakers...
+
+# 2027-07-28-14-07
+
+Headphones still work. What happens when I swap these around....
+
+setting gpio_dir to 0x30, which should be 110000.
+
+
