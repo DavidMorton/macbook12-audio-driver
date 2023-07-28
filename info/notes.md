@@ -1032,3 +1032,20 @@ Speaker is now settled in speaker_outs, but again, the line_outs is empty. Outpu
 No HP sound or device.
 No Speaker sound or device.
 
+# 2023-07-28-10-21
+
+Okay, still nothing, but I should probably try the different speaker outs. 
+
+    [    5.286411] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x12/0x0/0x0/0x0/0x0) type:speaker
+    [    5.286416] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    5.286419] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.286423] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.286425] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.286427] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Speaker still doesn't work, but maybe the wrong pin?  We'll play with it later.
+
+HP sound & device
+Input works
+Speaker device, but no sound.
+
