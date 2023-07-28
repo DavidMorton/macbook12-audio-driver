@@ -922,3 +922,34 @@ No dice. There's nothing happening there.
 
 Directly outputting the cond flags. Trying again.
 
+# 2023-07-28-09-11
+
+    [    5.442601] snd_hda_codec_cirrus hdaudioC0D0: cond_flags: 00000000
+
+OMG. I'm too close to this right now. Good thing we're going to lunch downtown later to get my mind off of it. That's a statement to NOT do the pin fixup. Let's pass that value in. 
+
+# 2023-07-28-09-16
+
+    [    4.645973] snd_hda_codec_cirrus hdaudioC0D0: Entering the parse auto-config for 4208....
+    [    4.645976] snd_hda_codec_cirrus hdaudioC0D0: cond_flags: 00000000
+
+Something didn't work right here...
+
+Had it in the wrong place. Moved and rebooting.
+
+# 2023-07-28-09-22
+
+    [    5.495046] snd_hda_codec_cirrus hdaudioC0D0: pre   speaker_outs=1 (0x0/0x0/0x0/0x0/0x0)
+    [    5.495051] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=0 (0x0/0x0/0x0/0x0/0x0) type:line
+    [    5.495056] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=1 (0x12/0x0/0x0/0x0/0x0)
+    [    5.495059] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=1 (0x10/0x0/0x0/0x0/0x0)
+    [    5.495063] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    5.495065] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    5.495068] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+line_outs is zero, and speaker_outs is 1, and hp_outs = 1.
+
+Headphones don't work anymore. So it seems that the dig-out and the line_outs are the only thing that works here...
+
+So I thought that it was going to set the line_outs to 2 things, and the speaker_outs and hp_outs to nothing, but it looks like, instead, it eliminated all of them...
+
