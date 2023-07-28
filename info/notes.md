@@ -1083,4 +1083,16 @@ Headphones still work. What happens when I swap these around....
 
 setting gpio_dir to 0x30, which should be 110000.
 
+# 2023-07-28/14-14
+
+S/PDIF audio is still the only thing. Headphones work. Mic works. No speakers.
+
+# 2023-07-28/14-14
+
+No change, no sound.
+
+Putting in some of the 421x stuff into the 4208. There's some kind of weird digital muting happening here.
+
+Interestingly, the stream count went to 1, when it's been consistently 0, I think. I have to check into that more.
+
 

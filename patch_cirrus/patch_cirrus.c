@@ -748,6 +748,30 @@ static void cs4208_fixup_spdif_switch(struct hda_codec *codec,
 	}
 }
 
+
+static void cs4208_spdif_automute(struct hda_codec *codec,
+				  struct hda_jack_callback *tbl)
+{
+	struct cs_spec *spec = codec->spec;
+	bool spdif_present = false;
+	hda_nid_t spdif_pin = spec->gen.autocfg.dig_out_pins[0];
+
+	/* detect on spdif is specific to CS4210 */
+	if (!spec->spdif_detect ||
+	    spec->vendor_nid != CS4208_VENDOR_NID)
+		return;
+
+	spdif_present = snd_hda_jack_detect(codec, spdif_pin);
+	if (spdif_present == spec->spdif_present)
+		return;
+
+	spec->spdif_present = spdif_present;
+	/* SPDIF TX on/off */
+	snd_hda_set_pin_ctl(codec, spdif_pin, spdif_present ? PIN_OUT : 0);
+
+	cs_automute(codec);
+}
+
 static void cs4208_fixup_macbook81(struct hda_codec *codec, 
 						const struct hda_fixup *fix, int action)
 {
@@ -888,6 +912,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
 	codec_info(codec, "wcap 0xa = %x", get_wcaps(codec, 0xa));
 	
+	cs4208_spdif_automute(codec, NULL);
 }
 
 static const struct hda_fixup cs4208_fixups[] = {
