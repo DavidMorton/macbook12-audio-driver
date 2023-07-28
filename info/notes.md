@@ -756,7 +756,34 @@ Bad. Putting it back.
 
 It's put back. 
 
+After an aplay once or twice, it seems to fail. 
 
+snd_hda_parse_pin_defcfg in hda_auto_parser.c seems to be where the output from alsa is getting it's speaker config data from. I'm going to try to solve that speaker output missing thing.
+
+    [    7.310553] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x10/0x0/0x0/0x0/0x0) type:hp
+    [    7.310556] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    7.310558] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    7.310559] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    7.310561] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    7.310562] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+I have a feeling that this should contain line outs to 1d and speaker outs to 1d as well. The question is: nodes or pins...
+
+0x10 is the hp out for sure.
+
+Shot in the dark: gonna try moving the speaker back to 0x12 again and see what that does. I'll make it analog. 
+
+# 2023-07-28-06-53
+
+Still no audio from the speakers.
+
+Interestingly, this changed the output from genlevel to non-copyright. Speaker outs and line_outs is still the same. Putting this back.
+
+Looking again at snd_hda_parse_pin_defcfg to see the logic on how it figures out the speaker pin.
+
+It fetches from cfg->speaker_pins
+
+Working in line 428 of hda_auto_parser trying to decide what's happening. Stopping for the moment.
 
 
 

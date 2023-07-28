@@ -232,42 +232,6 @@ static const struct hda_verb cs4208_coef_init_verbs[] = {
 	{} /* terminator */
 };
 
-static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
-	{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
-	{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */
-	
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
-	
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
-	
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
-
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
-	{} /* terminator */
-};
-
 /* Errata: CS4207 rev C0/C1/C2 Silicon
  *
  * http://www.cirrus.com/en/pubs/errata/ER880C3.pdf
@@ -816,6 +780,43 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 	// 	{}
 	// };
 
+	// nid, verb, param
+	static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
+		{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
+		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
+		
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
+
+		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+		{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
+		{} /* terminator */
+	};
+	
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x500000f0 },  //0004 stereo
@@ -849,6 +850,7 @@ static void cs4208_fixup_macbook81(struct hda_codec *codec,
 		struct cs_spec *spec = codec->spec;
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
+		codec->
 		spec->gpio_eapd_hp = (1<<0);
 		spec->gpio_eapd_speaker = ((1<<4)|(1<<5));
 		spec->gpio_mask = spec->gpio_dir =
