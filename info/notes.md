@@ -1158,5 +1158,7 @@ Changing back to the old init to see what that does.
 
 Headphones are back... Now why...
 
+# 2023-07-28/19-03
+
 Keeping the original method, but switching in the mb81 verbs instead...
 
