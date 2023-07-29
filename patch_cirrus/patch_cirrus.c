@@ -923,7 +923,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
 		spec->gpio_eapd_hp = (1 << 0);
-		spec->gpio_eapd_speaker = 0xa; // b110000
+		spec->gpio_eapd_speaker = (1 << 4); // b110000
 		spec->gpio_mask = 0x31;
 		spec->gpio_dir = 0x31; // Maybe the headphone drives but but the other two sense?
 		spec->gpio_data = 0x31;
