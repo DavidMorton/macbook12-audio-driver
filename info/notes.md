@@ -1253,3 +1253,7 @@ The goal is is to be able to get line-out set to 0x10 and speaker out to 0x11, 0
 
 Manually setting speaker outs. 
 
+## 07-15
+
+Setting the line_outs manually. 
+
