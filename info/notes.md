@@ -1224,3 +1224,7 @@ Enabling headphone detection.
 # 2023-07-28/21-19
 
 Turning on automute speaker.
+
+# 2023-07-28/21-24
+
+The automute hook is working. Tomorrow to turn on the actual speakers. 
