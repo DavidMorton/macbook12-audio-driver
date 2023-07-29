@@ -1332,3 +1332,6 @@ Headphones still clicking but no sound.
 
 No longer directly setting things... let's try again.
 
+## 09-59
+
+Argh. Lost headphones!
