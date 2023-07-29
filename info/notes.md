@@ -1221,3 +1221,6 @@ This is why automuting isn't getting set.
 
 Enabling headphone detection.
 
+# 2023-07-28/21-19
+
+Turning on automute speaker.
