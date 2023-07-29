@@ -1244,3 +1244,12 @@ Setting gen->spdif_detect to 1.
 No spdif present.
 
 What if I set all four speakers directly to the pin?
+
+## 07-01
+
+Speakers don't work. The side jack must be a line out. Still struggling with how to get the speakers_out set properly. 
+
+The goal is is to be able to get line-out set to 0x10 and speaker out to 0x11, 0x12, 0x13x, 0x14. 
+
+Manually setting speaker outs. 
+
