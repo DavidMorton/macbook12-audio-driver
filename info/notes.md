@@ -1277,3 +1277,8 @@ Hrm. Now the speaker outs is set to 4, but there are none listed!
 
 Lets change some pin sequences and see how that impacts things.
 
+## 07-57 
+
+Of course. memset resets the whole memory of an object. I think maybe I should skip this whole section and hardcode it?
+
+We'll do that later.
