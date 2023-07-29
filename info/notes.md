@@ -1377,3 +1377,7 @@ Maybe Leif was right, and the speaker is 0x12, and 0x11 is some kind of attachme
 
 Lets move around the speaker to 0x12 and see if muting that still mutes the headphones.
 
+## 10-23
+
+The speaker is moved to 0x12. The behavior is fixed. Muting the speaker no longer mutes the headphones, but we still don't have speaker sound, although we have headphone sound. 
+
