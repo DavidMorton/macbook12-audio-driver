@@ -1209,3 +1209,15 @@ So the automute hook is hooked, but not being called. What triggers it I wonder.
 call_update_outputs from hda_generic.
 
 More logs.
+
+# 2023-07-28/21-15
+
+    [    4.940991] snd_hda_codec_cirrus hdaudioC0D0: The automute hook is hooked in.
+    [    4.940993] snd_hda_codec_cirrus hdaudioC0D0: automute_speaker: 00000000, detect_hp: 00000000, automute_lo: 00000000
+
+They're all set to zeros.
+
+This is why automuting isn't getting set.
+
+Enabling headphone detection.
+
