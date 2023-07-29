@@ -1239,3 +1239,8 @@ No SPDIF detected not continuing.
 
 Setting gen->spdif_detect to 1.
 
+## 06-52
+
+No spdif present.
+
+What if I set all four speakers directly to the pin?
