@@ -1282,3 +1282,28 @@ Lets change some pin sequences and see how that impacts things.
 Of course. memset resets the whole memory of an object. I think maybe I should skip this whole section and hardcode it?
 
 We'll do that later.
+
+Setting some bit flags to try to force the line out.
+
+## 09-24
+
+    [    4.290890] snd_hda_codec_cirrus hdaudioC0D0: autoconfig for CS4208: line_outs=1 (0x10/0x0/0x0/0x0/0x0) type:line
+    [    4.290895] snd_hda_codec_cirrus hdaudioC0D0:    speaker_outs=4 (0x11/0x13/0x12/0x14/0x0)
+    [    4.290899] snd_hda_codec_cirrus hdaudioC0D0:    hp_outs=0 (0x0/0x0/0x0/0x0/0x0)
+    [    4.290903] snd_hda_codec_cirrus hdaudioC0D0:    mono: mono_out=0x0
+    [    4.290905] snd_hda_codec_cirrus hdaudioC0D0:    dig-out=0x1d/0x0
+    [    4.290908] snd_hda_codec_cirrus hdaudioC0D0:    inputs:
+
+Got the speaker outs pinned now, and the line out is proper. Setting the pin to specifically be the line out seems to have done the trick. Speaker still doesn't play anything though.
+
+We have *several* speakers listed in Alsamixer now.
+
+Even so, power setting is still at D3, when it should be D0.
+
+What's interesting is that only 0x10 and 0x11 have the Unsolicited flag. TODO: figure out what this unsolicited thing does.
+
+How can I power on the speakers?
+
+Turning off gen.automute_speakers will force data to go through all GPIO settings. I should see a 0x31 setting in the data, with 0, 4, and 5 all turned on. 
+
+Trying that.
