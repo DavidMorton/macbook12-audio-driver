@@ -1257,3 +1257,8 @@ Manually setting speaker outs.
 
 Setting the line_outs manually. 
 
+## 07-19
+
+Headphones don't work anymore. 
+
+Did something wrong. Fixing.
