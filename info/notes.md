@@ -1271,3 +1271,9 @@ HDA_PINCFG_NO_LO_FIXUP is still being run, it shouldn't be.
 
 Setting the speaker pins and line out pins, but not the speaker_outs and line_outs, because that seems to be set later. 
 
+## 07-37
+
+Hrm. Now the speaker outs is set to 4, but there are none listed!
+
+Lets change some pin sequences and see how that impacts things.
+
