@@ -1320,3 +1320,8 @@ We should probably not even be playing with the LO at all. The headphones don't 
 
 Setting the bit from 0 to 2 to turn 0x10 back into a headphone. Seeing if this turns the headphones back on again.
 
+## 09-47
+
+Headphones not on again. But there's clicking. 
+
+Turning back on gen automute speakers...

@@ -980,7 +980,7 @@ static int patch_cs4208(struct hda_codec *codec)
 
 	codec->patch_ops = cs_patch_ops;
 	spec->gen.detect_hp = 0x1;
-	spec->gen.automute_speaker = 0x0;
+	spec->gen.automute_speaker = 0x1;
 	spec->gen.automute_hook = cs_automute;
 	/* exclude NID 0x10 (HP) from output volumes due to different steps */
 	spec->gen.out_vol_mask = 1ULL << 0x10;
