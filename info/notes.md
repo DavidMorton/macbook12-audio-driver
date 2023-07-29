@@ -1189,3 +1189,9 @@ Might just be a power setting. 0x11-0x14 are simply shut down. There's no power 
 Power setting on 0xa is also off unless it's feeding the headphone jack.
 
 Logging some automute behavior.
+
+# 2023-07-28/20-46
+
+Typo in codec_info so maybe that was a problem? Likely not, but still weird.
+
+There were compile errors. Trying again.

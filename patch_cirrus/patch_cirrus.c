@@ -156,8 +156,9 @@ static inline void cs_vendor_coef_set(struct hda_codec *codec, unsigned int idx,
 
 static void cs_automute(struct hda_codec *codec)
 {
-	codec_info(codec, "Automuting");
 	struct cs_spec *spec = codec->spec;
+
+	codec_info(codec, "Automuting");
 
 	/* mute HPs if spdif jack (SENSE_B) is present */
 	spec->gen.master_mute = !!(spec->spdif_present && spec->sense_b);
@@ -166,12 +167,12 @@ static void cs_automute(struct hda_codec *codec)
 
 	if (spec->gpio_eapd_hp || spec->gpio_eapd_speaker) {
 		if (spec->gen.automute_speaker) {
-			codec_info("Automute speaker is turned on");
+			codec_info(codec, "Automute speaker is turned on");
 			spec->gpio_data = spec->gen.hp_jack_present ?
 				spec->gpio_eapd_hp : spec->gpio_eapd_speaker;
 		}
 		else {
-			codec_ifo("Automute speaker is turned off.");
+			codec_info(codec, "Automute speaker is turned off.");
 			spec->gpio_data =
 				spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
 		}
@@ -883,7 +884,6 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 
 	codec_info(codec, "This is a Macbook 8,1 %d", action);
 	codec_info(codec, "subsystem_id, %08x", codec->core.subsystem_id);
-
 
 	if (action == HDA_FIXUP_ACT_PRE_PROBE) {
 		struct cs_spec *spec = codec->spec;
