@@ -236,35 +236,35 @@ static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
 	{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
 	{0x24, AC_VERB_SET_PROC_STATE, 0x01},  /* VPW: processing on */ 
 	
-	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000}, 
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0080}, /* CIR=00h, coeff=0080h (SPCC = 10b, SP1M = 0b) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0C04}, /* CIR=04h, coeff=0C04h (TX1 ch 0: slot  4, ch 1: slot 12) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x1000}, /* CIR=05h, coeff=1000h (TX1 ch 2: slot  0, ch 3: slot 16) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6}, /* CIR=1Dh, coeff=0BF6h (DC detect level = 36h) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x4493}, /* CIR=33h, coeff=4493h (A/C Gat, A2/C Inv, A1/A2/C ICS) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
+	{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* CIR=34h, coeff=1B13h (A1/A2/C Enable, A threshold = 250 mV) */
 	
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, /* CIR=36h, coeff=0034h (SP1 slew rate = slow) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x9999}, /* VPW: test mode on */
 	
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
+	{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, /* CIR=50h, coeff=008Bh [00CBh] (jack sense hysteresis = 100 us) */
 
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-	{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0000}, /* VPW: test mode off */
 	{} /* terminator */
 };
 
@@ -336,6 +336,7 @@ static int cs_init(struct hda_codec *codec)
 		snd_hda_sequence_write(codec, cs_errata_init_verbs);
 		snd_hda_sequence_write(codec, cs_coef_init_verbs);
 	} else if (spec->vendor_nid == CS4208_VENDOR_NID) {
+		snd_hda_sequence_write(codec, cs_coef_init_verbs);
 		snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
 	}
 

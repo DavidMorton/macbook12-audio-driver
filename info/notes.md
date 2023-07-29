@@ -1167,3 +1167,16 @@ Keeping the original method, but switching in the mb81 verbs instead...
 Headphones gone again. Our verbs are wrong somehow...
 
 Changing VPW Processing to 0x01 from 0x02.
+
+# 2023-07-28/19-10
+
+Headphones back. Am I crazy? Trying again to set it off and see what happens...
+
+I'm not... nevermind... not putting it back... The VPW flag should always have been 0x01. 
+
+    01,03,47,02,\							; VPW: proc on
+
+Still no speakers though. 
+
+Let's write some more coef verbs!
+
