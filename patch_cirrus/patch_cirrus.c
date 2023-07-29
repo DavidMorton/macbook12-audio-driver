@@ -171,7 +171,7 @@ static void cs_automute(struct hda_codec *codec)
 	{
 		if (spec->gen.automute_speaker)
 		{
-			codec_info(codec, "Automute speaker is turned on");
+			codec_info(codec, "Automute speaker is turned on. hp_jack_present: %02x", gen.hp_jack_present);
 			spec->gpio_data = spec->gen.hp_jack_present ? spec->gpio_eapd_hp : spec->gpio_eapd_speaker;
 		}
 		else
@@ -180,6 +180,7 @@ static void cs_automute(struct hda_codec *codec)
 			spec->gpio_data =
 				spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
 		}
+		codec_info(codec, "gpio_data is being set to %02x", spec->gpio_data);
 		snd_hda_codec_write(codec, 0x01, 0,
 							AC_VERB_SET_GPIO_DATA, spec->gpio_data);
 	}

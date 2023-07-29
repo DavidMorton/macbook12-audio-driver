@@ -1419,3 +1419,36 @@ I'm beginning to think that the S/PDIF doesn't need to be touched at all...
 
 Curious if this changes anything if I change 0x90100010 to 0x901000f0.
 
+## 12-21, 12-25
+
+Selecting the speakers node actually turned on the speaker, but I'm not sure why I'm still not hearing sound. 
+
+    Node 0x12 [Pin Complex] wcaps 0x400501: Stereo
+    Pincap 0x00000050: OUT Balanced
+    Pin Default 0x90170011: [Fixed] Speaker at Int N/A
+        Conn = Analog, Color = Unknown
+        DefAssociation = 0x1, Sequence = 0x1
+    Pin-ctls: 0x40: OUT
+    Power states:  D0 D3 EPSS
+    Power: setting=D0, actual=D0
+    Connection: 1
+        0x03
+
+The only thing I'm thinking is maybe the speaker itself is digital? That seems somewhat strange to me, but the power setting has changed from D3 to D0, mhich means it's on... 
+
+This again goes back to the question of the connection... what does the connection 0x03 mean?
+
+Data on this is set to the following
+
+    GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
+    IO[0]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+    IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[4]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+    IO[5]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+
+So it looks as though the data is set to 0x1 when it might need to be 0x30... what's setting that I wonder...
+
+Adding some logging...
+
