@@ -1382,3 +1382,40 @@ Lets move around the speaker to 0x12 and see if muting that still mutes the head
 
 The speaker is moved to 0x12. The behavior is fixed. Muting the speaker no longer mutes the headphones, but we still don't have speaker sound, although we have headphone sound. 
 
+Unsolicited is part of jack detection. 
+
+Pin ctls for the headphone is 
+
+    Pin-ctls: 0xc0: OUT HP (8+4=12 probably, with the 4 meaning "out" and the 12 meaning "HP")
+
+And for the speaker (0x12) it's  0x40: OUT. So the 4 must mean "out"
+
+This explains it:
+
+    /* Pin widget control - 8bit */
+    #define AC_PINCTL_EPT			(0x3<<0)
+    #define AC_PINCTL_EPT_NATIVE		0
+    #define AC_PINCTL_EPT_HBR		3
+    #define AC_PINCTL_VREFEN		(0x7<<0)
+    #define AC_PINCTL_VREF_HIZ		0	/* Hi-Z */
+    #define AC_PINCTL_VREF_50		1	/* 50% */
+    #define AC_PINCTL_VREF_GRD		2	/* ground */
+    #define AC_PINCTL_VREF_80		4	/* 80% */
+    #define AC_PINCTL_VREF_100		5	/* 100% */
+    #define AC_PINCTL_IN_EN			(1<<5)
+    #define AC_PINCTL_OUT_EN		(1<<6)
+    #define AC_PINCTL_HP_EN			(1<<7)
+
+So there's no specific thing for the speaker itself. It's just powered off!
+
+0x12 is set to analog, but could it be digital?
+
+What does the connection section mean?
+
+    Connection: 1
+     0x03
+
+I'm beginning to think that the S/PDIF doesn't need to be touched at all...
+
+Curious if this changes anything if I change 0x90100010 to 0x901000f0.
+
