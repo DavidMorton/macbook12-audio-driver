@@ -1155,3 +1155,8 @@ Taking data out of 0x30... Putting it on 0x31.
 # 2023-07-28-18-50
 
 Changing back to the old init to see what that does.
+
+Headphones are back... Now why...
+
+Keeping the original method, but switching in the mb81 verbs instead...
+

@@ -232,6 +232,42 @@ static const struct hda_verb cs4208_coef_init_verbs[] = {
 	{} /* terminator */
 };
 
+static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
+	{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
+	{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
+	
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
+	
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
+	
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
+
+	{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
+	{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
+	{} /* terminator */
+};
+
 /* Errata: CS4207 rev C0/C1/C2 Silicon
  *
  * http://www.cirrus.com/en/pubs/errata/ER880C3.pdf
@@ -300,7 +336,7 @@ static int cs_init(struct hda_codec *codec)
 		snd_hda_sequence_write(codec, cs_errata_init_verbs);
 		snd_hda_sequence_write(codec, cs_coef_init_verbs);
 	} else if (spec->vendor_nid == CS4208_VENDOR_NID) {
-		snd_hda_sequence_write(codec, cs4208_coef_init_verbs);
+		snd_hda_sequence_write(codec, cs4208_coef_init_verbs_mb81);
 	}
 
 	snd_hda_gen_init(codec);
@@ -326,41 +362,7 @@ static int cs_init_mb81(struct hda_codec *codec)
 {
 	struct cs_spec *spec = codec->spec;
 
-	static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
-		{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
-		{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
 
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0004},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0C04},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0005},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x1000},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x001D},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0BF6},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0033},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x4493},
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0034},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x1B13}, /* A1 Enable, A Thresh = 300mV */
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0036},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0034}, 
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x9999},
-		
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0050},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x008B}, 
-
-		{0x24, AC_VERB_SET_COEF_INDEX, 0x0040},
-		{0x24, AC_VERB_SET_PROC_COEF, 0x0000},
-		{} /* terminator */
-	};
 
 	codec_info(codec, "MB81 Vendor NID: %04x",spec->vendor_nid);
 
@@ -381,7 +383,7 @@ static int cs_init_mb81(struct hda_codec *codec)
 				    spec->gpio_data);
 	}
 
-	if (spec->vendor_nid == CS4208_VENDOR_NID) {
+	if (spec->vendor_nid == CS420X_VENDOR_NID) {
 		init_input_coef(codec);
 		init_digital_coef(codec);
 	}
