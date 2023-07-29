@@ -1325,3 +1325,10 @@ Setting the bit from 0 to 2 to turn 0x10 back into a headphone. Seeing if this t
 Headphones not on again. But there's clicking. 
 
 Turning back on gen automute speakers...
+
+## 09-51
+
+Headphones still clicking but no sound.
+
+No longer directly setting things... let's try again.
+
