@@ -922,11 +922,11 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		codec_info(codec, "HDA_FIXUP_ACT_PRE_PROBE");
 
 		spec->gpio_eapd_hp = (1 << 0);
-		spec->gpio_eapd_speaker = 0x30; // b110000
+		spec->gpio_eapd_speaker = 0xa; // b110000
 		spec->gpio_mask = 0x31;
 		spec->gpio_dir = 0x31; // Maybe the headphone drives but but the other two sense?
 		spec->gpio_data = 0x31;
-		spec->spdif_detect = 0x1;
+		//spec->spdif_detect = 0x1;
 	}
 
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
@@ -991,8 +991,8 @@ static int patch_cs4208(struct hda_codec *codec)
 		return -ENOMEM;
 
 	codec->patch_ops = cs_patch_ops;
-	spec->gen.detect_hp = 0x1;
-	spec->gen.automute_speaker = 0x1;
+	//spec->gen.detect_hp = 0x1;
+	//spec->gen.automute_speaker = 0x1;
 	spec->gen.automute_hook = cs_automute;
 	/* exclude NID 0x10 (HP) from output volumes due to different steps */
 	spec->gen.out_vol_mask = 1ULL << 0x10;
