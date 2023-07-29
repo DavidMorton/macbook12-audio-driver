@@ -1337,3 +1337,43 @@ No longer directly setting things... let's try again.
 Argh. Lost headphones!
 
 Looking back to comment some things out and try again.
+
+Speaker is back, but not sure when that happened... the "Speaker" in the AlsaMixer was muted, and this caused the headphones to mute as well...
+
+    ┌────────────────────────────── AlsaMixer v1.2.6 ──────────────────────────────┐
+    │ Card: HDA Intel PCH                                  F1:  Help               │
+    │ Chip: Cirrus Logic CS4208                            F2:  System information │
+    │ View: F3:[Playback] F4: Capture  F5: All             F6:  Select sound card  │
+    │ Item: Speaker [Off, Off]                             Esc: Exit               │
+    │                                                                              │
+    │     ┌──┐                       ┌──┐     ┌──┐     ┌──┐                        │
+    │     │  │                       │▒▒│     │▒▒│     │  │                        │
+    │     │  │                       │▒▒│     │▒▒│     │  │                        │
+    │     │  │                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        →
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        │
+    │     │▒▒│                       │▒▒│     │▒▒│     │  │                        │
+    │     ├──┤     ┌──┐     ┌──┐     └──┘     └──┘     └──┘     ┌──┐     ┌──┐      │
+    │     │OO│     │OO│     │MM│                                │MM│     │OO│      │
+    │     └──┘     └──┘     └──┘                                └──┘     └──┘      │
+    │      71                       97<>100 100<>100   0<>0                        │
+    │    Master  Headphon<Speaker >  PCM    Line Out Mic Boos  S/PDIF  S/PDIF D    │
+    └──────────────────────────────────────────────────────────────────────────────┘
+
+Muting 0x11 effectively mutes the headphones as well.
+
+Notes, muting the headphones mutes the master, but you can unmute the master and leave the headphones muted.
+
+Muting speaker or headphones or master makes the headphones stop working.
+
+0x11 must somehow be related to the headphones... a second channel on the headphones?
+
+Maybe Leif was right, and the speaker is 0x12, and 0x11 is some kind of attachment to the headphones. 
+
+Lets move around the speaker to 0x12 and see if muting that still mutes the headphones.
+
