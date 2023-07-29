@@ -1230,3 +1230,12 @@ Turning on automute speaker.
 The automute hook is working. Tomorrow to turn on the actual speakers. 
 
 More logging.
+
+# 2023-07-29
+
+## 06-49
+
+No SPDIF detected not continuing. 
+
+Setting gen->spdif_detect to 1.
+

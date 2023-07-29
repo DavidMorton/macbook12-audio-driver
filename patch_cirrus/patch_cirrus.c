@@ -903,6 +903,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		spec->gpio_mask = 0x31;
 		spec->gpio_dir = 0x31; // Maybe the headphone drives but but the other two sense?
 		spec->gpio_data = 0x31; 
+		spec->spdif_detect = 0x1;
 	}
 
 	snd_hda_override_wcaps(codec, 0xa, 0x00042631);
