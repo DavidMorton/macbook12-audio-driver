@@ -876,7 +876,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 						const struct hda_fixup *fix, int action)
 {	
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
-		{ 0x10, 0x030b20f0 },  //0000 stereo amp-out        #HP jack
+		{ 0x10, 0x032b20f0 },  //0000 stereo amp-out        #HP jack
 		{ 0x11, 0x90100011 },  //0004 stereo
 		{ 0x12, 0x90100012 },  //0008 stereo  			   
 		{ 0x13, 0x90100013 },  //0012 stereo

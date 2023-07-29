@@ -1307,3 +1307,16 @@ How can I power on the speakers?
 Turning off gen.automute_speakers will force data to go through all GPIO settings. I should see a 0x31 setting in the data, with 0, 4, and 5 all turned on. 
 
 Trying that.
+
+## 09-36
+
+As expected, GPIO data is set to all three. 
+
+Still no sound.
+
+Power setting is still set to D3 for the speakers and for the 0x0a node. 
+
+We should probably not even be playing with the LO at all. The headphones don't work anymore.
+
+Setting the bit from 0 to 2 to turn 0x10 back into a headphone. Seeing if this turns the headphones back on again.
+
