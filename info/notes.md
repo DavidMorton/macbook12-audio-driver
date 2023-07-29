@@ -1262,3 +1262,12 @@ Setting the line_outs manually.
 Headphones don't work anymore. 
 
 Did something wrong. Fixing.
+
+## 07-28
+
+The speakers came up muted, which was interesting to me. Checking the log.
+
+HDA_PINCFG_NO_LO_FIXUP is still being run, it shouldn't be. 
+
+Setting the speaker pins and line out pins, but not the speaker_outs and line_outs, because that seems to be set later. 
+

@@ -976,12 +976,12 @@ static int patch_cs4208(struct hda_codec *codec)
 	spec->gen.automute_hook = cs_automute;
 	/* exclude NID 0x10 (HP) from output volumes due to different steps */
 	spec->gen.out_vol_mask = 1ULL << 0x10;
-	spec->gen.autocfg.speaker_outs = 4;
+	//spec->gen.autocfg.speaker_outs = 4;
 	spec->gen.autocfg.speaker_pins[0] = 0x11;
 	spec->gen.autocfg.speaker_pins[1] = 0x12;
 	spec->gen.autocfg.speaker_pins[2] = 0x13;
 	spec->gen.autocfg.speaker_pins[3] = 0x14;
-	spec->gen.autocfg.line_outs = 1;
+	//spec->gen.autocfg.line_outs = 1;
 	spec->gen.autocfg.line_out_pins[0] = 0x10;
 
 	snd_hda_pick_fixup(codec, cs4208_models, cs4208_fixup_tbl,
