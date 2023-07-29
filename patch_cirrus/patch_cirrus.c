@@ -441,8 +441,6 @@ static int cs_parse_auto_config(struct hda_codec *codec)
 		cfg->speaker_pins[1], cfg->speaker_pins[2],
 		cfg->speaker_pins[3], cfg->speaker_pins[4]);
 
-	cfg->speaker_pins[0] = 0x12;
-
 	codec_info(codec, "speaker_pins[0] = %02x", cfg->speaker_pins[0]);
 
 	cfg = &spec->gen.autocfg;
@@ -453,9 +451,19 @@ static int cs_parse_auto_config(struct hda_codec *codec)
 	if (err < 0)
 		return err;
 
+	codec_info(codec, "after snd_hda_parse_pin_defcfg   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
+		cfg->speaker_outs, cfg->speaker_pins[0],
+		cfg->speaker_pins[1], cfg->speaker_pins[2],
+		cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
 	err = snd_hda_gen_parse_auto_config(codec, &spec->gen.autocfg);
 	if (err < 0)
 		return err;
+	
+	codec_info(codec, "after snd_hda_gen_parse_auto_config   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
+		cfg->speaker_outs, cfg->speaker_pins[0],
+		cfg->speaker_pins[1], cfg->speaker_pins[2],
+		cfg->speaker_pins[3], cfg->speaker_pins[4]);
 
 	/* keep the ADCs powered up when it's dynamically switchable */
 	if (spec->gen.dyn_adc_switch) {

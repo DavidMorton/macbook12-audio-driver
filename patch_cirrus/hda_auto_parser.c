@@ -194,6 +194,11 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 
 	memset(cfg, 0, sizeof(*cfg));
 
+	codec_info(codec, "after memset... speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
+		cfg->speaker_outs, cfg->speaker_pins[0],
+		cfg->speaker_pins[1], cfg->speaker_pins[2],
+		cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
 	memset(line_out, 0, sizeof(line_out));
 	memset(speaker_out, 0, sizeof(speaker_out));
 	memset(hp_out, 0, sizeof(hp_out));
@@ -269,6 +274,11 @@ int snd_hda_parse_pin_defcfg(struct hda_codec *codec,
 			break;
 		case AC_JACK_SPEAKER:
 			codec_info(codec, "AC JACK SPEAKER");
+			codec_info(codec, "pre   speaker_outs=%d (0x%x/0x%x/0x%x/0x%x/0x%x)\n",
+				cfg->speaker_outs, cfg->speaker_pins[0],
+				cfg->speaker_pins[1], cfg->speaker_pins[2],
+				cfg->speaker_pins[3], cfg->speaker_pins[4]);
+
 			seq = get_defcfg_sequence(def_conf);
 			assoc = get_defcfg_association(def_conf);
 			if (cfg->speaker_outs >= ARRAY_SIZE(cfg->speaker_pins))
