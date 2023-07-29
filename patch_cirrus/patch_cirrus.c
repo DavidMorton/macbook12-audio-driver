@@ -956,6 +956,7 @@ static int patch_cs4208(struct hda_codec *codec)
 	struct cs_spec *spec;
 	int err;
 
+	codec_info(codec, "patch_cs4208");
 	spec = cs_alloc_spec(codec, CS4208_VENDOR_NID);
 	if (!spec)
 		return -ENOMEM;
@@ -994,6 +995,13 @@ static int patch_cs4208(struct hda_codec *codec)
 	codec_info(codec, "(recheck) wcap 0x18 = %x", get_wcaps(codec, 0x18));
 	codec_info(codec, "(recheck) wcap 0xa = %x", get_wcaps(codec, 0xa));
 
+	if (spec->gen.automute_hook)
+		codec_info(codec, "The automute hook is hooked in.");
+	else
+		codec_info(codec, "The automute hook is gone.");
+
+	codec_info(codec, "automute_speaker: %08x, detect_hp: %08x, automute_lo: %08x", spec->gen.automute_speaker, spec->gen.detect_hp, spec->gen.automute_lo);
+		
 	return 0;
 
  error:

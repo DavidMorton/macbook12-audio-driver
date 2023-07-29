@@ -1195,3 +1195,17 @@ Logging some automute behavior.
 Typo in codec_info so maybe that was a problem? Likely not, but still weird.
 
 There were compile errors. Trying again.
+
+# 2023-07-28/20-46
+
+Even with build right, still not getting any results. There's something not running with the automute.
+
+Adding more logging.
+
+# 2023-07-28/21-07
+
+So the automute hook is hooked, but not being called. What triggers it I wonder...
+
+call_update_outputs from hda_generic.
+
+More logs.
