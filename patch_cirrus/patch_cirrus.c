@@ -156,6 +156,7 @@ static inline void cs_vendor_coef_set(struct hda_codec *codec, unsigned int idx,
 
 static void cs_automute(struct hda_codec *codec)
 {
+	codec_info(codec, "Automuting");
 	struct cs_spec *spec = codec->spec;
 
 	/* mute HPs if spdif jack (SENSE_B) is present */
@@ -164,12 +165,16 @@ static void cs_automute(struct hda_codec *codec)
 	snd_hda_gen_update_outputs(codec);
 
 	if (spec->gpio_eapd_hp || spec->gpio_eapd_speaker) {
-		if (spec->gen.automute_speaker)
+		if (spec->gen.automute_speaker) {
+			codec_info("Automute speaker is turned on");
 			spec->gpio_data = spec->gen.hp_jack_present ?
 				spec->gpio_eapd_hp : spec->gpio_eapd_speaker;
-		else
+		}
+		else {
+			codec_ifo("Automute speaker is turned off.");
 			spec->gpio_data =
 				spec->gpio_eapd_hp | spec->gpio_eapd_speaker;
+		}
 		snd_hda_codec_write(codec, 0x01, 0,
 				    AC_VERB_SET_GPIO_DATA, spec->gpio_data);
 	}

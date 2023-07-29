@@ -1180,3 +1180,12 @@ Still no speakers though.
 
 Let's write some more coef verbs!
 
+# 2023-07-28/20-17
+
+D0 is fully powered. D3 is shut down.
+
+Might just be a power setting. 0x11-0x14 are simply shut down. There's no power with them at all. 
+
+Power setting on 0xa is also off unless it's feeding the headphone jack.
+
+Logging some automute behavior.
