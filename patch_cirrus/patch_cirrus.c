@@ -234,7 +234,7 @@ static const struct hda_verb cs4208_coef_init_verbs[] = {
 
 static const struct hda_verb cs4208_coef_init_verbs_mb81[] = {
 	{0x01, AC_VERB_SET_POWER_STATE, 0x00}, /* AFG: D0 */
-	{0x24, AC_VERB_SET_PROC_STATE, 0x02},  /* VPW: processing on */ 
+	{0x24, AC_VERB_SET_PROC_STATE, 0x01},  /* VPW: processing on */ 
 	
 	{0x24, AC_VERB_SET_COEF_INDEX, 0x0000},
 	{0x24, AC_VERB_SET_PROC_COEF, 0x0080},
