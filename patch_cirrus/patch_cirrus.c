@@ -840,16 +840,25 @@ static void cs4208_spdif_automute(struct hda_codec *codec,
 	bool spdif_present = false;
 	hda_nid_t spdif_pin = spec->gen.autocfg.dig_out_pins[0];
 
+	codec_info(codec, "spdif_pin: %02x", spdif_pin);
+
 	/* detect on spdif is specific to CS4210 */
 	if (!spec->spdif_detect ||
-	    spec->vendor_nid != CS4208_VENDOR_NID)
+	    spec->vendor_nid != CS4208_VENDOR_NID) {
+			codec_info(codec, "NO SPDIF detected, not continuing with automute.");
 		return;
+	}
 
 	spdif_present = snd_hda_jack_detect(codec, spdif_pin);
-	if (spdif_present == spec->spdif_present)
+	codec_info(codec, "spdif_present: %02x", spdif_present);
+	
+	if (spdif_present == spec->spdif_present) {
+		codec_info(codec, "No spdif present");
 		return;
+	}
 
 	spec->spdif_present = spdif_present;
+
 	/* SPDIF TX on/off */
 	snd_hda_set_pin_ctl(codec, spdif_pin, spdif_present ? PIN_OUT : 0);
 
