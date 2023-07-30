@@ -1458,13 +1458,13 @@ Moving gpio data to 4.
 
 ## 12-40
 
-GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
-  IO[0]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
-  IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
-  IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
-  IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
-  IO[4]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
-  IO[5]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
+    GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
+    IO[0]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+    IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[4]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+    IO[5]: enable=1, dir=1, wake=0, sticky=0, data=0, unsol=0
 
 Moving gpio speaker to 4 and 5. This should set IO[5] data to 1.
 
@@ -1472,3 +1472,23 @@ Not sure what is happening through IO[4] and IO[5] anyways.
 
 What is connection???
 
+## 12-45
+### HP+, S-
+
+As expected...
+
+    GPIO: io=6, o=2, i=0, unsolicited=1, wake=1
+    IO[0]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+    IO[1]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[2]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[3]: enable=0, dir=0, wake=0, sticky=0, data=0, unsol=0
+    IO[4]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+    IO[5]: enable=1, dir=1, wake=0, sticky=0, data=1, unsol=0
+
+Lets move the speaker to a non-digital non-spdif at 0x1d, just as it apparently is in OS/X according to leif.
+
+# 2023-07-30
+
+## 07-29
+
+Putting it back. That forced the headphones to be the output forever as there was no longer an actual speaker out listed.

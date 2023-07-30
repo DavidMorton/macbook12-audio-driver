@@ -894,7 +894,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{0x10, 0x032b20f0}, // 0000 stereo amp-out        #HP jack
 		{0x11, 0x500000f0}, // 0004 stereo
-		{0x12, 0x901000f0}, // Fixed Speaker, // 0008 stereo // b 1001
+		{0x12, 0x90100010}, // Fixed Speaker, // 0008 stereo // b 1001
 		{0x13, 0x500000f0}, // 0012 stereo
 		{0x14, 0x500000f0}, // 0016 stereo
 		{0x15, 0x770000f0}, // 0020 stereo Amp-In
@@ -905,7 +905,7 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		{0x1a, 0x770000f0}, // 0040 stereo Amp-In
 		{0x1b, 0x770000f0}, // 0044 stereo Amp-In
 		{0x1c, 0x770000f0}, // 0048 stereo Amp-In
-		{0x1d, 0x90400010}, // 0052 8-Channels Digital   # speaker (spdif)
+		{0x1d, 0x500000f0}, // 0052 8-Channels Digital   # speaker (spdif)
 		{0x1e, 0x500000f0}, // 0056 8-Channels Digital
 		{0x1f, 0x500000f0}, // 0060 8-Channels Digital
 		{0x20, 0x500000f0}, // 0064 8-Channels Digital
