@@ -1505,3 +1505,7 @@ Putting back the spdif.
 
 This actually hooks up the values in Node 0x0a again. Wanna see what happens if I add another in there...
 
+## 15-38
+
+Changing from SPDIF to digital out other. Wondering if that'll fix somethings ....
+
