@@ -1492,3 +1492,16 @@ Lets move the speaker to a non-digital non-spdif at 0x1d, just as it apparently 
 ## 07-29
 
 Putting it back. That forced the headphones to be the output forever as there was no longer an actual speaker out listed.
+
+## 2023-07-31
+
+## 15-27
+
+Wondering if 0x1e should maybe be another digital out...
+
+Putting back the spdif.
+
+## 15-35
+
+This actually hooks up the values in Node 0x0a again. Wanna see what happens if I add another in there...
+

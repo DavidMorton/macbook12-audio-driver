@@ -905,8 +905,8 @@ static void cs4208_fixup_mb81(struct hda_codec *codec,
 		{0x1a, 0x770000f0}, // 0040 stereo Amp-In
 		{0x1b, 0x770000f0}, // 0044 stereo Amp-In
 		{0x1c, 0x770000f0}, // 0048 stereo Amp-In
-		{0x1d, 0x500000f0}, // 0052 8-Channels Digital   # speaker (spdif)
-		{0x1e, 0x500000f0}, // 0056 8-Channels Digital
+		{0x1d, 0x90400010}, // 0052 8-Channels Digital   # speaker (spdif)
+		{0x1e, 0x90400011}, // 0056 8-Channels Digital
 		{0x1f, 0x500000f0}, // 0060 8-Channels Digital
 		{0x20, 0x500000f0}, // 0064 8-Channels Digital
 		{0x21, 0x430000f0}, // 0068 stereo digital
