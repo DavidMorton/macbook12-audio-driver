@@ -1572,3 +1572,41 @@ In all corb frames, I found the pin setting code that the INF uses in Windows. I
 50170010
 020410f0
 02111010
+
+# 2023-08-03
+
+Updating some parameters from what I've seen with the CORB dump that I gathered. Going to retry with some limited changes and see what the result is.
+
+First, I have to update grub again so that it allows the use of the PCI card.
+
+## 07-35
+
+## 07-55
+
+Adding some logging to the codec writing.
+
+## 08-09
+
+Interestingly no logs for hda_codec.c.
+
+## 08-14 
+
+I think the first command is stopping the verbs from running.
+
+## 08-30
+
+Still no sound. 
+
+Going back to do some research on how Windows was set up.
+
+Okay, so the windows machine is set up with a device that is set as 8086 for the manufacturer, but the Cirrus device in the system is set with 1013, with 4208 as the manufacturer.
+
+So we have: 8086:9ca0 in Windows according to the VM, but when installed against the bare metal, it's 1013:4208 with a subsystem of 106B6400.
+
+VM: 8086:9CA0, Subsys: 72708086
+Metal: 1013:4208, Subsys 106B6400
+
+I'm thinking I might have been barking up the wrong tree this whole time... I think this may be a Wildcat and not a cirrus... so how are we getting to using the cirrus anyways?!
+
+Nevermind. This is the same with leif's kernel. I have so much to learn here... what's the difference between the first thing and the second thing?
+

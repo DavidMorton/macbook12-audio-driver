@@ -80,8 +80,15 @@ again:
  */
 void snd_hda_sequence_write(struct hda_codec *codec, const struct hda_verb *seq)
 {
-	for (; seq->nid; seq++)
-		snd_hda_codec_write(codec, seq->nid, 0, seq->verb, seq->param);
+	int res;
+
+	codec_info(codec, "Writing out a sequence");
+
+	for (; seq->nid; seq++) {
+		codec_info(codec, "Writing to the codec");
+		res = snd_hda_codec_write(codec, seq->nid, 0, seq->verb, seq->param);
+		codec_info(codec, "nid: %02x, verb: %03x, parm: %04x, RESULT: %i", seq->nid, seq->verb, seq->param, res);
+	}
 }
 EXPORT_SYMBOL_GPL(snd_hda_sequence_write);
 
