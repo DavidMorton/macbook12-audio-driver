@@ -5,7 +5,7 @@ major_version=$(echo $kernel_version | cut -d '.' -f1)
 minor_version=$(echo $kernel_version | cut -d '.' -f2)
 major_minor=${major_version}${minor_version}
 
-build_dir='build'
+build_dir='.build'
 update_dir="/lib/modules/$(uname -r)/updates"
 patch_dir='patch_cirrus'
 hda_dir="$build_dir/hda-$kernel_version"

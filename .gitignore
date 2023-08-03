@@ -1,1 +1,4 @@
-build/**/*
+.build/**/*
+.scratch/**/*
+read_verbs
+test_verb

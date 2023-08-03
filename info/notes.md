@@ -435,8 +435,8 @@ Reading the INF file
     HKR,PinConfigOverrideVerbs,0033, 0x1,20,1d,87,01	; HS: COL=gray				*
     HKR,PinConfigOverrideVerbs,0034, 0x1,ab,1e,87,01	; HS: DD=MI, CTYP=combo
     HKR,PinConfigOverrideVerbs,0035, 0x1,03,1f,87,01	; HS: PCON=jack, LOC=prim/left
-
-So when looking at this, the 0002 in the first line is the 0-based decimal location of the pin. Let's say that we have this in the stack...
+0002
+So when looking at this, the  in the first line is the 0-based decimal location of the pin. Let's say that we have this in the stack...
 
 	static const struct hda_pintbl hda_pintbl_mb81_pincfgs_windows[] = {
 		{ 0x10, 0x042b20f0 },  //stereo amp-out        #HP jack
@@ -1509,3 +1509,66 @@ This actually hooks up the values in Node 0x0a again. Wanna see what happens if 
 
 Changing from SPDIF to digital out other. Wondering if that'll fix somethings ....
 
+## 15-47
+
+### Windows VM research
+
+Working through a VM install of Windows to try to grab the HDA verbs from the windows install. 
+
+This is the device we're trying to install:
+
+    00:1b.0 Audio device [0403]: Intel Corporation Wildcat Point-LP High Definition Audio Controller [8086:9ca0] (rev 03)
+
+I've installed windows in qemu, and am about to install the windows support drivers for mac.
+
+Following the work done [here](https://github.com/Conmanx360/QemuHDADump) with the QemuHDADump.
+
+### Installing Samba
+
+No real way to transfer files over to an emulator other than through an smb file share, so that's what I'm doing now. Installing Samba
+
+With help from [this](https://www.techrepublic.com/article/share-directories-lan-from-ubuntu-desktop-22-04/) article, I was able to get the share working. 
+
+Now that I've installed the Cirrus drivers on Windows, I'm getting sound from the Amplified Speakers in the list of devices!
+
+Now to gather up the HDA Verbs.
+
+Next Command:
+
+    sudo ./start_vm.sh 2>&1 >/dev/null | ./QemuHDADump /dev/tty
+
+Verbs are made like this:
+
+    val = addr << 28; // address of the CORB buffer
+    val |= (u32)nid << 20; // NID
+    val |= verb << 8; // verb
+    val |= parm; // verb parameter
+    return val;
+
+Flags gets set to zero
+
+    snd_hda_codec_write(struct hda_codec *codec, hda_nid_t nid, int flags,
+                unsigned int verb, unsigned int parm)
+    {
+        return snd_hdac_codec_write(&codec->core, nid, flags, verb, parm);
+    }
+
+	snd_hda_codec_write(codec, 0x12, 0, AC_VERB_SET_POWER_STATE, 0x00000003);
+
+    #define AC_VERB_SET_POWER_STATE			0x705
+
+So, ignoring codec address right now, because we don't know what that is...
+
+nid = 0x12
+flags = 0
+verb = 0x705
+parm = 0x3
+
+001270503
+
+In all corb frames, I found the pin setting code that the INF uses in Windows. It starts at offset 0x768
+
+042b20f0
+50170010
+020410f0
+02111010
