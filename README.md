@@ -1,3 +1,15 @@
+# David Morton Update (Aug 2023)
+
+During July of 2023, I spent some time trying to get this working for the macbook8,1 (Early 2015). I was unsuccessful, and kind of got tired of working on it. Given all the other issues with Linux on this machine (including non-functional Bluetooth, keyboard and trackpad failure upon resume, general overheating issues), I'm going to let my computer live out it's happy days as a Macbook.
+
+Honestly, I started this whole project because I figured that OpenCore Patcher was going to run out of runway on Intel machines before my machine was kaput, but given that my computer is over 8 years old now, it's probably close to time to get a new machine anyways. 
+
+For anyone who wants to work on this, I've taken some copious [notes](https://github.com/DavidMorton/macbook12-audio-driver/blob/master/info/notes.md) on all the steps I took, and I might have been close, but then I'd have so much other work to do to get it working, that in the end, it's just not worth it at this point in my life. 
+
+Good luck!
+
+# Original README
+
 Work in progress audio driver for the 12" MacBook9,1 (2016) and Macbook10,1 (2017) that's largely based on davidjo's [snd_hda_macbookpro](https://github.com/davidjo/snd_hda_macbookpro)  
 Note: the Macbook8,1 (2015) is not supported. 
 
